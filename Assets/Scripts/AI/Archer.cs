@@ -8,6 +8,8 @@ public class Archer : MonoBehaviour {
     [SerializeField] private Transform player;
     Vector3 target;
 
+    Vector3 origArea;
+
     private enum state { wander, chasing, attacking };
     state currState = state.wander;
 
@@ -21,6 +23,7 @@ public class Archer : MonoBehaviour {
     float attackTimer = 0f;
 
     private void Start() {
+        origArea = transform.position;
         agent = gameObject.GetComponent<NavMeshAgent>();
         WanderInDirection();
     }
@@ -42,7 +45,7 @@ public class Archer : MonoBehaviour {
     }
 
     Vector3 wanderPoint(float wanderDist) {
-        Vector3 randPoint = Random.insideUnitSphere* wanderDist +transform.position;
+        Vector3 randPoint = Random.insideUnitSphere* wanderDist + origArea;
         NavMeshHit hit; // NavMesh Sampling Info Container
 
         // from randomPos find a nearest point on NavMesh surface in range of maxDistance

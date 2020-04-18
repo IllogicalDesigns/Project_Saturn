@@ -8,6 +8,7 @@ namespace Player {
         public void ApplyDamage(int damage) {
             hp -= damage;
             CheckDeath();
+            gameObject.BroadcastMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
         }
 
         void CheckDeath() {

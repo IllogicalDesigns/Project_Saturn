@@ -9,8 +9,13 @@ namespace Player {
         [SerializeField] public int dmg = 60;
         [SerializeField] public float ReloadTime = 0.1f;
         [SerializeField] public float DirectionArcRange = 1f;
+
         [SerializeField] public GameObject BulletPrefab;
         [SerializeField] public float speed = 1f;
+
+        [SerializeField] public GameObject BulletTrailPrefab;
+        [SerializeField] AudioSource gunShot;
+
         private float lastFireTime;
         private float arcRangeRad;
         private CamEffects camEffects;
@@ -58,6 +63,9 @@ namespace Player {
 
             camEffects.Shake(0.05f, 0.5f);
             rigid.AddForce(-forward * kickback, ForceMode.Impulse);
+            rigid.AddForce(-transform.forward * kickback, ForceMode.Impulse);
+
+            gunShot.Play();
         }
 
         // Update is called once per frame
