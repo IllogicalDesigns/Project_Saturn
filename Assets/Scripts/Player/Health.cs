@@ -15,7 +15,7 @@ namespace Player {
         
         private bool canStumble;
         private float stumbleTimeTracker;
-        private bool Stumbled => stumbleTimeTracker >= 1e-4;
+        public bool Stumbled => stumbleTimeTracker >= 1e-4;
 
         private void Start() {
             canStumble = gameObject.CompareTag("Enemy");

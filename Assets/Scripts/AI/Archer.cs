@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,12 +10,15 @@ namespace AI {
         [SerializeField] private Transform player;
         Vector3 target;
 
+        private Health health;
+
         Vector3 origArea;
 
         private enum state {
             wander,
             chasing,
-            attacking
+            attacking,
+            stumbled
         };
 
         state currState = state.wander;
@@ -31,6 +35,7 @@ namespace AI {
         private void Start() {
             origArea = transform.position;
             agent = gameObject.GetComponent<NavMeshAgent>();
+            health = gameObject.GetComponent<Health>();
             WanderInDirection();
         }
 
@@ -87,13 +92,27 @@ namespace AI {
             }
         }
 
+        private void Stumbled() {
+            agent.isStopped = true;
+            if (health.Stumbled) return;
+            
+            currState = state.wander;
+        }
+
         private void Update() {
+            if (health.Stumbled) {
+                currState = state.stumbled;
+            }
+            
             switch (currState) {
                 case state.chasing:
                     Chasing();
                     break;
                 case state.attacking:
                     Attacking();
+                    break;
+                case state.stumbled:
+                    Stumbled();
                     break;
                 default:
                     Wander();

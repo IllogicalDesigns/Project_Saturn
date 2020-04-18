@@ -7,6 +7,7 @@ namespace Player {
         [SerializeField] private BloodTracker bloodTracker;
         [SerializeField] private Movement playerMovement;
         [SerializeField] private Health playerHealth;
+        [SerializeField] private InGameCanvas canvas;
         
         [SerializeField] private float bloodUsePerHeal;
         [SerializeField] private int healAmount;
@@ -49,8 +50,12 @@ namespace Player {
             // Tick bloodrage if in bloodrage
             if (bloodRageTimeTracker > 0) {
                 bloodRageTimeTracker -= Time.deltaTime;
+                if (bloodRageTimeTracker <= 1e-4) { // Exit blood rage
+                    EndBloodRage();
+                }
             }
             
+            // Try to get inputs
             if (Input.GetButtonDown("Heal") && healCooldownTracker <= 1e-4) {
                 DoHeal();
             }else if (Input.GetButtonDown("TimeWarp") && !inTimeWarp) {
@@ -75,6 +80,7 @@ namespace Player {
             if (bloodTracker.CurrentBlood < minBloodForTimeWarp) return;
 
             inTimeWarp = true;
+            canvas.EnableTimeWarpOverlay();
             Time.timeScale *= timeWarpFactor;
             Time.fixedDeltaTime *= timeWarpFactor;
             playerMovement.MovementFactor = 1 / timeWarpFactor;
@@ -91,6 +97,7 @@ namespace Player {
 
         private void EndTimeWarp() {
             inTimeWarp = false;
+            canvas.DisableTimeWarpOverlay();
             Time.timeScale = 1f;
             Time.fixedDeltaTime = defaultFixedDeltaTime;
             playerMovement.MovementFactor = 1f;
@@ -99,8 +106,13 @@ namespace Player {
         private void StartBloodRage() {
             if (!bloodTracker.TryUseBlood(bloodUsePerBloodRage)) return;
 
+            canvas.EnableBloodRageOverlay();
             bloodRageTimeTracker = bloodRageDuration;
             bloodRageCooldownTracker = bloodRageCooldown;
+        }
+
+        private void EndBloodRage() {
+            canvas.DisableBloodRageOverlay();
         }
 
         private void OnCollisionEnter(Collision other) {
