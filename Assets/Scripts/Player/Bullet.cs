@@ -9,13 +9,14 @@ namespace Player {
         bool bulletEnabled = true;
 
         // Start is called before the first frame update
-        void Start()
-        {
+        void Start() {
         
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
+        private void OnTriggerEnter(Collider other) {
+            if (other.gameObject.CompareTag("Player") && owner == 1 ||
+                other.gameObject.CompareTag("Enemy") && owner == -1) return;
+            
             if(other.gameObject.CompareTag("Player") && owner == -1)
             {
                 other.gameObject.SendMessage("ApplyDamage", dmg);

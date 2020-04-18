@@ -11,9 +11,7 @@ namespace AI {
         state currState = state.wander;
 
         [SerializeField] float chaseDist = 15f, attackDist = 1f, maxWanderDist = 10f, timeInBetweenAttacks = 1f;
-
-        float spread = 0.15f;
-
+        
         float attackTimer = 0f;
 
         private void Start() {
@@ -67,10 +65,6 @@ namespace AI {
             else {
                 attackTimer -= Time.deltaTime;
             }
-        }
-
-        private void Rotate() {
-            
         }
 
         private void Update() {

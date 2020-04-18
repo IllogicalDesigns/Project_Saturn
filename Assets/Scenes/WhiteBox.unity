@@ -1495,6 +1495,8 @@ MonoBehaviour:
   BulletPrefab: {fileID: 2866993711871358060, guid: 15b2dd865f41de4429bfbd19cad1eec0,
     type: 3}
   speed: 35
+  BulletTrailPrefab: {fileID: 0}
+  gunShot: {fileID: 0}
   kickback: 1
 --- !u!114 &1150280739
 MonoBehaviour:
@@ -1774,7 +1776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391298764}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -2.5, y: -3, z: 4.52}
+  m_LocalPosition: {x: -1, y: -1, z: 4.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1389006564}
