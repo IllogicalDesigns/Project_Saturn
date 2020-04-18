@@ -39,7 +39,7 @@ namespace Player {
             hp -= damage;
 
             CheckOnHitEffects(true);
-            gameObject.BroadcastMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
+            gameObject.BroadcastMessage("OnMeleeDamage", SendMessageOptions.DontRequireReceiver);
         }
 
         public void ApplyDamageForceKill(int damage) {
