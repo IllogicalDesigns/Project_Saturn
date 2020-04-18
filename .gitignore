@@ -62,3 +62,4 @@ crashlytics-build.properties
 .idea/
 *.sln.iml
 .idea\.idea.Project_Saturn\.idea\contentModel.xml
+**/.idea/**/projectSettingsUpdater.xml
