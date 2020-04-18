@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private Transform target;
 
     private void Start() {
-        gameObject.GetComponent<NavMeshAgent>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
     private void Update() {
