@@ -12,6 +12,10 @@ namespace Player {
         private float lastFireTime;
         private float arcRangeRad;
 
+        public float kickback = 6f;
+
+        Rigidbody rigid;
+
         public void onFireBind(string _fire) {
             fire = _fire;
         }
@@ -27,6 +31,7 @@ namespace Player {
         // Start is called before the first frame update
         void Start() {
             arcRangeRad = Mathf.Deg2Rad * DirectionArcRange;
+            rigid = GetComponent<Rigidbody>();
         }
 
         void FirePistol() {
@@ -35,14 +40,18 @@ namespace Player {
                 (transform.forward + transform.TransformDirection(new Vector3(Mathf.Sin(rand), 0, Mathf.Cos(rand)))
                     .normalized), out var hitInfo)) return;
 
+            FindObjectOfType<CamEffects>().Shake(0.05f, 0.5f);
+
             if (hitInfo.transform.gameObject.CompareTag("Enemy")) {
-                hitInfo.transform.gameObject.SendMessage("ApplyDmg", dmg);
+                hitInfo.transform.gameObject.SendMessage("ApplyDamage", dmg);
             }
 
             var trail = Instantiate(BulletTrailPrefab);
             trail.GetComponent<LineRenderer>().SetPositions(new[]{firePoint.transform.position, hitInfo.point});
             
             lastFireTime = Time.time;
+
+            rigid.AddForce(-transform.forward * kickback, ForceMode.Impulse);
         }
 
         // Update is called once per frame

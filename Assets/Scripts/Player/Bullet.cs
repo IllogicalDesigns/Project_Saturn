@@ -21,12 +21,12 @@ namespace Player {
         {
             if(other.gameObject.CompareTag("Player") && owner == -1)
             {
-                other.gameObject.SendMessage("ApplyDmg", dmg);
+                other.gameObject.SendMessage("ApplyDamage", dmg);
                 DisableBulletBloody();
             }
             else if (other.gameObject.CompareTag("Enemy") && owner != -1)
             {
-                other.gameObject.SendMessage("ApplyDmg", dmg);
+                other.gameObject.SendMessage("ApplyDamage", dmg);
                 DisableBulletBloody();
             }
             else
@@ -44,10 +44,10 @@ namespace Player {
 
         void DisableBullet()
         {
-            transform.position = Vector3.zero;
-            bulletEnabled = false;
-            collider.enabled = false;
-            renderer.enabled = false;
+            //transform.position = Vector3.zero;
+            //bulletEnabled = false;
+            //collider.enabled = false;
+            //renderer.enabled = false;
             Destroy(gameObject);
             //TODO put in pool
         }
@@ -64,15 +64,16 @@ namespace Player {
             DisableBullet();
         }
 
-
-        public void EnableBullet(int _owner, int _dmg, float _speed)
-        {
-            dmg = _dmg;
-            speed = _speed;
+        public void SetOwner(int _owner) {
             owner = _owner;
-            bulletEnabled = true;
-            collider.enabled = true;
-            renderer.enabled = true;
+        }
+
+        public void SetDmg(int _dmg) {
+            dmg = _dmg;
+        }
+
+        public void SetSpeed(int _speed) {
+            speed = _speed;
         }
     }
 }
