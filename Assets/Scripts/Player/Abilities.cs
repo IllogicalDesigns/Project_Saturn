@@ -106,7 +106,7 @@ namespace Player {
         private void OnCollisionEnter(Collision other) {
             if (bloodRageTimeTracker <= 1e-4 || !other.gameObject.CompareTag("Enemy")) return;
             
-            other.gameObject.SendMessage("ApplyDamage", chargeDamageInBloodRage);
+            other.gameObject.SendMessage("ApplyDamageForceKill", chargeDamageInBloodRage);
         }
     }
 }

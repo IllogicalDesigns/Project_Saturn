@@ -327,7 +327,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df1da969ef40734a98cc1c6a8535ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 100
   hp: 100
+  stumbleDuration: 2
+  healthOnExitStumble: 40
+  spriteRenderer: {fileID: 4221789305747772713}
 --- !u!114 &4221789305810482783
 MonoBehaviour:
   m_ObjectHideFlags: 0
