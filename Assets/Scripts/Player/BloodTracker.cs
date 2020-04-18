@@ -15,6 +15,13 @@ namespace Player {
             currentBloodInt -= amount;
             return true;
         }
+
+        public void AddBlood(float amount) {
+            currentBloodInt += amount;
+            if (currentBloodInt > MaxBlood) {
+                currentBloodInt = MaxBlood;
+            }
+        }
         
         void Start() {
             currentBloodInt = MaxBlood;
