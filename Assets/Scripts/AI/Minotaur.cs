@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 namespace AI {
     public class Minotaur : MonoBehaviour {
       [SerializeField] private NavMeshAgent agent;
       [SerializeField] private Transform player;
+      [SerializeField] private float chargeDist = 15, attackDist = 1, maxWanderDist = 10, attackDamageDealt = 20;
       private Vector3 target;
       State currState = State.Wander;
       
       private enum State { Wander, Preparing, Charging, Recovering };
-
-      [SerializeField] private float chargeDist = 15, attackDist = 1, maxWanderDist = 10;
 
       private void Start() {
           agent = gameObject.GetComponent<NavMeshAgent>();
@@ -51,17 +53,29 @@ namespace AI {
       }
       
       private void Charging() {
-          if (Vector3.Distance(transform.position, player.position) < attackDist) {
-              // deal damage, knockback, stop + recover
-              currState = State.Recovering;
-          }
-
           agent.isStopped = false;
+          agent.SetDestination(target);
+      }
+
+      private void OnCollisionEnter(Collision other) {
+          if (!other.gameObject.CompareTag("Player")) return;
+          if (currState != State.Charging) return;
+          
+          other.gameObject.SendMessage("ApplyDamage", attackDamageDealt);
+          ApplyKnockback(transform.position);
       }
 
       private IEnumerator PrepareToCharge() {
           currState = State.Charging;
           yield return new WaitForSeconds(1);
+      }
+
+      private void ApplyKnockback(Vector4 pos) {
+          var posFrom = new Vector3(pos.x, pos.y, pos.z);
+          var force = pos.w;
+          var dir = (posFrom - transform.position).normalized;
+          var ridge = GetComponent<Rigidbody>();
+          ridge.AddForce(-dir * force, ForceMode.Impulse);
       }
 
       private void Update() {
