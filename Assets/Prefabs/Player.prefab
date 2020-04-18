@@ -1,5 +1,115 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1855514242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855514246}
+  - component: {fileID: 1855514245}
+  - component: {fileID: 1855514244}
+  - component: {fileID: 1855514243}
+  - component: {fileID: 1855514247}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1855514246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855514242}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.625}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1916456895666414290}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1855514245
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855514242}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1855514244
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855514242}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!135 &1855514243
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855514242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1855514247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855514242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b09ae04cfffed44853d73a3cb34cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitAbleTag: Enemy
+  dam: 35
+  knockForce: 35
+  camEffects: {fileID: 1916456896383937398}
 --- !u!1 &1916456895666414294
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +149,7 @@ Transform:
   m_Children:
   - {fileID: 1916456895905663017}
   - {fileID: 1916456896705743613}
+  - {fileID: 1855514246}
   m_Father: {fileID: 1916456896232485844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,6 +218,7 @@ MonoBehaviour:
   gamePad: 0
   gameCanvas: {fileID: 1916456896788958376}
   timeBetweenDodges: 1
+  MovementFactor: 1
   Crosshair: {fileID: 1916456896807268151}
   CrosshairAltitude: 5
 --- !u!54 &1916456895666414316
@@ -172,7 +284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df1da969ef40734a98cc1c6a8535ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 100
   hp: 100
+  stumbleDuration: 2
+  healthOnExitStumble: 40
+  spriteRenderer: {fileID: 0}
 --- !u!114 &1916456895666414318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f2795f8a3e57741916c235d9b53f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeInBetweenPunches: 1
+  meleeCollider: {fileID: 1855514242}
 --- !u!1 &1916456895905663022
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +768,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916456896057678165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 28936651851b8214b9f963e7bc341b24, type: 2}
   m_CullingMode: 0
@@ -1360,6 +1476,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dodgeSlider: {fileID: 1916456896734628102}
+  bloodSlider: {fileID: 0}
+  timeWarpOverlay: {fileID: 0}
+  bloodRageOverlay: {fileID: 0}
 --- !u!1 &1916456896807268151
 GameObject:
   m_ObjectHideFlags: 0
