@@ -51,6 +51,7 @@ namespace Player {
                 bloodRageTimeTracker -= Time.deltaTime;
             }
             
+            // Try to get inputs
             if (Input.GetButtonDown("Heal") && healCooldownTracker <= 1e-4) {
                 DoHeal();
             }else if (Input.GetButtonDown("TimeWarp") && !inTimeWarp) {
