@@ -10,9 +10,9 @@ namespace AI {
     public class Minotaur : MonoBehaviour {
       [SerializeField] private NavMeshAgent agent;
       [SerializeField] private Transform player;
-      [SerializeField] private float chargeDist = 15, attackDist = 1, maxWanderDist = 10, attackDamageDealt = 20;
-      private Vector3 target;
-      State currState = State.Wander;
+      [SerializeField] private float chargeDist = 5f, attackDist = 1f, maxWanderDist = 10f, attackDamageDealt = 20f;
+      Vector3 target;
+      private State currState = State.Wander;
       
       private enum State { Wander, Preparing, Charging, Recovering };
 
@@ -35,6 +35,7 @@ namespace AI {
 
       private void WanderInDirection() {
           target = WanderPoint(maxWanderDist);
+          agent.SetDestination(new Vector3(target.x, transform.position.y, target.z));
       }
       
       Vector3 WanderPoint(float wanderDist) {
