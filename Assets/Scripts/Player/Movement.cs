@@ -14,6 +14,8 @@ namespace Player {
         [SerializeField] InGameCanvas gameCanvas;
         [SerializeField] float timeBetweenDodges = 0.5f;
         float dodgeTimer = 0f;
+        
+        public float MovementFactor = 1f;
 
         [SerializeField] GameObject Crosshair;
         [SerializeField] private float CrosshairAltitude;
@@ -84,7 +86,7 @@ namespace Player {
 
 
         void Dodge() {
-            rbody.AddForce(movePos.normalized * dodgeForce, ForceMode.Impulse);
+            rbody.AddForce(movePos.normalized * (dodgeForce * MovementFactor), ForceMode.Impulse);
             dodgeTimer = 0;
         }
 
@@ -92,7 +94,7 @@ namespace Player {
             if (!canMove)
                 return;
 
-            rbody.MovePosition(rbody.position + movePos.normalized * (speed * Time.fixedDeltaTime));
+            rbody.MovePosition(rbody.position + movePos.normalized * (speed * MovementFactor * Time.fixedDeltaTime));
             Turning();
         }
     }
