@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ApplyDamage : MonoBehaviour {
-    private string tagToDamgage = "enemy";
+    [SerializeField] public string tagToDamgage = "Player";
     private int dmg = 25;
 
     private void OnTriggerEnter(Collider other) {
