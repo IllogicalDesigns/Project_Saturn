@@ -396,6 +396,7 @@ MonoBehaviour:
   hp: 100
   stumbleDuration: 2
   healthOnExitStumble: 40
+  bloodOnKill: 10
   spriteRenderer: {fileID: 1916456896057678167}
 --- !u!114 &1916456895666414318
 MonoBehaviour:
@@ -556,6 +557,7 @@ MonoBehaviour:
   timeWarpFactor: 0.5
   bloodUsePerBloodRage: 20
   chargeDamageInBloodRage: 100
+  BloodMultiplierForBloodRageKills: 0.4
   bloodRageDuration: 6
   bloodRageCooldown: 10
 --- !u!1 &1916456895905663022

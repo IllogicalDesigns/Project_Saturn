@@ -8,6 +8,7 @@ namespace Player {
         [SerializeField] private int hp = 100;
         [SerializeField] private float stumbleDuration = 2f;
         [SerializeField] private int healthOnExitStumble = 40;
+        [SerializeField] private float bloodOnKill = 10;
         
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Color stumbleColor = Color.red;
@@ -17,22 +18,34 @@ namespace Player {
         private float stumbleTimeTracker;
         public bool Stumbled => stumbleTimeTracker >= 1e-4;
 
+        private BloodTracker bloodTracker;
+        private Abilities abilities;
+
         private void Start() {
             canStumble = gameObject.CompareTag("Enemy");
+            bloodTracker = FindObjectOfType<BloodTracker>();
+            abilities = FindObjectOfType<Abilities>();
             defaultColor = spriteRenderer.color;
         }
 
         public void ApplyDamage(int damage) {
             hp -= damage;
             
-            CheckOnHitEffects();
+            CheckOnHitEffects(false);
+            gameObject.BroadcastMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
+        }
+
+        public void ApplyMeleeDamage(int damage) {
+            hp -= damage;
+
+            CheckOnHitEffects(true);
             gameObject.BroadcastMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
         }
 
         public void ApplyDamageForceKill(int damage) {
             hp -= damage;
             
-            CheckDeath();
+            CheckDeath(true, abilities.BloodMultiplierForBloodRageKills);
             gameObject.BroadcastMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
         }
 
@@ -43,22 +56,26 @@ namespace Player {
             }
         }
 
-        private void CheckOnHitEffects() {
+        private void CheckOnHitEffects(bool killGivesBlood) {
             if (canStumble && !Stumbled && hp <= 1) {
                 hp = 1;
                 stumbleTimeTracker = stumbleDuration;
                 spriteRenderer.color = stumbleColor;
             }else if (!canStumble || Stumbled) {
-                CheckDeath();
+                CheckDeath(killGivesBlood, 1f);
             }
         }
         
-        private void CheckDeath() {
+        private void CheckDeath(bool killGivesBlood, float bloodMult = 1f) {
             if (hp <= 0)
-                Die();
+                Die(killGivesBlood, bloodMult);
         }
 
-        void Die() {
+        void Die(bool killGivesBlood, float bloodMult = 1f) {
+            if (killGivesBlood) {
+                bloodTracker.AddBlood(bloodOnKill * bloodMult);
+            }
+
             gameObject.BroadcastMessage("OnDeath", SendMessageOptions.DontRequireReceiver); //Send to every object and call this function
         }
 

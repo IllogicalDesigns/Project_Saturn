@@ -20,6 +20,7 @@ namespace Player {
         
         [SerializeField] private float bloodUsePerBloodRage;
         [SerializeField] private int chargeDamageInBloodRage;
+        [SerializeField] public float BloodMultiplierForBloodRageKills;
         [SerializeField] private float bloodRageDuration;
         [SerializeField] private float bloodRageCooldown;
         private float bloodRageTimeTracker;
