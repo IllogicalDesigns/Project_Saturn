@@ -18,6 +18,7 @@ namespace AI {
 
       private void Start() {
           agent = gameObject.GetComponent<NavMeshAgent>();
+          WanderInDirection();
       }
 
       private void Wander() {
