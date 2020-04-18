@@ -4,10 +4,13 @@ namespace Player {
     public class Pistol : MonoBehaviour {
         string fire = "Fire1";
         bool canFire = true;
-        [SerializeField] GameObject bulletPrefab;
         [SerializeField] Transform firePoint;
         [SerializeField] public int dmg = 60;
-        [SerializeField] public float speed = 10f;
+        [SerializeField] public float ReloadTime = 0.1f;
+        [SerializeField] public float DirectionArcRange = 1f;
+        [SerializeField] public GameObject BulletTrailPrefab;
+        private float lastFireTime;
+        private float arcRangeRad;
 
         public void onFireBind(string _fire) {
             fire = _fire;
@@ -22,17 +25,29 @@ namespace Player {
         }
 
         // Start is called before the first frame update
-        void Start() { }
+        void Start() {
+            arcRangeRad = Mathf.Deg2Rad * DirectionArcRange;
+        }
 
         void FirePistol() {
-            //TODO request from pool
-            var newBullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
-            newBullet.GetComponent<Bullet>().EnableBullet(1, dmg, speed);
+            var rand = 2 * Random.value * arcRangeRad - arcRangeRad; // +/- angle from forward
+            if (!Physics.Raycast(firePoint.position,
+                (transform.forward + transform.TransformDirection(new Vector3(Mathf.Sin(rand), 0, Mathf.Cos(rand)))
+                    .normalized), out var hitInfo)) return;
+
+            if (hitInfo.transform.gameObject.CompareTag("Enemy")) {
+                hitInfo.transform.gameObject.SendMessage("ApplyDmg", dmg);
+            }
+
+            var trail = Instantiate(BulletTrailPrefab);
+            trail.GetComponent<LineRenderer>().SetPositions(new[]{firePoint.transform.position, hitInfo.point});
+            
+            lastFireTime = Time.time;
         }
 
         // Update is called once per frame
         void Update() {
-            if (Input.GetButtonDown(fire) && canFire) {
+            if (Input.GetButton(fire) && canFire && Time.time > lastFireTime + ReloadTime) {
                 FirePistol();
             }
         }

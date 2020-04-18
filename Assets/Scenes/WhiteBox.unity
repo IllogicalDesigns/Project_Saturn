@@ -1032,9 +1032,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb80ef4fabf46589fb15493f0e24e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2866993711871358060, guid: 15b2dd865f41de4429bfbd19cad1eec0,
-    type: 3}
   firePoint: {fileID: 1391298765}
+  dmg: 60
+  ReloadTime: 0.17
+  DirectionArcRange: 1
+  BulletTrailPrefab: {fileID: 5465993034649191192, guid: 68b8c5b2132084f4aa987f5828855c42,
+    type: 3}
 --- !u!1 &1389006563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1505,7 @@ GameObject:
   - component: {fileID: 1900768696}
   - component: {fileID: 1900768695}
   - component: {fileID: 1900768694}
+  - component: {fileID: 1900768698}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1605,6 +1609,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1900768698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900768693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe57690e9b932f946abcf3bdda7f7dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowTransform: {fileID: 1150280735}
+  Offset: {x: 0, y: 5, z: 0}
 --- !u!1 &1929989981
 GameObject:
   m_ObjectHideFlags: 0
