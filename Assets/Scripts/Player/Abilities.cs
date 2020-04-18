@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Player {
@@ -18,7 +19,10 @@ namespace Player {
         private bool inTimeWarp;
         
         [SerializeField] private float bloodUsePerBloodRage;
+        [SerializeField] private int chargeDamageInBloodRage;
+        [SerializeField] private float bloodRageDuration;
         [SerializeField] private float bloodRageCooldown;
+        private float bloodRageTimeTracker;
         private float bloodRageCooldownTracker;
 
         private float defaultFixedDeltaTime;
@@ -31,15 +35,20 @@ namespace Player {
 
             // Update cooldowns
             if (healCooldownTracker > 0) {
-                healCooldownTracker -= Time.time;
+                healCooldownTracker -= Time.deltaTime;
             }
-            if (bloodRageCooldownTracker > 0) {
-                bloodRageCooldownTracker -= Time.time;
+            if (bloodRageTimeTracker <= 1e-4 && bloodRageCooldownTracker > 0) {
+                bloodRageCooldownTracker -= Time.deltaTime;
             }
-            
+
             // Do timewarp maintain if in timewarp
             if (inTimeWarp) {
                 MaintainTimeWarp();
+            }
+            
+            // Tick bloodrage if in bloodrage
+            if (bloodRageTimeTracker > 0) {
+                bloodRageTimeTracker -= Time.deltaTime;
             }
             
             if (Input.GetButtonDown("Heal") && healCooldownTracker <= 1e-4) {
@@ -50,7 +59,7 @@ namespace Player {
                 EndTimeWarp();
             }
             else if (Input.GetButtonDown("BloodRage") && bloodRageCooldownTracker <= 1e-4) {
-                
+                StartBloodRage();
             }
             
         }
@@ -87,5 +96,17 @@ namespace Player {
             playerMovement.MovementFactor = 1f;
         }
 
+        private void StartBloodRage() {
+            if (!bloodTracker.TryUseBlood(bloodUsePerBloodRage)) return;
+
+            bloodRageTimeTracker = bloodRageDuration;
+            bloodRageCooldownTracker = bloodRageCooldown;
+        }
+
+        private void OnCollisionEnter(Collision other) {
+            if (bloodRageTimeTracker <= 1e-4 || !other.gameObject.CompareTag("Enemy")) return;
+            
+            other.gameObject.SendMessage("ApplyDamage", chargeDamageInBloodRage);
+        }
     }
 }
