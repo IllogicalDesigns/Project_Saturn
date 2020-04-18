@@ -10,14 +10,16 @@ namespace AI {
     public class Minotaur : MonoBehaviour {
       [SerializeField] private NavMeshAgent agent;
       [SerializeField] private Transform player;
-      [SerializeField] private float chargeDist = 5f, attackDist = 1f, maxWanderDist = 10f, attackDamageDealt = 20f;
+      [SerializeField] private float chargeDist = 15f, maxWanderDist = 10f, attackDamageDealt = 20f;
       Vector3 target;
       private State currState = State.Wander;
+      private float baseSpeed;
       
       private enum State { Wander, Preparing, Charging, Recovering };
 
       private void Start() {
           agent = gameObject.GetComponent<NavMeshAgent>();
+          baseSpeed = agent.speed;
           WanderInDirection();
       }
 
@@ -48,28 +50,36 @@ namespace AI {
       }
 
       private void Preparing() {
+          agent.isStopped = true;
+          StartCoroutine(PrepareToCharge());
           target = player.position;
           agent.SetDestination(target);
-          
-          StartCoroutine(PrepareToCharge());
+          currState = State.Charging;
       }
       
       private void Charging() {
           agent.isStopped = false;
-          agent.SetDestination(target);
+          agent.speed *= 3;
+          if (Vector3.Distance(transform.position, target) < 1) {
+              currState = State.Recovering;
+          }
       }
 
+      private IEnumerator PrepareToCharge() {
+          yield return new WaitForSeconds(1);
+      }
+
+      private IEnumerator RecoverFromCharge() {
+          yield return new WaitForSeconds(3);
+      }
+      
       private void OnCollisionEnter(Collision other) {
           if (!other.gameObject.CompareTag("Player")) return;
           if (currState != State.Charging) return;
           
           other.gameObject.SendMessage("ApplyDamage", attackDamageDealt);
           ApplyKnockback(transform.position);
-      }
-
-      private IEnumerator PrepareToCharge() {
-          currState = State.Charging;
-          yield return new WaitForSeconds(1);
+          currState = State.Recovering;
       }
 
       private void ApplyKnockback(Vector4 pos) {
@@ -80,12 +90,20 @@ namespace AI {
           ridge.AddForce(-dir * force, ForceMode.Impulse);
       }
 
+      private void Recovering() {
+          agent.isStopped = true;
+          agent.speed = baseSpeed;
+          StartCoroutine(RecoverFromCharge());
+          currState = State.Wander;
+      }
+      
       private void Update() {
           switch (currState) {
               case State.Charging:
                   Charging();
                   break;
               case State.Recovering:
+                  Recovering();
                   break;
               case State.Preparing:
                   Preparing();
