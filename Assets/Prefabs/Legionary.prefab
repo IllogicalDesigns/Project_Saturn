@@ -135,7 +135,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4221789305559303105}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.25, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4221789305747772719}
   - component: {fileID: 4221789305747772713}
-  - component: {fileID: 4221789305747772718}
+  - component: {fileID: 8409504518872227969}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4221789305747772718
+--- !u!114 &8409504518872227969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4221789305747772716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d88e08a30fc5ac4a9957909b4942c4e, type: 3}
+  m_Script: {fileID: 11500000, guid: dfff679f0e9554a4a977d046d4b3e795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objToSnapTo: {fileID: 4221789305810482780}
@@ -331,6 +331,7 @@ MonoBehaviour:
   hp: 100
   stumbleDuration: 2
   healthOnExitStumble: 40
+  bloodOnKill: 10
   spriteRenderer: {fileID: 4221789305747772713}
 --- !u!114 &4221789305810482783
 MonoBehaviour:
