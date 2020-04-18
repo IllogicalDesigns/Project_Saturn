@@ -121,6 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 9e414ea694ae9d941a601bfd08b77ec4, type: 2}
+--- !u!114 &270609058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1916456896383937398, guid: 3680d29fad1eb9b4984ecccf77b41c95,
+    type: 3}
+  m_PrefabInstance: {fileID: 845145930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e5eab03b3279444943bc2b65cf8fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &845145930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,6 +140,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1916456895666414315, guid: 3680d29fad1eb9b4984ecccf77b41c95,
+        type: 3}
+      propertyPath: meleeCollider
+      value: 
+      objectReference: {fileID: 1855514242}
     - target: {fileID: 1916456895997081676, guid: 3680d29fad1eb9b4984ecccf77b41c95,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -196,6 +213,11 @@ PrefabInstance:
     - target: {fileID: 1916456896755814385, guid: 3680d29fad1eb9b4984ecccf77b41c95,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325189865187856781, guid: 3680d29fad1eb9b4984ecccf77b41c95,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -361,13 +383,14 @@ GameObject:
   - component: {fileID: 1855514245}
   - component: {fileID: 1855514244}
   - component: {fileID: 1855514243}
+  - component: {fileID: 1855514247}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1855514243
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -388,7 +411,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855514242}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -435,10 +458,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855514242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: -4.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.625}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 955020415}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1855514247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855514242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b09ae04cfffed44853d73a3cb34cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitAbleTag: Enemy
+  dam: 35
+  knockForce: 35
+  camEffects: {fileID: 270609058}

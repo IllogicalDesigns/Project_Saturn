@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
-    private bool canPunch;
-    private string fire;
-
-    public float timeInBetweenPunches = 1f;
-    private float punchTimer;
+    float attackTime = 0.2f;
+    bool canAttack = true;
+    [SerializeField] GameObject meleeCollider;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    IEnumerator Punch() {
+        canAttack = false;
+        meleeCollider.SetActive(true);
+        yield return new WaitForSeconds(attackTime);
+        meleeCollider.SetActive(false);
+        canAttack = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (punchTimer >= 0)
-            punchTimer -= Time.deltaTime;
-
-        if (Input.GetButtonDown(fire) && canPunch && punchTimer <= 0) {
-            //punchDamnIt();
-
-            punchTimer = timeInBetweenPunches;
+    public void Update() {
+        if (Input.GetButtonDown("Fire2") && canAttack) {
+            StartCoroutine(Punch());
         }
     }
 }
