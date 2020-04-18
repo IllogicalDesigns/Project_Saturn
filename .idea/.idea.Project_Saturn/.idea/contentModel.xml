@@ -9,9 +9,13 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
+            <e p="Archer.cs" t="Include" />
             <e p="Enemy.cs" t="Include" />
           </e>
+          <e p="CamEffects.cs" t="Include" />
+          <e p="DamageOnTrigger.cs" t="Include" />
           <e p="InGameCanvas.cs" t="Include" />
+          <e p="OnDeathScript.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="Bullet.cs" t="Include" />
             <e p="CameraFollow.cs" t="Include" />
@@ -20,6 +24,7 @@
             <e p="Movement.cs" t="Include" />
             <e p="Pistol.cs" t="Include" />
           </e>
+          <e p="SpriteFlipper.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

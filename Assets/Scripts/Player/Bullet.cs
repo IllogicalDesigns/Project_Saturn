@@ -8,9 +8,6 @@ namespace Player {
         int owner = -1;  //-1 == enemy, 1-4 is players
         bool bulletEnabled = true;
 
-        [SerializeField] public Collider collider;
-        [SerializeField] public MeshRenderer renderer;
-
         // Start is called before the first frame update
         void Start()
         {
@@ -72,7 +69,7 @@ namespace Player {
             dmg = _dmg;
         }
 
-        public void SetSpeed(int _speed) {
+        public void SetSpeed(float _speed) {
             speed = _speed;
         }
     }

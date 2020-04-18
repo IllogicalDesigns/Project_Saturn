@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace Player {
     public class Pistol : MonoBehaviour {
@@ -8,9 +9,11 @@ namespace Player {
         [SerializeField] public int dmg = 60;
         [SerializeField] public float ReloadTime = 0.1f;
         [SerializeField] public float DirectionArcRange = 1f;
-        [SerializeField] public GameObject BulletTrailPrefab;
+        [SerializeField] public GameObject BulletPrefab;
+        [SerializeField] public float speed = 1f;
         private float lastFireTime;
         private float arcRangeRad;
+        private CamEffects camEffects;
 
         public float kickback = 6f;
 
@@ -32,31 +35,34 @@ namespace Player {
         void Start() {
             arcRangeRad = Mathf.Deg2Rad * DirectionArcRange;
             rigid = GetComponent<Rigidbody>();
+            camEffects = FindObjectOfType<CamEffects>();
         }
 
         void FirePistol() {
             var rand = 2 * Random.value * arcRangeRad - arcRangeRad; // +/- angle from forward
-            if (!Physics.Raycast(firePoint.position,
-                (transform.forward + transform.TransformDirection(new Vector3(Mathf.Sin(rand), 0, Mathf.Cos(rand)))
-                    .normalized), out var hitInfo)) return;
+            var forward = transform.forward;
+            var fireDir = forward +
+                          transform.TransformDirection(new Vector3(Mathf.Sin(rand), 0, Mathf.Cos(rand))).normalized;
 
-            FindObjectOfType<CamEffects>().Shake(0.05f, 0.5f);
-
-            if (hitInfo.transform.gameObject.CompareTag("Enemy")) {
-                hitInfo.transform.gameObject.SendMessage("ApplyDamage", dmg);
-            }
-
-            var trail = Instantiate(BulletTrailPrefab);
-            trail.GetComponent<LineRenderer>().SetPositions(new[]{firePoint.transform.position, hitInfo.point});
+            var bullet = Instantiate(BulletPrefab);
+            bullet.transform.forward = fireDir;
+            bullet.transform.eulerAngles = new Vector3(0f, bullet.transform.eulerAngles.y, 0f);
+            bullet.transform.position = firePoint.position;
+            
+            var bulletComp = bullet.GetComponent<Bullet>();
+            bulletComp.SetSpeed(speed);
+            bulletComp.SetDmg(dmg);
+            bulletComp.SetOwner(1);
             
             lastFireTime = Time.time;
 
-            rigid.AddForce(-transform.forward * kickback, ForceMode.Impulse);
+            camEffects.Shake(0.05f, 0.5f);
+            rigid.AddForce(-forward * kickback, ForceMode.Impulse);
         }
 
         // Update is called once per frame
         void Update() {
-            if (Input.GetButton(fire) && canFire && Time.time > lastFireTime + ReloadTime) {
+            if (Input.GetButtonDown(fire) && canFire && Time.time > lastFireTime + ReloadTime) {
                 FirePistol();
             }
         }

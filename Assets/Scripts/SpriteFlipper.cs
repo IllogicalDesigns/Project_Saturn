@@ -13,8 +13,8 @@ public class SpriteFlipper : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        trans = this.transform;
-        sR = this.gameObject.GetComponent<SpriteRenderer>();
+        trans = transform;
+        sR = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
