@@ -28,6 +28,9 @@ public class SpriteFlipper : MonoBehaviour
         float angle = Vector3.Angle(tar, d);
         float angle2 = Vector3.Angle(objToSnapTo.forward, d);
 
+        if (shirt == null)
+            this.enabled = false;
+
         if (angle2 <= varience) {
             shirt.flipX = true;
             head.flipX = true;
