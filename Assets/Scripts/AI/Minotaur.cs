@@ -13,7 +13,7 @@ namespace AI {
       [SerializeField] private float chargeDist = 15f, maxWanderDist = 10f, attackDamageDealt = 20f;
       Vector3 target;
       private State currState = State.Wander;
-      private float baseSpeed;
+      private float baseSpeed, knockBackForce = 40f;
       
       private enum State { Wander, Preparing, Charging, Recovering };
 
@@ -78,17 +78,17 @@ namespace AI {
           if (currState != State.Charging) return;
           
           other.gameObject.SendMessage("ApplyDamage", attackDamageDealt);
-          ApplyKnockback(transform.position);
+          other.gameObject.SendMessage("ApplyKnockback", new Vector4(transform.position.x, transform.position.y, transform.position.z, knockBackForce));
           currState = State.Recovering;
       }
 
-      private void ApplyKnockback(Vector4 pos) {
+      /*private void ApplyKnockback(Vector4 pos) {
           var posFrom = new Vector3(pos.x, pos.y, pos.z);
           var force = pos.w;
           var dir = (posFrom - transform.position).normalized;
           var ridge = GetComponent<Rigidbody>();
           ridge.AddForce(-dir * force, ForceMode.Impulse);
-      }
+      }*/
 
       private void Recovering() {
           agent.isStopped = true;

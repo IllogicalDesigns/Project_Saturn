@@ -65,6 +65,10 @@ namespace Player {
                 gameCanvas.UpdateDodgeSlider(dodgeTimer);
             }
 
+            if(animator == null){
+                return;
+            }
+
             if (movePos.magnitude > 0)
                 animator.SetBool("Walking", true);
             else
