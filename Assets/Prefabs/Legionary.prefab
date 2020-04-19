@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4221789305810482776}
   shield: {fileID: 4221789304262655507}
+  animator: {fileID: 0}
   chaseDist: 15
   attackDist: 1
   maxWanderDist: 10

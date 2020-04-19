@@ -22,6 +22,8 @@ namespace Player {
 
         public int Hp => hp;
         public float PercentHp => (float)hp / maxHp;
+
+        int lowHpDmgThresh = 50;
         
         private BloodTracker bloodTracker;
         private Abilities abilities;
@@ -32,6 +34,8 @@ namespace Player {
         }
 
         public void ApplyDamage(int damage) {
+            damage = LowerDamageBasedOnHp(damage);
+
             hp -= damage;
             
             CheckOnHitEffects(false, true);
@@ -39,10 +43,23 @@ namespace Player {
         }
 
         public void ApplyMeleeDamage(int damage) {
+            damage = LowerDamageBasedOnHp(damage);
+
             hp -= damage;
-            
+
             CheckOnHitEffects(true, false);
             gameObject.BroadcastMessage("OnMeleeDamage", SendMessageOptions.DontRequireReceiver);
+        }
+
+        private int LowerDamageBasedOnHp(int damage) {
+            if (this.CompareTag("Player") && hp < lowHpDmgThresh) {
+                if (hp < lowHpDmgThresh * 0.5f)
+                    damage = Mathf.RoundToInt(damage * 0.25f);
+                else
+                    damage = Mathf.RoundToInt(damage * 0.5f);
+            }
+
+            return damage;
         }
 
         public void ApplyDamageForceKill(int damage) {
