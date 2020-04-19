@@ -13,6 +13,10 @@ public class SpriteFlipper : MonoBehaviour
     Transform trans;
     Quaternion rot;
 
+    bool stumbling = false;
+    float rateOfStumble = 0.1f, stumbleTimer;
+    Color origClr;
+
     // Use this for initialization
     void Start() {
         trans = transform;
@@ -22,6 +26,12 @@ public class SpriteFlipper : MonoBehaviour
         legL = trans.Find("Leg L").GetComponent<SpriteRenderer>();
         head = trans.Find("Head").GetComponent<SpriteRenderer>();
         rot = trans.rotation;
+
+        origClr = shirt.color;
+    }
+
+    public void SetStumble(bool _stumbling) {
+        stumbling = _stumbling;
     }
 
     void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
@@ -61,6 +71,30 @@ public class SpriteFlipper : MonoBehaviour
         }
     }
 
+    void stumbler() {
+        stumbleTimer -= Time.deltaTime;
+
+        if (stumbleTimer <= 0) {
+            SwapStumble();
+            stumbleTimer = rateOfStumble;
+        }
+    }
+
+    void SwapStumble() {
+        if(shirt.color == origClr) {
+            head.color = Color.red;
+            shirt.color = Color.red;
+            legR.color = Color.red;
+            legL.color = Color.red;
+        }
+        else {
+            head.color = origClr;
+            shirt.color = origClr;
+            legR.color = origClr;
+            legL.color = origClr;
+        }
+    }
+
     // Update is called once per frame
     void Update() {
         //trans.position = objToSnapTo.position;
@@ -70,5 +104,9 @@ public class SpriteFlipper : MonoBehaviour
         Vector3 targetDir = objToSnapTo.transform.forward - transform.position;
         HorizFlipUnderStander(targetDir, _dir);
         VertFlipUnderStander(targetDir, _dir);
+
+        if (stumbling) {
+            stumbler();
+        }
     }
 }
