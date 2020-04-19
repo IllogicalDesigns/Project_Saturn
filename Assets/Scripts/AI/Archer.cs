@@ -7,9 +7,9 @@ using UnityEngine.AI;
 namespace AI {
     public class Archer : MonoBehaviour {
         [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private Transform player;
         Vector3 target;
 
+        private Transform player;
         private Health health;
 
         Vector3 origArea;
@@ -36,6 +36,7 @@ namespace AI {
             origArea = transform.position;
             agent = gameObject.GetComponent<NavMeshAgent>();
             health = gameObject.GetComponent<Health>();
+            player = GameObject.FindWithTag("Player").transform;
             WanderInDirection();
         }
 

@@ -14,7 +14,7 @@ namespace Player {
         private Color stumbleColor = Color.red;
         private Color defaultColor;
         
-        private bool canStumble;
+        [SerializeField] private bool canStumble = true;
         private float stumbleTimeTracker;
         public bool Stumbled => stumbleTimeTracker >= 1e-4;
 
@@ -22,7 +22,6 @@ namespace Player {
         private Abilities abilities;
 
         private void Start() {
-            canStumble = gameObject.CompareTag("Enemy");
             bloodTracker = FindObjectOfType<BloodTracker>();
             abilities = FindObjectOfType<Abilities>();
             defaultColor = spriteRenderer.color;

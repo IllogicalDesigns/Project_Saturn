@@ -44,7 +44,7 @@ namespace Player {
         }
 
         void FirePistol() {
-            var rand = 2 * Random.value * arcRangeRad - arcRangeRad; // +/- angle from forward
+            var rand = Random.Range(-arcRangeRad, arcRangeRad); // +/- angle from forward
             var forward = transform.forward;
             var fireDir = forward +
                           transform.TransformDirection(new Vector3(Mathf.Sin(rand), 0, Mathf.Cos(rand))).normalized;
@@ -70,7 +70,7 @@ namespace Player {
 
         // Update is called once per frame
         void Update() {
-            if (Input.GetButtonDown(fire) && canFire && Time.time > lastFireTime + ReloadTime) {
+            if (Input.GetButton(fire) && canFire && Time.time > lastFireTime + ReloadTime) {
                 FirePistol();
             }
         }

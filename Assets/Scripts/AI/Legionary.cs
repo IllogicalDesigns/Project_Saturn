@@ -4,7 +4,7 @@ using UnityEngine.AI;
 namespace AI {
     public class Legionary : MonoBehaviour {
         [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private Transform player;
+        private Transform player;
         Vector3 target;
 
         private enum state { wander, chasing, attacking };
@@ -16,6 +16,7 @@ namespace AI {
 
         private void Start() {
             agent = gameObject.GetComponent<NavMeshAgent>();
+            player = GameObject.FindWithTag("Player").transform;
             WanderInDirection();
         }
 
@@ -36,7 +37,7 @@ namespace AI {
         }
 
         Vector3 wanderPoint(float wanderDist) {
-            Vector3 randPoint = Random.insideUnitSphere* wanderDist +transform.position;
+            Vector3 randPoint = Random.insideUnitSphere * wanderDist +transform.position;
             NavMeshHit hit; // NavMesh Sampling Info Container
 
             // from randomPos find a nearest point on NavMesh surface in range of maxDistance

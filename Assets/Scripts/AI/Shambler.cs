@@ -6,8 +6,9 @@ using UnityEngine.AI;
 namespace AI {
     public class Shambler : MonoBehaviour {
         [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private Transform target;
         private ShamblerState currentState = ShamblerState.Standing;
+        
+        private Transform player;
 
         private enum ShamblerState {
             Standing,
@@ -17,7 +18,7 @@ namespace AI {
         private void Standing() {
             agent.isStopped = true;
             currentState = ShamblerState.Standing;
-            float distance = Vector3.Distance(transform.position, target.position);
+            float distance = Vector3.Distance(transform.position, player.position);
             if (distance < 5) {
                 Attacking();
             }
@@ -27,7 +28,7 @@ namespace AI {
             currentState = ShamblerState.Attacking;
             agent.isStopped = false;
 
-            var targetPos = target.position;
+            var targetPos = player.position;
             agent.SetDestination(targetPos);
 
             float distance = Vector3.Distance(transform.position, targetPos);
@@ -38,7 +39,8 @@ namespace AI {
 
         void Start() {
             agent = gameObject.GetComponent<NavMeshAgent>();
-            agent.SetDestination(target.position);
+            player = GameObject.FindWithTag("Player").transform;
+            agent.SetDestination(player.position);
         }
 
         void Update() {

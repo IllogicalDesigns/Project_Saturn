@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2431345913911106065}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 12.34, y: 0.083, z: -12.44}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2431345914857706135}
@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2431345914719058898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.34, y: 0, z: -12.44}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2431345915535005024}
@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2431345914719058895}
-  player: {fileID: 0}
   chaseDist: 15
   attackDist: 10
   maxWanderDist: 10
@@ -210,7 +209,9 @@ MonoBehaviour:
   hp: 100
   stumbleDuration: 2
   healthOnExitStumble: 40
+  bloodOnKill: 10
   spriteRenderer: {fileID: 2431345913911106067}
+  canStumble: 1
 --- !u!114 &2431345914719058888
 MonoBehaviour:
   m_ObjectHideFlags: 0
