@@ -7,6 +7,7 @@ namespace Player {
         int dmg = 25;
         int owner = -1;  //-1 == enemy, 1-4 is players
         bool bulletEnabled = true;
+        float knock = 10f;
 
         // Start is called before the first frame update
         void Start() {
@@ -20,11 +21,13 @@ namespace Player {
             if(other.gameObject.CompareTag("Player") && owner == -1)
             {
                 other.gameObject.SendMessage("ApplyDamage", dmg);
+                other.SendMessage("ApplyKnockback", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, knock), SendMessageOptions.DontRequireReceiver);
                 DisableBulletBloody();
             }
             else if (other.gameObject.CompareTag("Enemy") && owner != -1)
             {
                 other.gameObject.SendMessage("ApplyDamage", dmg);
+                other.SendMessage("ApplyKnockback", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, knock), SendMessageOptions.DontRequireReceiver);
                 DisableBulletBloody();
             }
             else
@@ -42,7 +45,7 @@ namespace Player {
 
         void DisableBullet()
         {
-            Blood.Instance.EmitBlood(this.transform);
+            
             //transform.position = Vector3.zero;
             //bulletEnabled = false;
             //collider.enabled = false;
@@ -53,13 +56,13 @@ namespace Player {
 
         void DisableBulletBloody()
         {
-            //TODO Bloody effects
+            Blood.Instance.EmitBlood(this.transform);
             DisableBullet();
         }
 
         void DisableBulletDefaultImpact()
         {
-            //TODO impact effects
+            //Blood.Instance.EmitBlood(this.transform);  TODO add particle system for impacts
             DisableBullet();
         }
 
