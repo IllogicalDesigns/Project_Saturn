@@ -14,6 +14,7 @@ namespace Player {
         [SerializeField] InGameCanvas gameCanvas;
         [SerializeField] float timeBetweenDodges = 0.5f;
         float dodgeTimer = 0f;
+        bool dodging = false;
         
         public float MovementFactor = 1f;
 
@@ -73,6 +74,13 @@ namespace Player {
                 animator.SetBool("Walking", true);
             else
                 animator.SetBool("Walking", false);
+
+            Debug.Log(rbody.velocity.magnitude);
+            if(dodging && dodgeTimer > 0.1 && rbody.velocity.magnitude < 5) {
+                dodging = false;
+                animator.SetBool("Dodging", false);
+            }
+
         }
 
         void Turning() {
@@ -97,6 +105,8 @@ namespace Player {
 
 
         void Dodge() {
+            dodging = true;
+            animator.SetBool("Dodging", true);
             rbody.AddForce(movePos.normalized * (dodgeForce * MovementFactor), ForceMode.Impulse);
             dodgeTimer = 0;
         }
