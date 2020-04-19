@@ -9,6 +9,7 @@ namespace AI {
         Vector3 target;
         Vector3 oldShieldPos;
         [SerializeField] private Transform shield;
+        [SerializeField] private Animator animator;
 
         private enum state { wander, chasing, attacking, stumbled };
         state currState = state.wander;
@@ -22,6 +23,7 @@ namespace AI {
             player = GameObject.FindWithTag("Player").transform;
             WanderInDirection();
             oldShieldPos = shield.localPosition;
+            animator = gameObject.GetComponentInChildren<Animator>();
         }
 
         private void Wander() {
@@ -32,7 +34,7 @@ namespace AI {
                 WanderInDirection();
             }
 
-            agent.isStopped = false;
+            Unstopped();
         }
 
         private void WanderInDirection() {
@@ -68,7 +70,7 @@ namespace AI {
         
 
         private void Attacking() {
-            agent.isStopped = true;
+            Stopped();
             float dist = Vector3.Distance(transform.position, player.position);
 
             if (dist > attackDist)
@@ -84,7 +86,17 @@ namespace AI {
         }
 
         private void Stumbled() {
+            Stopped();
+        }
+
+        private void Stopped() {
             agent.isStopped = true;
+            animator.SetBool("Walking", false);
+        }
+
+        private void Unstopped() {
+            agent.isStopped = false;
+            animator.SetBool("Walking", true);
         }
 
         private void Update() {
