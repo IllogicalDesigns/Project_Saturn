@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 5577467099667887313
     second: MinoTard_4
+  - first:
+      213: 5865006024772763394
+    second: MinoTard_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,8 +120,8 @@ TextureImporter:
       name: MinoTard_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 215
+        x: 0
+        y: 113
         width: 43
         height: 40
       alignment: 0
@@ -138,8 +141,8 @@ TextureImporter:
       name: MinoTard_1
       rect:
         serializedVersion: 2
-        x: 12
-        y: 189
+        x: 10
+        y: 86
         width: 24
         height: 25
       alignment: 0
@@ -159,8 +162,8 @@ TextureImporter:
       name: MinoTard_2
       rect:
         serializedVersion: 2
-        x: 11
-        y: 169
+        x: 8
+        y: 67
         width: 7
         height: 15
       alignment: 0
@@ -180,8 +183,8 @@ TextureImporter:
       name: MinoTard_3
       rect:
         serializedVersion: 2
-        x: 21
-        y: 169
+        x: 19
+        y: 67
         width: 7
         height: 15
       alignment: 0
@@ -201,10 +204,10 @@ TextureImporter:
       name: MinoTard_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 129
-        width: 46
-        height: 42
+        x: 55
+        y: 0
+        width: 43
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
