@@ -12,7 +12,6 @@ namespace AI {
       private Transform player;
       [SerializeField] private float chargeDist = 15f, maxWanderDist = 10f, attackDamageDealt = 20f;
       [SerializeField] private float chargeForce;
-      private float defaultChargeDist;
       Vector3 target;
       private Vector3 chargeDir;
       private State currState = State.Wander;
@@ -26,7 +25,6 @@ namespace AI {
           player = GameObject.FindWithTag("Player").transform;
           rb = GetComponent<Rigidbody>();
           baseSpeed = agent.speed;
-          defaultChargeDist = chargeDist;
           WanderInDirection();
       }
 
