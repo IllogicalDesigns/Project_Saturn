@@ -22,6 +22,10 @@ namespace Boss {
             curDifficulty = difficulty;
             numberToSpawn = totalGroundDangersToSpawn[curDifficulty];
         }
+        
+        public void StopSpawning() {
+            numberToSpawn = 0;
+        }
 
         private void Start() {
             Player = GameObject.FindWithTag("Player");
