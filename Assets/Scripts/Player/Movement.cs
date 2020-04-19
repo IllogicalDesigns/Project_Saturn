@@ -20,6 +20,8 @@ namespace Player {
         [SerializeField] GameObject Crosshair;
         [SerializeField] private float CrosshairAltitude;
 
+        [SerializeField] Animator animator;
+
         // Start is called before the first frame update
         void Start() {
             rbody = gameObject.GetComponent<Rigidbody>();
@@ -62,6 +64,15 @@ namespace Player {
                 dodgeTimer += Time.deltaTime;
                 gameCanvas.UpdateDodgeSlider(dodgeTimer);
             }
+
+            if(animator == null){
+                return;
+            }
+
+            if (movePos.magnitude > 0)
+                animator.SetBool("Walking", true);
+            else
+                animator.SetBool("Walking", false);
         }
 
         void Turning() {

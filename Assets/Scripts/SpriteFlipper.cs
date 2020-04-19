@@ -4,28 +4,40 @@ using UnityEngine;
 
 public class SpriteFlipper : MonoBehaviour
 {
-    [SerializeField] Transform objToSnapTo;
-    Transform trans;
     [SerializeField] float varience = 40f;
-    SpriteRenderer sR;
-    [SerializeField] Sprite up;
-    [SerializeField] Sprite dwn;
+    [SerializeField] Sprite[] up;
+    [SerializeField] Sprite[] dwn;
+
+    Transform objToSnapTo;
+    SpriteRenderer legR, legL, shirt, head;
+    Transform trans;
+    Quaternion rot;
 
     // Use this for initialization
     void Start() {
         trans = transform;
-        sR = gameObject.GetComponent<SpriteRenderer>();
+        objToSnapTo = trans.parent;
+        shirt = trans.Find("Shirt").GetComponent<SpriteRenderer>();
+        legR = trans.Find("Leg R").GetComponent<SpriteRenderer>();
+        legL = trans.Find("Leg L").GetComponent<SpriteRenderer>();
+        head = trans.Find("Head").GetComponent<SpriteRenderer>();
+        rot = trans.rotation;
     }
 
     void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
         float angle = Vector3.Angle(tar, d);
         float angle2 = Vector3.Angle(objToSnapTo.forward, d);
 
+        if (shirt == null)
+            this.enabled = false;
+
         if (angle2 <= varience) {
-            sR.flipX = true;
+            shirt.flipX = true;
+            head.flipX = true;
         }
         else {
-            sR.flipX = false;
+            shirt.flipX = false;
+            head.flipX = false;
         }
     }
 
@@ -34,16 +46,23 @@ public class SpriteFlipper : MonoBehaviour
         float angle2 = Vector3.Angle(objToSnapTo.right, d);
 
         if (angle2 <= varience) {
-            sR.sprite = up;
+            head.sprite = up[0];
+            shirt.sprite = up[1];
+            legR.sprite = up[2];
+            legL.sprite = up[3];
         }
         else {
-            sR.sprite = dwn;
+            head.sprite = dwn[0];
+            shirt.sprite = dwn[1];
+            legR.sprite = dwn[2];
+            legL.sprite = dwn[3];
         }
     }
 
     // Update is called once per frame
     void Update() {
-        trans.position = objToSnapTo.position;
+        //trans.position = objToSnapTo.position;
+        trans.rotation = rot;
 
         Vector3 _dir = (new Vector3(transform.position.x + Vector3.right.x, transform.position.y + Vector3.right.y, transform.position.z + Vector3.right.z) - transform.position);
         Vector3 targetDir = objToSnapTo.transform.forward - transform.position;
