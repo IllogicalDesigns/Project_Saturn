@@ -28,13 +28,17 @@ public class OnDeathScript : MonoBehaviour
     void Update() { }
 
     public void OnDeath() {
-        if(src != null)
+        Animator anim = gameObject.GetComponent<Animator>();
+        if (anim != null)
+            anim.SetTrigger("Die");
+
+        if (src != null)
             src.PlayOneShot(deathScream);
 
         if (!gameObject.CompareTag("Player")) {
             var parent = transform.parent;
             //TODO play anim death
-            Destroy(parent != null ? parent.gameObject : gameObject, 1);
+            Destroy(parent != null ? parent.gameObject : gameObject, 0.5f);
         }
         else {
             playerMovement.canMove = false;

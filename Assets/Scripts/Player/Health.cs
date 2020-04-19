@@ -8,7 +8,7 @@ namespace Player {
         [SerializeField] private int hp = 100;
         [SerializeField] private float stumbleDuration = 2f;
         [SerializeField] private int healthOnExitStumble = 40;
-        [SerializeField] private float bloodOnKill = 10;
+        [SerializeField] private float bloodOnKill = 25;
         
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Color stumbleColor = Color.red;

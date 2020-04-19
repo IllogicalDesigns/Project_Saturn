@@ -61,7 +61,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 4491464070785288484, guid: 94711f6f64f43c94fb26531362f670b5,
     type: 3}
   firePoint: {fileID: 2431345915535005024}
-  anim: {fileID: 0}
+  anim: {fileID: 8128363331209054725}
 --- !u!195 &2431345914719058895
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScream: {fileID: 8300000, guid: 9d5d20a77ed63c24099b8be80843fb94, type: 3}
+  src: {fileID: 1400424681}
 --- !u!54 &2431345914719058891
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -451,6 +453,12 @@ PrefabInstance:
 --- !u!4 &8128363331209054724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7817698686565880836, guid: 2787d609c6b6e5f4e86e8b094f6c8618,
+    type: 3}
+  m_PrefabInstance: {fileID: 2068195576776416768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8128363331209054725 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7817698686565880837, guid: 2787d609c6b6e5f4e86e8b094f6c8618,
     type: 3}
   m_PrefabInstance: {fileID: 2068195576776416768}
   m_PrefabAsset: {fileID: 0}

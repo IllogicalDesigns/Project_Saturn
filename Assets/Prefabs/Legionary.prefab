@@ -384,6 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScream: {fileID: 8300000, guid: e963004367d457a41be38c7f3b236a43, type: 3}
+  src: {fileID: 258625691}
 --- !u!54 &4221789305810482778
 Rigidbody:
   m_ObjectHideFlags: 0

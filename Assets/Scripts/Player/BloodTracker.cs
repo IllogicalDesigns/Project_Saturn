@@ -4,7 +4,7 @@ namespace Player {
     public class BloodTracker : MonoBehaviour {
 
         [SerializeField] public const float MaxBlood = 100f;
-        [SerializeField] public const float BloodLossPerSecond = 3f;
+        [SerializeField] public const float BloodLossPerSecond = 2f;
         [SerializeField] public InGameCanvas canvas;
         private float currentBloodInt;
         private int lowHpDmgThresh = 50;

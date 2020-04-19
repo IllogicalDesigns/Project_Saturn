@@ -157,6 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScream: {fileID: 8300000, guid: 9d5d20a77ed63c24099b8be80843fb94, type: 3}
+  src: {fileID: 7192805988218504934}
 --- !u!136 &4786230010371700188
 CapsuleCollider:
   m_ObjectHideFlags: 0
