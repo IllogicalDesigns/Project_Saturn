@@ -1848,6 +1848,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3642657330682056813, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642657330682056813, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642657330682056813, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642657330682056813, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3731620894888175428, guid: cd7fd819eac05f0449bebb6992383900,
         type: 3}
       propertyPath: m_textInfo.characterCount

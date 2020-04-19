@@ -42,7 +42,7 @@ namespace Player {
 
         void DisableBullet()
         {
-            Blood.Instance.EmitBlood(this.transform);
+            
             //transform.position = Vector3.zero;
             //bulletEnabled = false;
             //collider.enabled = false;
@@ -53,13 +53,13 @@ namespace Player {
 
         void DisableBulletBloody()
         {
-            //TODO Bloody effects
+            Blood.Instance.EmitBlood(this.transform);
             DisableBullet();
         }
 
         void DisableBulletDefaultImpact()
         {
-            //TODO impact effects
+            //Blood.Instance.EmitBlood(this.transform);  TODO add particle system for impacts
             DisableBullet();
         }
 
