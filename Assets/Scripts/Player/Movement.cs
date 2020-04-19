@@ -75,7 +75,6 @@ namespace Player {
             else
                 animator.SetBool("Walking", false);
 
-            Debug.Log(rbody.velocity.magnitude);
             if(dodging && dodgeTimer > 0.1 && rbody.velocity.magnitude < 5) {
                 dodging = false;
                 animator.SetBool("Dodging", false);

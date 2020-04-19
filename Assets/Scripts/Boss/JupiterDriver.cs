@@ -16,6 +16,7 @@ namespace Boss {
         private AddSpawner adds;
         private BulletHellSpawner bulletHell;
         private float phaseTimer;
+        private int currentDifficulty = 0;
 
         private enum State {
             SpawningAdds,
@@ -28,6 +29,7 @@ namespace Boss {
 
         private State state = State.Waiting;
         private State lastState = State.Waiting;
+        private State lastStateNonAdds = State.Waiting;
 
         private void Start() {
             groundDangerFollower = gameObject.GetComponent<GroundDangerSpawner_Follow>();
@@ -68,6 +70,7 @@ namespace Boss {
                 State.ShootingDeathBeam, State.SpawningBulletHell, State.SpawningGroundDangerFollower,
                 State.SpawningGroundDangerRandom
             };
+            states.Remove(lastStateNonAdds);
             var nextState = states[UnityEngine.Random.Range(0, states.Count)];
 
             switch (nextState) {
@@ -92,6 +95,7 @@ namespace Boss {
             groundDangerFollower.StartSpawning();
             state = State.SpawningGroundDangerFollower;
             lastState = State.SpawningGroundDangerFollower;
+            lastStateNonAdds = State.SpawningGroundDangerFollower;
         }
         
         private void SpawnGroundDangerFollower() {
@@ -104,6 +108,7 @@ namespace Boss {
             groundDangerRandom.StartSpawning();
             state = State.SpawningGroundDangerRandom;
             lastState = State.SpawningGroundDangerRandom;
+            lastStateNonAdds = State.SpawningGroundDangerRandom;
         }
         
         private void SpawnGroundDangerRandom() {
@@ -128,6 +133,7 @@ namespace Boss {
             bulletHell.StartSpawning();
             state = State.SpawningBulletHell;
             lastState = State.SpawningBulletHell;
+            lastStateNonAdds = State.SpawningBulletHell;
         }
         
         private void SpawnBulletHell() {
@@ -141,6 +147,7 @@ namespace Boss {
             phaseTimer = deathBeamDuration;
             state = State.ShootingDeathBeam;
             lastState = State.ShootingDeathBeam;
+            lastStateNonAdds = State.ShootingDeathBeam;
         }
         
         private void DeathBeam() {

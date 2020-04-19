@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 5180311088773096416}
   - component: {fileID: 5180311088773096417}
   - component: {fileID: 5180311088773096446}
+  - component: {fileID: 8774364782597853463}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -556,10 +557,10 @@ MonoBehaviour:
   dodgeForce: 30
   canMove: 1
   gamePad: 0
-  gameCanvas: {fileID: 0}
+  gameCanvas: {fileID: 5180311089579485855}
   timeBetweenDodges: 1
   MovementFactor: 1
-  Crosshair: {fileID: 0}
+  Crosshair: {fileID: 5180311089374657896}
   CrosshairAltitude: 5
   animator: {fileID: 5180311089167209048}
 --- !u!54 &5180311088773096420
@@ -629,7 +630,9 @@ MonoBehaviour:
   hp: 100
   stumbleDuration: 2
   healthOnExitStumble: 40
-  spriteRenderer: {fileID: 0}
+  bloodOnKill: 10
+  spriteRenderer: {fileID: 5180311089197226828}
+  canStumble: 0
 --- !u!114 &5180311088773096416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +755,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeCollider: {fileID: 5180311090230490245}
+  swing: {fileID: 8300000, guid: bd2b20828cf22f24282e610addf2d271, type: 3}
+  source: {fileID: 5180311088773096417}
+--- !u!114 &8774364782597853463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180311088773096444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799e19ccb8364203a7122955bbf94fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 5180311089579485855}
 --- !u!1 &5180311088887448794
 GameObject:
   m_ObjectHideFlags: 0

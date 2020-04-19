@@ -61,7 +61,7 @@ namespace Player {
                 stumbleTimeTracker = stumbleDuration;
                 spriteRenderer.color = stumbleColor;
             }else if (!canStumble || Stumbled) {
-                CheckDeath(killGivesBlood, 1f);
+                CheckDeath(killGivesBlood);
             }
         }
         
