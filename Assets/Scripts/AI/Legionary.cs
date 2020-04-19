@@ -11,13 +11,15 @@ namespace AI {
         [SerializeField] private Transform shield;
         [SerializeField] private GameObject shieldDamager;
         [SerializeField] private Animator animator;
+        [SerializeField] private float shieldBashSpeed = 3f;
 
-        private enum state { wander, chasing, attacking, stumbled };
-        state currState = state.wander;
+        private enum State { Wander, Chasing, Attacking, Bashing, Stumbled };
+        State currState = State.Wander;
 
         [SerializeField] float chaseDist = 15f, attackDist = 1f, maxWanderDist = 10f, timeInBetweenAttacks = 1f;
         
         float attackTimer = 0f;
+        private float bashTimer;
 
         private void Start() {
             agent = gameObject.GetComponent<NavMeshAgent>();
@@ -29,7 +31,7 @@ namespace AI {
 
         private void Wander() {
             if (Vector3.Distance(transform.position, player.position) < chaseDist)
-                currState = state.chasing;
+                currState = State.Chasing;
 
             if (Vector3.Distance(transform.position, target) < 1) {
                 WanderInDirection();
@@ -39,11 +41,11 @@ namespace AI {
         }
 
         private void WanderInDirection() {
-            target = wanderPoint(maxWanderDist); //Get new wander point origArea
+            target = WanderPoint(maxWanderDist); //Get new wander point origArea
             agent.SetDestination(new Vector3(target.x, transform.position.y, target.z));
         }
 
-        Vector3 wanderPoint(float wanderDist) {
+        Vector3 WanderPoint(float wanderDist) {
             Vector3 randPoint = Random.insideUnitSphere * wanderDist +transform.position;
             NavMeshHit hit; // NavMesh Sampling Info Container
 
@@ -52,17 +54,9 @@ namespace AI {
             return hit.position;
         }
 
-        IEnumerator ShieldBash() {
-            //TODO pre bash sound
-            yield return new WaitForSeconds(0.1f);
-            shield.localPosition = shield.transform.forward * 0.5f;
-            yield return new WaitForSeconds(0.3f);
-            shield.localPosition = oldShieldPos;
-        }
-
         private void Chasing() {
             if (Vector3.Distance(transform.position, player.position) < attackDist)
-                currState = state.attacking;
+                currState = State.Attacking;
 
             agent.isStopped = false;
             agent.SetDestination(player.position);
@@ -75,14 +69,39 @@ namespace AI {
             float dist = Vector3.Distance(transform.position, player.position);
 
             if (dist > attackDist)
-                currState = state.chasing;
+                currState = State.Chasing;
 
-            if(attackTimer < 0f && dist < 4f) {
-                StartCoroutine(ShieldBash());
-                attackTimer = timeInBetweenAttacks + 0.4f;
+            if(attackTimer < 0f && dist < attackDist) {
+                EnterBashing();
             }
             else {
                 attackTimer -= Time.deltaTime;
+            }
+        }
+
+        private void EnterBashing() {
+            bashTimer = 0.5f;
+            currState = State.Bashing;
+        }
+
+        private void Bashing() {
+            //TODO pre bash sound
+            bashTimer -= Time.deltaTime;
+
+            if (bashTimer > 0.4f) return;
+            
+            if (bashTimer <= 0.4f && bashTimer > 0.2f) {
+                shieldDamager.SetActive(true);
+                shield.Translate(Vector3.up * (shieldBashSpeed * Time.deltaTime), Space.Self);
+            }
+            else if (bashTimer <= 0.2f && bashTimer > 0.0f) {
+                shieldDamager.SetActive(false);
+                shield.Translate(Vector3.down * (shieldBashSpeed * Time.deltaTime), Space.Self);
+            }
+            else {
+                shield.localPosition = oldShieldPos;
+                attackTimer = timeInBetweenAttacks + 0.5f;
+                currState = State.Wander;
             }
         }
 
@@ -102,13 +121,16 @@ namespace AI {
 
         private void Update() {
             switch (currState) {
-                case state.chasing:
+                case State.Chasing:
                     Chasing();
                     break;
-                case state.attacking:
+                case State.Attacking:
                     Attacking();
                     break;
-                case state.stumbled:
+                case State.Bashing:
+                    Bashing();
+                    break;
+                case State.Stumbled:
                     Stumbled();
                     break;
                 default:
@@ -119,12 +141,12 @@ namespace AI {
         }
 
         private void EnteredStumble() {
-            currState = state.stumbled;
+            currState = State.Stumbled;
             shieldDamager.SetActive(false);
         }
 
         private void ExitedStumble() {
-            currState = state.wander;
+            currState = State.Wander;
             shieldDamager.SetActive(true);
         }
     }

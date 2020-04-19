@@ -418,8 +418,9 @@ MonoBehaviour:
   shield: {fileID: 4221789304262655507}
   shieldDamager: {fileID: 1702639450}
   animator: {fileID: 0}
+  shieldBashSpeed: 3
   chaseDist: 15
-  attackDist: 1
+  attackDist: 2.7
   maxWanderDist: 10
   timeInBetweenAttacks: 1
 --- !u!114 &258625692
