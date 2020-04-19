@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Caldera.unity
     guid: ce22dc44b6eedbf41a64ff75142e9b1f
   - enabled: 1
-    path: Assets/Scenes/MoonForest.unity
+    path: Assets/Scenes/MoonForestScenes/MoonForestBoss.unity
     guid: 2efaa4b010d96ab47933fee22f84af4f
   m_configObjects: {}

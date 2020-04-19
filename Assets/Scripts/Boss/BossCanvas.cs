@@ -2,16 +2,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossCanvas : MonoBehaviour {
+namespace Boss {
+    public class BossCanvas : MonoBehaviour {
 
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Health bossHealth;
+        [SerializeField] private Slider healthSlider;
+        [SerializeField] private Health bossHealth;
 
-    // Start is called before the first frame update
-    void Start() { }
+        // Start is called before the first frame update
+        void Start() { }
 
-    // Update is called once per frame
-    void Update() {
-        healthSlider.value = bossHealth.PercentHp;
+        // Update is called once per frame
+        void Update() {
+            healthSlider.value = bossHealth.PercentHp;
+        }
     }
 }

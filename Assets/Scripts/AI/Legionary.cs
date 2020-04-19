@@ -9,6 +9,7 @@ namespace AI {
         Vector3 target;
         Vector3 oldShieldPos;
         [SerializeField] private Transform shield;
+        [SerializeField] private GameObject shieldDamager;
         [SerializeField] private Animator animator;
 
         private enum state { wander, chasing, attacking, stumbled };
@@ -119,10 +120,12 @@ namespace AI {
 
         private void EnteredStumble() {
             currState = state.stumbled;
+            shieldDamager.SetActive(false);
         }
 
         private void ExitedStumble() {
             currState = state.wander;
+            shieldDamager.SetActive(true);
         }
     }
 }
