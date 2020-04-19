@@ -12,10 +12,20 @@ public class InGameCanvas : MonoBehaviour {
     public void SetupDodgeSlider(float _maxValue, float _value) {
         dodgeSlider.maxValue = _maxValue;
         dodgeSlider.value = _value;
+        HideDodgeIfFull();
     }
 
     public void UpdateDodgeSlider(float _value) {
         dodgeSlider.value = _value;
+        HideDodgeIfFull();
+    }
+
+    private void HideDodgeIfFull() {
+        if (dodgeSlider.value == dodgeSlider.maxValue)
+            dodgeSlider.gameObject.SetActive(false);
+        else {
+            dodgeSlider.gameObject.SetActive(true);
+        }
     }
 
     public void SetupBloodSlider(float _maxValue, float _value) {
