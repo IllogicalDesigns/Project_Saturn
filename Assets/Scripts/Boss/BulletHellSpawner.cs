@@ -26,6 +26,10 @@ namespace Boss {
             projectilesToSpawn = totalBulletsToSpawn[curDifficulty];
         }
 
+        public void StopSpawning() {
+            projectilesToSpawn = 0;
+        }
+
         private void Update() {
             if (!IsSpawning) return;
             

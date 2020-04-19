@@ -20,6 +20,7 @@ namespace Boss {
         private Health health;
         private float phaseTimer;
         private int curDifficulty;
+        private bool inStumble;
 
         private enum State {
             SpawningAdds,
@@ -65,6 +66,8 @@ namespace Boss {
         }
 
         private void Wait() {
+            if (inStumble) return;
+            
             if (phaseTimer > 1e-4) {
                 phaseTimer -= Time.deltaTime;
                 return;
@@ -203,6 +206,19 @@ namespace Boss {
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void EnteredStumble() {
+            inStumble = true;
+            groundDangerFollower.StopSpawning();
+            groundDangerRandom.StopSpawning();
+            bulletHell.StopSpawning();
+            deathBeam.SetActive(false);
+            EnterWaiting();
+        }
+
+        private void ExitedStumble() {
+            inStumble = false;
         }
     }
 }

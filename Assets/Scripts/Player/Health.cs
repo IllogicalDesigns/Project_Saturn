@@ -15,6 +15,7 @@ namespace Player {
         private Color defaultColor;
         
         [SerializeField] private bool canStumble = true;
+        [SerializeField] private bool canDieToBulletInStuble = true;
         private float stumbleTimeTracker;
         public bool Stumbled => stumbleTimeTracker >= 1e-4;
 
@@ -33,14 +34,14 @@ namespace Player {
         public void ApplyDamage(int damage) {
             hp -= damage;
             
-            CheckOnHitEffects(false);
+            CheckOnHitEffects(false, true);
             gameObject.BroadcastMessage("OnDamage", SendMessageOptions.DontRequireReceiver);
         }
 
         public void ApplyMeleeDamage(int damage) {
             hp -= damage;
             
-            CheckOnHitEffects(true);
+            CheckOnHitEffects(true, false);
             gameObject.BroadcastMessage("OnMeleeDamage", SendMessageOptions.DontRequireReceiver);
         }
 
@@ -58,13 +59,13 @@ namespace Player {
             }
         }
 
-        private void CheckOnHitEffects(bool killGivesBlood) {
+        private void CheckOnHitEffects(bool killGivesBlood, bool isBullet) {
             if (canStumble && !Stumbled && hp <= 1) {
                 hp = 1;
                 stumbleTimeTracker = stumbleDuration;
                 spriteRenderer.color = stumbleColor;
                 gameObject.BroadcastMessage("EnteredStumble", SendMessageOptions.DontRequireReceiver);
-            }else if (!canStumble || Stumbled) {
+            }else if ((!canStumble || Stumbled) && (canDieToBulletInStuble || !isBullet)) {
                 CheckDeath(killGivesBlood);
             }
         }
