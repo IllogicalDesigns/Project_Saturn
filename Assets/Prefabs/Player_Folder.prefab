@@ -422,7 +422,7 @@ MonoBehaviour:
   canMove: 1
   gamePad: 0
   gameCanvas: {fileID: 5180311089579485855}
-  timeBetweenDodges: 1
+  timeBetweenDodges: 0.8
   MovementFactor: 1
   Crosshair: {fileID: 5180311089374657896}
   CrosshairAltitude: 5

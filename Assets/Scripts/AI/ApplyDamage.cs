@@ -7,7 +7,7 @@ namespace AI {
     public class ApplyDamage : MonoBehaviour {
         [SerializeField] public string tagToDamgage = "Player";
         [SerializeField] private bool applyKnockBack = false;
-        private int dmg = 25;
+        [SerializeField] private int dmg = 25;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag(tagToDamgage)) {
