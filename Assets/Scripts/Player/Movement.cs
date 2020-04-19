@@ -5,7 +5,7 @@ namespace Player {
         string moveVert = "Vertical", moveHor = "Horizontal", dodge = "Jump";
         string lookVert = "lookVertical", lookHor = "lookHorizontal";
         [SerializeField] float speed = 6f, dodgeForce = 6f;
-        [SerializeField] bool canMove = true;
+        [SerializeField] public bool canMove = true;
         [SerializeField] bool gamePad = false;
         Vector3 movePos, lookPos;
         Rigidbody rbody;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Melee : MonoBehaviour
 {
     float attackTime = 0.2f;
-    bool canAttack = true;
+    public bool canAttack = true;
     [SerializeField] GameObject meleeCollider;
     [SerializeField] AudioClip swing;
     [SerializeField] AudioSource source;

@@ -1029,7 +1029,7 @@ GameObject:
   - component: {fileID: 5180311088773096416}
   - component: {fileID: 5180311088773096417}
   - component: {fileID: 5180311088773096446}
-  - component: {fileID: 8774364782597853463}
+  - component: {fileID: 3567926063455605232}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1150,6 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb80ef4fabf46589fb15493f0e24e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 1
   firePoint: {fileID: 5180311090094489906}
   dmg: 60
   ReloadTime: 0.17
@@ -1157,7 +1158,6 @@ MonoBehaviour:
   BulletPrefab: {fileID: 2866993711871358060, guid: 15b2dd865f41de4429bfbd19cad1eec0,
     type: 3}
   speed: 35
-  BulletTrailPrefab: {fileID: 0}
   gunShot: {fileID: 5180311088773096417}
   kickback: 1
 --- !u!135 &5180311088773096418
@@ -1313,10 +1313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f2795f8a3e57741916c235d9b53f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 1
   meleeCollider: {fileID: 5180311090230490245}
   swing: {fileID: 8300000, guid: bd2b20828cf22f24282e610addf2d271, type: 3}
   source: {fileID: 5180311088773096417}
---- !u!114 &8774364782597853463
+--- !u!114 &3567926063455605232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1325,10 +1326,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5180311088773096444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 799e19ccb8364203a7122955bbf94fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 228c23a487204e3296b2a8426afcf298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodTracker: {fileID: 2114462347}
+  playerMovement: {fileID: 5180311088773096423}
+  playerHealth: {fileID: 5180311088773096419}
   canvas: {fileID: 5180311089579485855}
+  bloodUsePerHeal: 10
+  healAmount: 40
+  healCooldown: 3
+  bloodUsePerSecondTimeWarp: 6
+  minBloodForTimeWarp: 5
+  timeWarpFactor: 0.5
+  bloodUsePerBloodRage: 20
+  chargeDamageInBloodRage: 100
+  BloodMultiplierForBloodRageKills: 0.4
+  bloodRageDuration: 6
+  bloodRageCooldown: 10
+  canUseAbilites: 1
 --- !u!1 &5180311088887448794
 GameObject:
   m_ObjectHideFlags: 0

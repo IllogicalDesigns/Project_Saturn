@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Player {
     public class Pistol : MonoBehaviour {
         string fire = "Fire1";
-        bool canFire = true;
+        public bool canFire = true;
         [SerializeField] Transform firePoint;
         [SerializeField] public int dmg = 60;
         [SerializeField] public float ReloadTime = 0.1f;
@@ -13,10 +13,9 @@ namespace Player {
         [SerializeField] public GameObject BulletPrefab;
         [SerializeField] public float speed = 1f;
 
-        [SerializeField] public GameObject BulletTrailPrefab;
         [SerializeField] AudioSource gunShot;
 
-        private float lastFireTime;
+        private float fireTimeTracker;
         private float arcRangeRad;
         private CamEffects camEffects;
 
@@ -59,7 +58,7 @@ namespace Player {
             bulletComp.SetDmg(dmg);
             bulletComp.SetOwner(1);
             
-            lastFireTime = Time.time;
+            fireTimeTracker = ReloadTime;
 
             camEffects.Shake(0.05f, 0.5f);
             rigid.AddForce(-forward * kickback, ForceMode.Impulse);
@@ -70,7 +69,9 @@ namespace Player {
 
         // Update is called once per frame
         void Update() {
-            if (Input.GetButton(fire) && canFire && Time.time > lastFireTime + ReloadTime) {
+            if (fireTimeTracker > 1e-4) {
+                fireTimeTracker -= Time.deltaTime;
+            }else if (Input.GetButton(fire) && canFire) {
                 FirePistol();
             }
         }

@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 1684293780}
   - component: {fileID: 1684293783}
   - component: {fileID: 1684293784}
+  - component: {fileID: 1684293786}
   m_Layer: 0
   m_Name: JupiterHolder
   m_TagString: Enemy
@@ -1079,7 +1080,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPos: {x: 20, y: 0, z: 14}
   secondPos: {x: 20, y: 0, z: -14}
-  translateSpeed: []
+  translateSpeed:
+  - 3
+  - 6
+  - 9
 --- !u!135 &1684293778
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1246,6 +1250,18 @@ MonoBehaviour:
   bloodOnKill: 100
   spriteRenderer: {fileID: 1448854322}
   canStumble: 1
+--- !u!114 &1684293786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684293775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1817715075
 GameObject:
   m_ObjectHideFlags: 0

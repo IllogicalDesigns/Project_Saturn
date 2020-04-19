@@ -49,11 +49,9 @@ namespace Boss {
             
             // Update difficulty
             if (curDifficulty == 0 && health.PercentHp <= 0.66) {
-                Debug.Log("Entered difficulty 1");
                 curDifficulty = 1;
                 translator.ChangeDifficulty(curDifficulty);
             }else if (curDifficulty == 1 && health.PercentHp <= 0.33) {
-                Debug.Log("Entered difficulty 2");
                 curDifficulty = 2;
                 translator.ChangeDifficulty(curDifficulty);
             }

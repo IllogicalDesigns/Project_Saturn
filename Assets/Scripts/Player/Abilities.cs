@@ -28,6 +28,8 @@ namespace Player {
 
         private float defaultFixedDeltaTime;
 
+        public bool canUseAbilites = true;
+
         private void Start() {
             defaultFixedDeltaTime = Time.fixedDeltaTime;
         }
@@ -54,6 +56,8 @@ namespace Player {
                     EndBloodRage();
                 }
             }
+
+            if (!canUseAbilites) return;
             
             // Try to get inputs
             if (Input.GetButtonDown("Heal") && healCooldownTracker <= 1e-4) {
