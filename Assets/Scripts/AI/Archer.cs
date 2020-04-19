@@ -11,6 +11,7 @@ namespace AI {
 
         private Transform player;
         private Health health;
+        private Animator animator;
 
         Vector3 origArea;
 
@@ -19,7 +20,7 @@ namespace AI {
             chasing,
             attacking,
             stumbled
-        };
+        }
 
         state currState = state.wander;
 
@@ -39,6 +40,7 @@ namespace AI {
             agent = gameObject.GetComponent<NavMeshAgent>();
             health = gameObject.GetComponent<Health>();
             player = GameObject.FindWithTag("Player").transform;
+            animator = gameObject.GetComponentInChildren<Animator>();
             WanderInDirection();
         }
 
@@ -50,7 +52,7 @@ namespace AI {
                 WanderInDirection();
             }
 
-            agent.isStopped = false;
+            Unstopped();
         }
 
         private void WanderInDirection() {
@@ -60,10 +62,9 @@ namespace AI {
 
         Vector3 wanderPoint(float wanderDist) {
             Vector3 randPoint = Random.insideUnitSphere * wanderDist + origArea;
-            NavMeshHit hit; // NavMesh Sampling Info Container
 
             // from randomPos find a nearest point on NavMesh surface in range of maxDistance
-            NavMesh.SamplePosition(randPoint, out hit, wanderDist, NavMesh.AllAreas);
+            NavMesh.SamplePosition(randPoint, out var hit, wanderDist, NavMesh.AllAreas);
             return hit.position;
         }
 
@@ -71,12 +72,12 @@ namespace AI {
             if (Vector3.Distance(transform.position, player.position) < attackDist)
                 currState = state.attacking;
 
-            agent.isStopped = false;
+            Unstopped();
             agent.SetDestination(player.position);
         }
 
         private void Attacking() {
-            agent.isStopped = true;
+            Stopped();
 
             if (Vector3.Distance(transform.position, player.position) > attackDist)
                 currState = state.chasing;
@@ -96,11 +97,10 @@ namespace AI {
         }
 
         private void Stumbled() {
-            agent.isStopped = true;
+            Stopped();
         }
 
         private void Update() {
-
             switch (currState) {
                 case state.chasing:
                     Chasing();
@@ -124,6 +124,16 @@ namespace AI {
 
         private void ExitedStumble() {
             currState = state.wander;
+        }
+        
+        private void Stopped() {
+            agent.isStopped = true;
+            animator.SetBool("Walking", false);
+        }
+
+        private void Unstopped() {
+            agent.isStopped = false;
+            animator.SetBool("Walking", true);
         }
     }
 }
