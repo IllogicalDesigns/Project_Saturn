@@ -16,7 +16,7 @@ namespace AI {
       private float baseSpeed, knockBackForce = 40f;
       private Rigidbody rb;
       
-      private enum State { Wander, Preparing, Charging, Recovering };
+      private enum State { Wander, Preparing, Charging, Recovering, Stumbled };
 
       private void Start() {
           agent = gameObject.GetComponent<NavMeshAgent>();
@@ -103,6 +103,11 @@ namespace AI {
       private void Recovering() {
           StartCoroutine(RecoverFromCharge());
       }
+
+      private void Stumbled() {
+          agent.isStopped = true;
+          rb.velocity = new Vector3(0, 0, 0);
+      }
       
       private void Update() {
           switch (currState) {
@@ -118,11 +123,23 @@ namespace AI {
               case State.Wander:
                   Wander();
                   break;
+              case State.Stumbled:
+                  Stumbled();
+                  break;
               default:
                   Wander();
                   break;
           }
       }
+
+      private void EnteredStumble() {
+          currState = State.Stumbled;
+      }
+
+      private void ExitedStumble() {
+          currState = State.Wander;
+      }
+      
 
     }
 }
