@@ -1,31 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Player;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace AI {
-    public class Legionary : MonoBehaviour {
+    public class Gladiator : MonoBehaviour {
         [SerializeField] private NavMeshAgent agent;
         private Transform player;
         Vector3 target;
         Vector3 oldShieldPos;
-        [SerializeField] private Transform shield;
-        [SerializeField] private GameObject shieldDamager;
+        [SerializeField] private GameObject meleeDamager;
         [SerializeField] private Animator animator;
-        [SerializeField] private float shieldBashSpeed = 3f;
+        [SerializeField] private float dodgeForce;
+        [SerializeField] private float dodgeCooldown;
 
-        private enum State { Wander, Chasing, Attacking, Bashing, Stumbled };
+        private enum State { Wander, Chasing, Attacking, Meleeing, Stumbled };
         State currState = State.Wander;
 
         [SerializeField] float chaseDist = 15f, attackDist = 1f, maxWanderDist = 10f, timeInBetweenAttacks = 1f;
-        
+
+        private Rigidbody rb;
         float attackTimer = 0f;
-        private float bashTimer;
+        private float meleeTimer;
+        private float dodgeTimer;
 
         private void Start() {
             agent = gameObject.GetComponent<NavMeshAgent>();
             player = GameObject.FindWithTag("Player").transform;
+            rb = gameObject.GetComponent<Rigidbody>();
             WanderInDirection();
-            oldShieldPos = shield.localPosition;
             animator = gameObject.GetComponentInChildren<Animator>();
         }
 
@@ -66,40 +71,37 @@ namespace AI {
 
         private void Attacking() {
             Stopped();
-            float dist = Vector3.Distance(transform.position, player.position);
+            var pos = player.position;
+            transform.LookAt(new Vector3(pos.x, 0, pos.z));
+            float dist = Vector3.Distance(transform.position, pos);
 
             if (dist > attackDist)
                 currState = State.Chasing;
 
             if(attackTimer < 0f && dist < attackDist) {
-                EnterBashing();
+                EnterMeleeing();
             }
             else {
                 attackTimer -= Time.deltaTime;
             }
         }
 
-        private void EnterBashing() {
-            bashTimer = 0.5f;
-            currState = State.Bashing;
+        private void EnterMeleeing() {
+            meleeTimer = 0.15f;
+            currState = State.Meleeing;
         }
 
-        private void Bashing() {
-            //TODO pre bash sound
-            bashTimer -= Time.deltaTime;
+        private void Meleeing() {
+            //TODO pre melee sound
+            meleeTimer -= Time.deltaTime;
 
-            if (bashTimer > 0.4f) return;
+            if (meleeTimer > 0.1f) return;
             
-            if (bashTimer <= 0.4f && bashTimer > 0.2f) {
-                shieldDamager.SetActive(true);
-                shield.Translate(Vector3.up * (shieldBashSpeed * Time.deltaTime), Space.Self);
-            }
-            else if (bashTimer <= 0.2f && bashTimer > 0.0f) {
-                shieldDamager.SetActive(false);
-                shield.Translate(Vector3.down * (shieldBashSpeed * Time.deltaTime), Space.Self);
+            if (meleeTimer <= 0.1f && meleeTimer > 0f) {
+                meleeDamager.SetActive(true);
             }
             else {
-                shield.localPosition = oldShieldPos;
+                meleeDamager.SetActive(false);
                 attackTimer = timeInBetweenAttacks;
                 currState = State.Wander;
             }
@@ -120,6 +122,10 @@ namespace AI {
         }
 
         private void Update() {
+            if (dodgeTimer > 1e-4) {
+                dodgeTimer -= Time.deltaTime;
+            }
+            
             switch (currState) {
                 case State.Chasing:
                     Chasing();
@@ -127,8 +133,8 @@ namespace AI {
                 case State.Attacking:
                     Attacking();
                     break;
-                case State.Bashing:
-                    Bashing();
+                case State.Meleeing:
+                    Meleeing();
                     break;
                 case State.Stumbled:
                     Stumbled();
@@ -142,12 +148,21 @@ namespace AI {
 
         private void EnteredStumble() {
             currState = State.Stumbled;
-            shieldDamager.SetActive(false);
-            shield.localPosition = oldShieldPos;
         }
 
         private void ExitedStumble() {
             currState = State.Wander;
+        }
+
+        private void OnTriggerEnter(Collider other) {
+            if (dodgeTimer > 1e-4 || currState == State.Stumbled ||
+                !other.TryGetComponent(typeof(Bullet), out var comp) || !(comp is Bullet bullet) ||
+                bullet.owner != 1) return;
+
+            var trans = transform;
+            var localBullet = trans.InverseTransformPoint(other.transform.position);
+            dodgeTimer = dodgeCooldown;
+            rb.AddForce(trans.right * (-Mathf.Sign(localBullet.x) * dodgeForce), ForceMode.Impulse);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Player {
     {
         [SerializeField] float speed = 1f;
         int dmg = 25;
-        int owner = -1;  //-1 == enemy, 1-4 is players
+        public int owner = -1;  //-1 == enemy, 1-4 is players
         bool bulletEnabled = true;
         float knock = 10f;
 
@@ -16,7 +16,8 @@ namespace Player {
 
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.CompareTag("Player") && owner == 1 ||
-                other.gameObject.CompareTag("Enemy") && owner == -1) return;
+                other.gameObject.CompareTag("Enemy") && owner == -1 || 
+                other.isTrigger) return;
             
             if(other.gameObject.CompareTag("Player") && owner == -1)
             {
