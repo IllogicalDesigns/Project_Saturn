@@ -9,16 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 02a1cbd9e811db04093726f2efeafb4a
   - enabled: 1
-    path: Assets/Scenes/WhiteBox.unity
+    path: Assets/Scenes/TestScenes/WhiteBox.unity
     guid: dd3b9bcc74b308d469c81213ab4e5859
   - enabled: 1
-    path: Assets/Scenes/Summit.unity
+    path: Assets/Scenes/SummitScenes/Summit.unity
     guid: 40952eabe7ecae04786be1d55bc1654d
   - enabled: 1
-    path: Assets/Scenes/Boxing_Gym.unity
+    path: Assets/Scenes/TestScenes/Boxing_Gym.unity
     guid: 78017ac0bca92ab40a38b2a0535165c1
   - enabled: 1
-    path: Assets/Scenes/Caldera.unity
+    path: Assets/Scenes/CalderaScenes/Caldera.unity
     guid: ce22dc44b6eedbf41a64ff75142e9b1f
   - enabled: 1
     path: Assets/Scenes/MoonForestScenes/MoonForestBoss.unity
