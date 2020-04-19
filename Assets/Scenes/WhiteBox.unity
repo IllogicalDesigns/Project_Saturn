@@ -1097,8 +1097,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Folder
       objectReference: {fileID: 0}
+    - target: {fileID: 5180311088773096419, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: spriteFlipper
+      value: 
+      objectReference: {fileID: 1340726137}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7fd819eac05f0449bebb6992383900, type: 3}
+--- !u!114 &1340726137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5180311089167209051, guid: cd7fd819eac05f0449bebb6992383900,
+    type: 3}
+  m_PrefabInstance: {fileID: 1322622059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d88e08a30fc5ac4a9957909b4942c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1402560712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1689,8 @@ MonoBehaviour:
   bloodOnKill: 10
   spriteRenderer: {fileID: 2431345915500803077}
   canStumble: 1
+  canDieToBulletInStuble: 1
+  spriteFlipper: {fileID: 0}
 --- !u!4 &2431345914274757761
 Transform:
   m_ObjectHideFlags: 0
