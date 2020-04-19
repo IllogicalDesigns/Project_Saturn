@@ -7,7 +7,7 @@ namespace AI {
         private Transform player;
         Vector3 target;
 
-        private enum state { wander, chasing, attacking };
+        private enum state { wander, chasing, attacking, stumbled };
         state currState = state.wander;
 
         [SerializeField] float chaseDist = 15f, attackDist = 1f, maxWanderDist = 10f, timeInBetweenAttacks = 1f;
@@ -68,6 +68,10 @@ namespace AI {
             }
         }
 
+        private void Stumbled() {
+            agent.isStopped = true;
+        }
+
         private void Update() {
             switch (currState) {
                 case state.chasing:
@@ -76,11 +80,22 @@ namespace AI {
                 case state.attacking:
                     Attacking();
                     break;
+                case state.stumbled:
+                    Stumbled();
+                    break;
                 default:
                     Wander();
                     break;
 
             }
+        }
+
+        private void EnteredStumble() {
+            currState = state.stumbled;
+        }
+
+        private void ExitedStumble() {
+            currState = state.wander;
         }
     }
 }

@@ -6,18 +6,19 @@ using UnityEngine.AI;
 namespace AI {
     public class Shambler : MonoBehaviour {
         [SerializeField] private NavMeshAgent agent;
-        private ShamblerState currentState = ShamblerState.Standing;
+        private State currentState = State.Standing;
         
         private Transform player;
 
-        private enum ShamblerState {
+        private enum State {
             Standing,
             Attacking,
+            Stumbled,
         }
 
         private void Standing() {
             agent.isStopped = true;
-            currentState = ShamblerState.Standing;
+            currentState = State.Standing;
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance < 5) {
                 Attacking();
@@ -25,7 +26,7 @@ namespace AI {
         }
 
         private void Attacking() {
-            currentState = ShamblerState.Attacking;
+            currentState = State.Attacking;
             agent.isStopped = false;
 
             var targetPos = player.position;
@@ -35,6 +36,10 @@ namespace AI {
             if (distance >= 5) {
                 Standing();
             }
+        }
+
+        private void Stumbled() {
+            agent.isStopped = true;
         }
 
         void Start() {
@@ -48,13 +53,24 @@ namespace AI {
             // var pos = transform.position;
             // float distance = Vector3.Distance(pos, pos);
             switch (currentState) {
-                case ShamblerState.Standing:
+                case State.Standing:
                     Standing();
                     break;
-                case ShamblerState.Attacking:
+                case State.Attacking:
                     Attacking();
                     break;
+                case State.Stumbled:
+                    Stumbled();
+                    break;
             }
+        }
+
+        private void EnteredStumble() {
+            currentState = State.Stumbled;
+        }
+
+        private void ExitedStumble() {
+            currentState = State.Standing;
         }
     }
 }
