@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SpriteFlipper : MonoBehaviour
 {
-    [SerializeField] float varience = 40f;
+    public float varience = 40f;
     [SerializeField] Sprite[] up;
     [SerializeField] Sprite[] dwn;
 
-    Transform objToSnapTo;
+    public Transform objToSnapTo;
     SpriteRenderer legR, legL, shirt, head;
     Transform trans;
     Quaternion rot;
 
-    bool stumbling = false;
-    float rateOfStumble = 0.1f, stumbleTimer;
+    public bool stumbling = false;
+    public float rateOfStumble = 0.1f, stumbleTimer;
     private Color stumbleColor = new Color(255f/255f, 204f/255f, 51f/255f);
     private Color origClr;
 
@@ -31,11 +31,11 @@ public class SpriteFlipper : MonoBehaviour
         origClr = shirt.color;
     }
 
-    public void SetStumble(bool _stumbling) {
+    public virtual void SetStumble(bool _stumbling) {
         stumbling = _stumbling;
     }
 
-    void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
+     void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
         float angle = Vector3.Angle(tar, d);
         float angle2 = Vector3.Angle(objToSnapTo.forward, d);
 

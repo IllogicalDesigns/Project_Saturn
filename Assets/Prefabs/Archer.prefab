@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
-  MeleePunch: {fileID: 0}
+  MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 1400424681}
 --- !u!114 &1297739154
 MonoBehaviour:
