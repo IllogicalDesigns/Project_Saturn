@@ -83,10 +83,10 @@ public class SpriteFlipper : MonoBehaviour
 
     void SwapStumble() {
         if(shirt.color == origClr) {
-            head.color = Color.red;
-            shirt.color = Color.red;
-            legR.color = Color.red;
-            legL.color = Color.red;
+            head.color = stumbleColor;
+            shirt.color = stumbleColor;
+            legR.color = stumbleColor;
+            legL.color = stumbleColor;
         }
         else {
             head.color = origClr;
