@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180311088773096444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: -8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5180311089815237728}
@@ -222,7 +222,7 @@ MonoBehaviour:
   dodgeForce: 30
   canMove: 1
   gamePad: 0
-  gameCanvas: {fileID: 0}
+  gameCanvas: {fileID: 5180311089579485855}
   timeBetweenDodges: 1
   MovementFactor: 1
   Crosshair: {fileID: 5180311089374657896}
@@ -441,7 +441,7 @@ MonoBehaviour:
   playerMovement: {fileID: 5180311088773096423}
   playerHealth: {fileID: 5180311088773096419}
   canvas: {fileID: 5180311089579485855}
-  bloodUsePerHeal: 10
+  bloodUsePerHeal: 15
   healAmount: 40
   healCooldown: 3
   bloodUsePerSecondTimeWarp: 6
@@ -912,8 +912,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180311090230490245}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.4620004, y: -3, z: 4.549999}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -2.4620004, y: -2.7, z: 4.549999}
   m_LocalScale: {x: 20, y: 20, z: 4}
   m_Children:
   - {fileID: 3544368224676710990}

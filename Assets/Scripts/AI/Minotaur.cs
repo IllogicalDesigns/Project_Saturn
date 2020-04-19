@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 namespace AI {
     public class Minotaur : MonoBehaviour {
       [SerializeField] private NavMeshAgent agent;
-      [SerializeField] private Transform player;
+      private Transform player;
       [SerializeField] private float chargeDist = 15f, maxWanderDist = 10f, attackDamageDealt = 20f;
       [SerializeField] private float chargeForce;
       Vector3 target;
@@ -22,6 +22,7 @@ namespace AI {
 
       private void Start() {
           agent = gameObject.GetComponent<NavMeshAgent>();
+          player = GameObject.FindWithTag("Player").transform;
           rb = GetComponent<Rigidbody>();
           baseSpeed = agent.speed;
           WanderInDirection();
@@ -90,7 +91,8 @@ namespace AI {
           
           other.gameObject.SendMessage("ApplyDamage", attackDamageDealt);
           var pos = transform.position;
-          other.gameObject.SendMessage("ApplyKnockback", new Vector4(pos.x, pos.y, pos.z, knockBackForce));
+          other.gameObject.SendMessage("ApplyKnockback", new Vector4(pos.x, pos.y, pos.z, knockBackForce),
+              SendMessageOptions.DontRequireReceiver);
       }
 
       private void Recovering() {
