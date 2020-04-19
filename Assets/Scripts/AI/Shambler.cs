@@ -9,6 +9,7 @@ namespace AI {
         private State currentState = State.Standing;
         
         private Transform player;
+        private Animator animator;
 
         private enum State {
             Standing,
@@ -17,7 +18,7 @@ namespace AI {
         }
 
         private void Standing() {
-            agent.isStopped = true;
+            Unstopped();
             currentState = State.Standing;
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance < 5) {
@@ -27,7 +28,7 @@ namespace AI {
 
         private void Attacking() {
             currentState = State.Attacking;
-            agent.isStopped = false;
+            Unstopped();
 
             var targetPos = player.position;
             agent.SetDestination(targetPos);
@@ -39,12 +40,13 @@ namespace AI {
         }
 
         private void Stumbled() {
-            agent.isStopped = true;
+            Stopped();
         }
 
         void Start() {
             agent = gameObject.GetComponent<NavMeshAgent>();
             player = GameObject.FindWithTag("Player").transform;
+            animator = gameObject.GetComponentInChildren<Animator>();
             agent.SetDestination(player.position);
         }
 
@@ -71,6 +73,16 @@ namespace AI {
 
         private void ExitedStumble() {
             currentState = State.Standing;
+        }
+        
+        private void Stopped() {
+            agent.isStopped = true;
+            animator.SetBool("Walking", false);
+        }
+
+        private void Unstopped() {
+            agent.isStopped = false;
+            animator.SetBool("Walking", true);
         }
     }
 }

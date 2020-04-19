@@ -10,6 +10,7 @@ public class InGameCanvas : MonoBehaviour {
     [SerializeField] private GameObject timeWarpOverlay;
     [SerializeField] private GameObject bloodRageOverlay;
     [SerializeField] private GameObject PausePanel;
+    [SerializeField] private GameObject DeadPanel;
     [SerializeField] AudioMixer mixer;
     [SerializeField] Health playerHealth;
 
@@ -57,21 +58,34 @@ public class InGameCanvas : MonoBehaviour {
         bloodRageOverlay.SetActive(false);
     }
 
+    public void PlayerHasDied() {
+        BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
+        CursorLock(false);
+        DeadPanel.SetActive(true);
+        Time.timeScale = 0.001f;
+    }
+
     public void TogglePauseApp() {
         if (!PausePanel.activeInHierarchy) {
             BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            CursorLock(false);
             PausePanel.SetActive(true);
             Time.timeScale = 0.001f;
         }
         else {
             BroadcastMessage("onEnablePlayer", SendMessageOptions.DontRequireReceiver);
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
+            CursorLock(true);
             PausePanel.SetActive(false);
             Time.timeScale = 1;
         }
+    }
+
+    private static void CursorLock(bool locked) {
+        if(locked)
+            Cursor.lockState = CursorLockMode.Confined;
+        else
+            Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = locked;
     }
 
     public void SetLevel(float sliderValue) {

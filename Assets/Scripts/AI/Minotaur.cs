@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Runtime.InteropServices;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -103,6 +103,21 @@ namespace AI {
           agent.isStopped = true;
           rb.velocity = new Vector3(0, 0, 0);
       }
+
+      private void DamageTaken() {
+          switch (currState) {
+              case State.Charging:
+              case State.Recovering:
+              case State.Stumbled:
+              case State.Preparing:
+                  return;
+              case State.Wander:
+                  currState = State.Preparing;
+                  break;
+              default:
+                  throw new InvalidEnumArgumentException();
+          }
+      }
       
       private void FixedUpdate() {
           switch (currState) {
@@ -133,6 +148,14 @@ namespace AI {
 
       private void ExitedStumble() {
           currState = State.Wander;
+      }
+
+      public void OnDamage() {
+          DamageTaken();
+      }
+
+      public void OnMeleeDamage() {
+          DamageTaken();
       }
       
 
