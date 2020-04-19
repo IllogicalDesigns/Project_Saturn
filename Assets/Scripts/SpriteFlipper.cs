@@ -46,12 +46,14 @@ public class SpriteFlipper : MonoBehaviour
         float angle2 = Vector3.Angle(objToSnapTo.right, d);
 
         if (angle2 <= varience) {
+            head.sortingOrder = 0;
             head.sprite = up[0];
             shirt.sprite = up[1];
             legR.sprite = up[2];
             legL.sprite = up[3];
         }
         else {
+            head.sortingOrder = 2;
             head.sprite = dwn[0];
             shirt.sprite = dwn[1];
             legR.sprite = dwn[2];
