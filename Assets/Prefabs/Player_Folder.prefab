@@ -1406,6 +1406,11 @@ PrefabInstance:
       propertyPath: dodgeSlider
       value: 
       objectReference: {fileID: 8123424149419772206}
+    - target: {fileID: 565552551079966508, guid: feae2484e68de1540862f383c17831a9,
+        type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 5180311088773096419}
     - target: {fileID: 565552551079966510, guid: feae2484e68de1540862f383c17831a9,
         type: 3}
       propertyPath: m_Name
@@ -1542,6 +1547,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4628880667589752806, guid: feae2484e68de1540862f383c17831a9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128595135037072500, guid: feae2484e68de1540862f383c17831a9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128595135037072500, guid: feae2484e68de1540862f383c17831a9,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

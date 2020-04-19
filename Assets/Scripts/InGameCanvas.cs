@@ -1,13 +1,17 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine;
+using Player;
+
 public class InGameCanvas : MonoBehaviour {
     [SerializeField] private Slider dodgeSlider;
     [SerializeField] private Slider bloodSlider;
+    [SerializeField] private Slider HpSlider;
     [SerializeField] private GameObject timeWarpOverlay;
     [SerializeField] private GameObject bloodRageOverlay;
     [SerializeField] private GameObject PausePanel;
     [SerializeField] AudioMixer mixer;
+    [SerializeField] Health playerHealth;
 
     public void SetupDodgeSlider(float _maxValue, float _value) {
         dodgeSlider.maxValue = _maxValue;
@@ -55,12 +59,14 @@ public class InGameCanvas : MonoBehaviour {
 
     public void TogglePauseApp() {
         if (!PausePanel.activeInHierarchy) {
+            BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             PausePanel.SetActive(true);
             Time.timeScale = 0.001f;
         }
         else {
+            BroadcastMessage("onEnablePlayer", SendMessageOptions.DontRequireReceiver);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
             PausePanel.SetActive(false);
@@ -83,5 +89,7 @@ public class InGameCanvas : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Escape)) {
             TogglePauseApp();
         }
+
+        HpSlider.value = playerHealth.Hp;
     }
 }
