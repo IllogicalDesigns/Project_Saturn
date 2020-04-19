@@ -20,6 +20,12 @@ TextureImporter:
   - first:
       213: 2108283993629056069
     second: Archer_dude_5
+  - first:
+      213: -648741163731633195
+    second: Archer_dude_6
+  - first:
+      213: 8072782975143131512
+    second: Archer_dude_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -238,6 +244,48 @@ TextureImporter:
       bones: []
       spriteID: 54cd6ed3f11224d10800000000000000
       internalID: 2108283993629056069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_dude_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 232
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db3a9849553ff6f0800000000000000
+      internalID: -648741163731633195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer_dude_7
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 208
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8793a3e2859480070800000000000000
+      internalID: 8072782975143131512
       vertices: []
       indices: 
       edges: []

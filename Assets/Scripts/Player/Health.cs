@@ -29,7 +29,6 @@ namespace Player {
         private void Start() {
             bloodTracker = FindObjectOfType<BloodTracker>();
             abilities = FindObjectOfType<Abilities>();
-            defaultColor = spriteRenderer.color;
         }
 
         public void ApplyDamage(int damage) {
