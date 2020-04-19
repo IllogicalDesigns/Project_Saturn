@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPos: {x: 20, y: 0, z: 14}
   secondPos: {x: 20, y: 0, z: -14}
-  translateSpeed: 5
+  translateSpeed: []
 --- !u!135 &1684293778
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1123,10 +1123,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDangerPrefab: {fileID: 1617481080734679776, guid: bfecbde9e91e60a44865d13abb0b1c3e,
     type: 3}
-  spawnInterval: 0.02
-  delay: 1
-  damage: 50
-  totalGroundDangersToSpawn: 500
+  spawnInterval:
+  - 0.2
+  - 0.1
+  - 0.05
+  delay:
+  - 2
+  - 1.5
+  - 1
+  damage: 190000002300000032000000
+  totalGroundDangersToSpawn: 64000000c80000002c010000
   spawnBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 13.5, y: 0, z: 13.5}
@@ -1145,7 +1151,10 @@ MonoBehaviour:
   timeBetweenPhases: 2
   timeAfterAdds: 5
   deathBeam: {fileID: 73505776}
-  deathBeamDuration: 10
+  deathBeamDuration:
+  - 5
+  - 7
+  - 9
 --- !u!114 &1684293782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,10 +1169,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDangerPrefab: {fileID: 1617481080734679776, guid: bfecbde9e91e60a44865d13abb0b1c3e,
     type: 3}
-  spawnInterval: 0.25
-  delay: 0.4
-  damage: 25
-  totalGroundDangersToSpawn: 30
+  spawnInterval:
+  - 0.5
+  - 0.4
+  - 0.3
+  delay:
+  - 0.5
+  - 0.4
+  - 0.3
+  damage: 14000000280000003c000000
+  totalGroundDangersToSpawn: 0f0000001e0000002d000000
 --- !u!114 &1684293783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,12 +1215,18 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3918584724863880154, guid: 3e7c14a5db9c5c8498f9d505887c6a83,
     type: 3}
   firePoint: {fileID: 1817715076}
-  spawnInterval: 0.012
+  spawnInterval:
+  - 0.03
+  - 0.02
+  - 0.01
   spawnSpreadAngle: 60
   fireDir: {x: -1, y: 0, z: 0}
-  totalBulletsToSpawn: 500
-  speed: 12
-  damage: 10
+  totalBulletsToSpawn: fa000000f4010000ee020000
+  speed:
+  - 10
+  - 12
+  - 14
+  damage: 07000000090000000b000000
 --- !u!114 &1684293785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1220,11 +1241,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10000
   hp: 10000
-  stumbleDuration: 5
+  stumbleDuration: 10
   healthOnExitStumble: 5000
   bloodOnKill: 100
   spriteRenderer: {fileID: 1448854322}
-  canStumble: 0
+  canStumble: 1
 --- !u!1 &1817715075
 GameObject:
   m_ObjectHideFlags: 0

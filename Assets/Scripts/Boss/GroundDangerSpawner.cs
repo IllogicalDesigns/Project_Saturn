@@ -5,20 +5,22 @@ namespace Boss {
     public abstract class GroundDangerSpawner : MonoBehaviour {
 
         [SerializeField] private GameObject groundDangerPrefab;
-        [SerializeField] private float spawnInterval;
+        [SerializeField] private float[] spawnInterval;
 
-        [SerializeField] private float delay;
-        [SerializeField] private int damage;
-        [SerializeField] private int totalGroundDangersToSpawn;
+        [SerializeField] private float[] delay;
+        [SerializeField] private int[] damage;
+        [SerializeField] private int[] totalGroundDangersToSpawn;
 
         protected GameObject Player;
         private int numberToSpawn;
         private float intervalTracker;
+        private int curDifficulty;
 
         public bool IsSpawning => numberToSpawn > 0;
         
-        public void StartSpawning() {
-            numberToSpawn = totalGroundDangersToSpawn;
+        public void StartSpawning(int difficulty) {
+            curDifficulty = difficulty;
+            numberToSpawn = totalGroundDangersToSpawn[curDifficulty];
         }
 
         private void Start() {
@@ -43,10 +45,10 @@ namespace Boss {
             newDanger.transform.position = position;
             
             var groundDanger = newDanger.GetComponent<GroundDanger>();
-            groundDanger.delay = delay;
-            groundDanger.damage = damage;
+            groundDanger.delay = delay[curDifficulty];
+            groundDanger.damage = damage[curDifficulty];
 
-            intervalTracker = spawnInterval;
+            intervalTracker = spawnInterval[curDifficulty];
             numberToSpawn--;
         }
     }

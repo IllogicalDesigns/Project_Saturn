@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace Boss {
@@ -9,14 +10,16 @@ namespace Boss {
         [SerializeField] private float timeAfterAdds;
         
         [SerializeField] private GameObject deathBeam;
-        [SerializeField] private float deathBeamDuration;
+        [SerializeField] private float[] deathBeamDuration;
         
         private GroundDangerSpawner_Follow groundDangerFollower;
         private GroundDangerSpawner_Random groundDangerRandom;
         private AddSpawner adds;
         private BulletHellSpawner bulletHell;
+        private BounceTranslate translator;
+        private Health health;
         private float phaseTimer;
-        private int currentDifficulty = 0;
+        private int curDifficulty;
 
         private enum State {
             SpawningAdds,
@@ -36,11 +39,24 @@ namespace Boss {
             groundDangerRandom = gameObject.GetComponent<GroundDangerSpawner_Random>();
             adds = gameObject.GetComponent<AddSpawner>();
             bulletHell = gameObject.GetComponent<BulletHellSpawner>();
+            translator = gameObject.GetComponent<BounceTranslate>();
+            health = gameObject.GetComponent<Health>();
             EnterWaiting();
         }
 
         private void EnterWaiting() {
             state = State.Waiting;
+            
+            // Update difficulty
+            if (curDifficulty == 0 && health.PercentHp <= 0.66) {
+                Debug.Log("Entered difficulty 1");
+                curDifficulty = 1;
+                translator.ChangeDifficulty(curDifficulty);
+            }else if (curDifficulty == 1 && health.PercentHp <= 0.33) {
+                Debug.Log("Entered difficulty 2");
+                curDifficulty = 2;
+                translator.ChangeDifficulty(curDifficulty);
+            }
 
             if (lastState == State.SpawningAdds) {
                 phaseTimer = timeAfterAdds;
@@ -92,7 +108,7 @@ namespace Boss {
         }
         
         private void EnterSpawnGroundDangerFollower() {
-            groundDangerFollower.StartSpawning();
+            groundDangerFollower.StartSpawning(curDifficulty);
             state = State.SpawningGroundDangerFollower;
             lastState = State.SpawningGroundDangerFollower;
             lastStateNonAdds = State.SpawningGroundDangerFollower;
@@ -105,7 +121,7 @@ namespace Boss {
         }
         
         private void EnterSpawnGroundDangerRandom() {
-            groundDangerRandom.StartSpawning();
+            groundDangerRandom.StartSpawning(curDifficulty);
             state = State.SpawningGroundDangerRandom;
             lastState = State.SpawningGroundDangerRandom;
             lastStateNonAdds = State.SpawningGroundDangerRandom;
@@ -130,7 +146,7 @@ namespace Boss {
         }
 
         private void EnterSpawnBulletHell() {
-            bulletHell.StartSpawning();
+            bulletHell.StartSpawning(curDifficulty);
             state = State.SpawningBulletHell;
             lastState = State.SpawningBulletHell;
             lastStateNonAdds = State.SpawningBulletHell;
@@ -144,7 +160,7 @@ namespace Boss {
         
         private void EnterDeathBeam() {
             deathBeam.SetActive(true);
-            phaseTimer = deathBeamDuration;
+            phaseTimer = deathBeamDuration[curDifficulty];
             state = State.ShootingDeathBeam;
             lastState = State.ShootingDeathBeam;
             lastStateNonAdds = State.ShootingDeathBeam;

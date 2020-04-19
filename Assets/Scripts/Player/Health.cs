@@ -18,6 +18,9 @@ namespace Player {
         private float stumbleTimeTracker;
         public bool Stumbled => stumbleTimeTracker >= 1e-4;
 
+        public int Hp => hp;
+        public float PercentHp => (float)hp / maxHp;
+        
         private BloodTracker bloodTracker;
         private Abilities abilities;
 

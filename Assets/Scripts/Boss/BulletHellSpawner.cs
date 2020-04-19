@@ -7,21 +7,23 @@ namespace Boss {
 
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform firePoint;
-        [SerializeField] private float spawnInterval;
+        [SerializeField] private float[] spawnInterval;
         [SerializeField] private float spawnSpreadAngle;
         [SerializeField] private Vector3 fireDir;
-        [SerializeField] private int totalBulletsToSpawn;
+        [SerializeField] private int[] totalBulletsToSpawn;
 
-        [SerializeField] private float speed;
-        [SerializeField] private int damage;
+        [SerializeField] private float[] speed;
+        [SerializeField] private int[] damage;
 
         private float intervalTracker;
         private int projectilesToSpawn;
+        private int curDifficulty;
 
         public bool IsSpawning => projectilesToSpawn > 0;
 
-        public void StartSpawning() {
-            projectilesToSpawn = totalBulletsToSpawn;
+        public void StartSpawning(int difficulty) {
+            curDifficulty = difficulty;
+            projectilesToSpawn = totalBulletsToSpawn[curDifficulty];
         }
 
         private void Update() {
@@ -43,11 +45,11 @@ namespace Boss {
             bullet.transform.position = firePoint.position;
             
             var bulletComp = bullet.GetComponent<Bullet>();
-            bulletComp.SetSpeed(speed);
-            bulletComp.SetDmg(damage);
+            bulletComp.SetSpeed(speed[curDifficulty]);
+            bulletComp.SetDmg(damage[curDifficulty]);
             bulletComp.SetOwner(-1);
             
-            intervalTracker = spawnInterval;
+            intervalTracker = spawnInterval[curDifficulty];
             projectilesToSpawn--;
         }
 
