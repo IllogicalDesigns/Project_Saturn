@@ -14,11 +14,13 @@ namespace AI {
       Vector3 target;
       private State currState = State.Wander;
       private float baseSpeed, knockBackForce = 40f;
+      private Rigidbody rb;
       
       private enum State { Wander, Preparing, Charging, Recovering };
 
       private void Start() {
           agent = gameObject.GetComponent<NavMeshAgent>();
+          rb = GetComponent<Rigidbody>();
           baseSpeed = agent.speed;
           WanderInDirection();
       }
@@ -51,26 +53,41 @@ namespace AI {
 
       private void Preparing() {
           agent.isStopped = true;
+          rb.velocity = new Vector3(0, 0, 0);
           StartCoroutine(PrepareToCharge());
-          target = player.position;
-          agent.SetDestination(target);
-          currState = State.Charging;
       }
       
       private void Charging() {
           agent.isStopped = false;
-          agent.speed *= 3;
-          if (Vector3.Distance(transform.position, target) < 1) {
+          StartCoroutine(Accelerate());
+          if (Vector3.Distance(transform.position, target) < 0.5) {
               currState = State.Recovering;
           }
       }
 
+      private IEnumerator Accelerate() {
+          while (currState == State.Charging) {
+              agent.speed *= 3;
+              yield return new WaitForSeconds(0.1f);
+          }
+              
+      }
       private IEnumerator PrepareToCharge() {
-          yield return new WaitForSeconds(1);
+          yield return new WaitForSeconds(0.5f);
+          agent.isStopped = false;
+          target = player.position;
+          agent.SetDestination(target);
+          currState = State.Charging;
+          agent.speed = baseSpeed * 10;
       }
 
       private IEnumerator RecoverFromCharge() {
-          yield return new WaitForSeconds(3);
+          agent.isStopped = true;
+          agent.speed = baseSpeed;
+          rb.velocity = new Vector3(0, 0, 0);
+          yield return new WaitForSeconds(0.3f);
+          currState = (Vector3.Distance(transform.position, player.position) < chargeDist) 
+                    ? State.Preparing : State.Wander;
       }
       
       private void OnCollisionEnter(Collision other) {
@@ -78,23 +95,13 @@ namespace AI {
           if (currState != State.Charging) return;
           
           other.gameObject.SendMessage("ApplyDamage", attackDamageDealt);
-          other.gameObject.SendMessage("ApplyKnockback", new Vector4(transform.position.x, transform.position.y, transform.position.z, knockBackForce));
+          var pos = transform.position;
+          other.gameObject.SendMessage("ApplyKnockback", new Vector4(pos.x, pos.y, pos.z, knockBackForce));
           currState = State.Recovering;
       }
 
-      /*private void ApplyKnockback(Vector4 pos) {
-          var posFrom = new Vector3(pos.x, pos.y, pos.z);
-          var force = pos.w;
-          var dir = (posFrom - transform.position).normalized;
-          var ridge = GetComponent<Rigidbody>();
-          ridge.AddForce(-dir * force, ForceMode.Impulse);
-      }*/
-
       private void Recovering() {
-          agent.isStopped = true;
-          agent.speed = baseSpeed;
           StartCoroutine(RecoverFromCharge());
-          currState = State.Wander;
       }
       
       private void Update() {
