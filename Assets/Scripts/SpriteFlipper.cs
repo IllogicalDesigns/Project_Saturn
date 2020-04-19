@@ -15,7 +15,8 @@ public class SpriteFlipper : MonoBehaviour
 
     bool stumbling = false;
     float rateOfStumble = 0.1f, stumbleTimer;
-    Color origClr;
+    private Color stumbleColor = new Color(255f/255f, 204f/255f, 51f/255f);
+    private Color origClr;
 
     // Use this for initialization
     void Start() {
