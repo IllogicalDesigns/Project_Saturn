@@ -1,11 +1,13 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine;
-
 public class InGameCanvas : MonoBehaviour {
     [SerializeField] private Slider dodgeSlider;
     [SerializeField] private Slider bloodSlider;
     [SerializeField] private GameObject timeWarpOverlay;
     [SerializeField] private GameObject bloodRageOverlay;
+    [SerializeField] private GameObject PausePanel;
+    [SerializeField] AudioMixer mixer;
 
     public void SetupDodgeSlider(float _maxValue, float _value) {
         dodgeSlider.maxValue = _maxValue;
@@ -41,9 +43,35 @@ public class InGameCanvas : MonoBehaviour {
         bloodRageOverlay.SetActive(false);
     }
 
+    public void TogglePauseApp() {
+        if (!PausePanel.activeInHierarchy) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            PausePanel.SetActive(true);
+            Time.timeScale = 0.001f;
+        }
+        else {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+            PausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void SetLevel(float sliderValue) {
+        mixer.SetFloat("Volume", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("Volume", sliderValue);
+    }
+
     // Start is called before the first frame update
-    void Start() { }
+    void Start() {
+        SetLevel(PlayerPrefs.GetFloat("Volume", 0));
+    }
 
     // Update is called once per frame
-    void Update() { }
+    void Update() { 
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            TogglePauseApp();
+        }
+    }
 }

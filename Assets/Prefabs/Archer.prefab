@@ -55,12 +55,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 2431345914719058895}
   chaseDist: 15
-  attackDist: 10
+  attackDist: 7
   maxWanderDist: 10
   timeInBetweenAttacks: 1
   arrowPrefab: {fileID: 4491464070785288484, guid: 94711f6f64f43c94fb26531362f670b5,
     type: 3}
   firePoint: {fileID: 2431345915535005024}
+  anim: {fileID: 0}
 --- !u!195 &2431345914719058895
 NavMeshAgent:
   m_ObjectHideFlags: 0

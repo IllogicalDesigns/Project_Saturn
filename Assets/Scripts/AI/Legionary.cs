@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace AI {
@@ -6,6 +7,8 @@ namespace AI {
         [SerializeField] private NavMeshAgent agent;
         private Transform player;
         Vector3 target;
+        Vector3 oldShieldPos;
+        [SerializeField] private Transform shield;
 
         private enum state { wander, chasing, attacking, stumbled };
         state currState = state.wander;
@@ -18,6 +21,7 @@ namespace AI {
             agent = gameObject.GetComponent<NavMeshAgent>();
             player = GameObject.FindWithTag("Player").transform;
             WanderInDirection();
+            oldShieldPos = shield.localPosition;
         }
 
         private void Wander() {
@@ -45,6 +49,14 @@ namespace AI {
             return hit.position;
         }
 
+        IEnumerator ShieldBash() {
+            //TODO pre bash sound
+            yield return new WaitForSeconds(0.1f);
+            shield.localPosition = shield.transform.forward * 0.5f;
+            yield return new WaitForSeconds(0.3f);
+            shield.localPosition = oldShieldPos;
+        }
+
         private void Chasing() {
             if (Vector3.Distance(transform.position, player.position) < attackDist)
                 currState = state.attacking;
@@ -53,15 +65,18 @@ namespace AI {
             agent.SetDestination(player.position);
         }
 
+        
+
         private void Attacking() {
             agent.isStopped = true;
+            float dist = Vector3.Distance(transform.position, player.position);
 
-            if (Vector3.Distance(transform.position, player.position) > attackDist)
+            if (dist > attackDist)
                 currState = state.chasing;
 
-            if(attackTimer < 0f) {
-                //TODO Melee attack
-                attackTimer = timeInBetweenAttacks;
+            if(attackTimer < 0f && dist < 4f) {
+                StartCoroutine(ShieldBash());
+                attackTimer = timeInBetweenAttacks + 0.4f;
             }
             else {
                 attackTimer -= Time.deltaTime;

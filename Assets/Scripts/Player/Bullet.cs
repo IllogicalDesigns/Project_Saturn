@@ -42,6 +42,7 @@ namespace Player {
 
         void DisableBullet()
         {
+            Blood.Instance.EmitBlood(this.transform);
             //transform.position = Vector3.zero;
             //bulletEnabled = false;
             //collider.enabled = false;
