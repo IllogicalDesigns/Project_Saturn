@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boxing_Gym.unity
     guid: 78017ac0bca92ab40a38b2a0535165c1
+  - enabled: 1
+    path: Assets/Scenes/Caldera.unity
+    guid: ce22dc44b6eedbf41a64ff75142e9b1f
+  - enabled: 1
+    path: Assets/Scenes/MoonForest.unity
+    guid: 2efaa4b010d96ab47933fee22f84af4f
   m_configObjects: {}

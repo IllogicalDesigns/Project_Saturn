@@ -33,6 +33,7 @@ public class OnDeathScript : MonoBehaviour
             playerPistol.canFire = false;
             playerMelee.canAttack = false;
             playerAbilities.canUseAbilites = false;
+            FindObjectOfType<InGameCanvas>().PlayerHasDied();
         }
     }
 }

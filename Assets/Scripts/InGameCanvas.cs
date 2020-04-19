@@ -85,7 +85,7 @@ public class InGameCanvas : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Confined;
         else
             Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = locked;
+        Cursor.visible = !locked;
     }
 
     public void SetLevel(float sliderValue) {
