@@ -11,7 +11,9 @@ namespace AI {
       [SerializeField] private NavMeshAgent agent;
       [SerializeField] private Transform player;
       [SerializeField] private float chargeDist = 15f, maxWanderDist = 10f, attackDamageDealt = 20f;
+      [SerializeField] private float chargeForce;
       Vector3 target;
+      private Vector3 chargeDir;
       private State currState = State.Wander;
       private float baseSpeed, knockBackForce = 40f;
       private Rigidbody rb;
@@ -58,27 +60,17 @@ namespace AI {
       }
       
       private void Charging() {
-          agent.isStopped = false;
-          StartCoroutine(Accelerate());
-          if (Vector3.Distance(transform.position, target) < 0.5) {
-              currState = State.Recovering;
-          }
+          agent.isStopped = true;
+          rb.AddForce(chargeDir * chargeForce);
       }
-
-      private IEnumerator Accelerate() {
-          while (currState == State.Charging) {
-              agent.speed *= 3;
-              yield return new WaitForSeconds(0.1f);
-          }
-              
-      }
+      
       private IEnumerator PrepareToCharge() {
           yield return new WaitForSeconds(0.5f);
           agent.isStopped = false;
-          target = player.position;
-          agent.SetDestination(target);
+          var position = player.position;
+          chargeDir = (position - transform.position).normalized;
+          transform.LookAt(position);
           currState = State.Charging;
-          agent.speed = baseSpeed * 10;
       }
 
       private IEnumerator RecoverFromCharge() {
@@ -91,13 +83,14 @@ namespace AI {
       }
       
       private void OnCollisionEnter(Collision other) {
-          if (!other.gameObject.CompareTag("Player")) return;
           if (currState != State.Charging) return;
+          currState = State.Recovering;
+              
+          if (!other.gameObject.CompareTag("Player")) return;
           
           other.gameObject.SendMessage("ApplyDamage", attackDamageDealt);
           var pos = transform.position;
           other.gameObject.SendMessage("ApplyKnockback", new Vector4(pos.x, pos.y, pos.z, knockBackForce));
-          currState = State.Recovering;
       }
 
       private void Recovering() {
@@ -109,7 +102,7 @@ namespace AI {
           rb.velocity = new Vector3(0, 0, 0);
       }
       
-      private void Update() {
+      private void FixedUpdate() {
           switch (currState) {
               case State.Charging:
                   Charging();
