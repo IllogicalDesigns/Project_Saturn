@@ -5,12 +5,16 @@ using UnityEngine;
 public class DianaFlipper : SpriteFlipper {
     [SerializeField] private Animator anim;
     bool faceUp = false, faceRight = false;
-    [SerializeField] Transform sprite;
+    //[SerializeField] Transform sprite;
 
+    Transform trans;
+    Quaternion rot;
 
     void Start()
     {
-        objToSnapTo = this.transform;
+        trans = this.transform;
+        //objToSnapTo = this.transform;
+        rot = trans.rotation;
     }
 
     public virtual void SetStumble(bool _stumbling) {
@@ -85,7 +89,9 @@ public class DianaFlipper : SpriteFlipper {
     // Update is called once per frame
     void Update()
     {
-        sprite.rotation = Quaternion.identity;
+        trans.position = objToSnapTo.position;
+        trans.rotation = rot;
+
         Vector3 _dir = (new Vector3(transform.position.x + Vector3.right.x, transform.position.y + Vector3.right.y, transform.position.z + Vector3.right.z) - transform.position);
         Vector3 targetDir = objToSnapTo.transform.forward - transform.position;
         HorizFlipUnderStander(targetDir, _dir);
@@ -101,14 +107,7 @@ public class DianaFlipper : SpriteFlipper {
                 anim.SetBool("Stumbling", false);
         }
 
-        if (faceRight)
-            anim.SetFloat("LeftRight", 1);
-        else
-            anim.SetFloat("LeftRight", -1);
-
-        if (faceUp)
-            anim.SetFloat("UpDown", 1);
-        else
-            anim.SetFloat("UpDown", -1);
+            anim.SetBool("FaceUp", faceUp);
+            anim.SetBool("FaceRight", faceRight);
     }
 }
