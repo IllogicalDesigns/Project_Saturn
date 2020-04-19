@@ -12,12 +12,15 @@ public class MeleeTrigger : MonoBehaviour {
     float shakeDir = 0.1f, shakeAmt = 0.5f;
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag(hitAbleTag)) {
-            other.SendMessage("ApplyMeleeDamage", dam);  //Damage it
-            other.SendMessage("ApplyKnockback", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, knockForce), SendMessageOptions.DontRequireReceiver);  //apply kickback for this weapon
-            if (camEffects != null) {
-                camEffects.Shake(shakeDir, shakeAmt);
-            }
+        if (!other.CompareTag(hitAbleTag)) return;
+        
+        other.SendMessage("ApplyMeleeDamage", dam);  //Damage it
+        
+        var pos = transform.position;
+        other.SendMessage("ApplyKnockback", new Vector4(pos.x, pos.y, pos.z, knockForce), 
+                          SendMessageOptions.DontRequireReceiver);  //apply kickback for this weapon
+        if (camEffects != null) {
+            camEffects.Shake(shakeDir, shakeAmt);
         }
     }
 }
