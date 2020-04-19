@@ -95,16 +95,10 @@ namespace AI {
 
         private void Stumbled() {
             agent.isStopped = true;
-            if (health.Stumbled) return;
-            
-            currState = state.wander;
         }
 
         private void Update() {
-            if (health.Stumbled) {
-                currState = state.stumbled;
-            }
-            
+
             switch (currState) {
                 case state.chasing:
                     Chasing();
@@ -120,6 +114,14 @@ namespace AI {
                     break;
 
             }
+        }
+
+        private void EnteredStumble() {
+            currState = state.stumbled;
+        }
+
+        private void ExitedStumble() {
+            currState = state.wander;
         }
     }
 }

@@ -1329,8 +1329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5180311089579485855}
-  swing: {fileID: 8300000, guid: bd2b20828cf22f24282e610addf2d271, type: 3}
-  source: {fileID: 5180311088773096417}
 --- !u!1 &5180311088887448794
 GameObject:
   m_ObjectHideFlags: 0

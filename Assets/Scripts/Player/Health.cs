@@ -36,7 +36,7 @@ namespace Player {
 
         public void ApplyMeleeDamage(int damage) {
             hp -= damage;
-
+            
             CheckOnHitEffects(true);
             gameObject.BroadcastMessage("OnMeleeDamage", SendMessageOptions.DontRequireReceiver);
         }
@@ -60,6 +60,7 @@ namespace Player {
                 hp = 1;
                 stumbleTimeTracker = stumbleDuration;
                 spriteRenderer.color = stumbleColor;
+                gameObject.BroadcastMessage("EnteredStumble", SendMessageOptions.DontRequireReceiver);
             }else if (!canStumble || Stumbled) {
                 CheckDeath(killGivesBlood);
             }
@@ -84,6 +85,7 @@ namespace Player {
                 if (!Stumbled) { // Exiting stumble
                     ApplyHeal(healthOnExitStumble);
                     spriteRenderer.color = defaultColor;
+                    gameObject.BroadcastMessage("ExitedStumble", SendMessageOptions.DontRequireReceiver);
                 }
             }
         }
