@@ -95,6 +95,22 @@ public class SpriteFlipper : MonoBehaviour
         }
     }
 
+    IEnumerator flashOnce() {
+        head.color = Color.red;
+        shirt.color = Color.red;
+        legR.color = Color.red;
+        legL.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        head.color = origClr;
+        shirt.color = origClr;
+        legR.color = origClr;
+        legL.color = origClr;
+    }
+
+    public void OnDamage() {
+        StartCoroutine(flashOnce());
+    }
+
     // Update is called once per frame
     void Update() {
         //trans.position = objToSnapTo.position;
