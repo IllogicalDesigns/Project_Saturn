@@ -45,11 +45,9 @@ namespace Level {
         private void DoSpawning(WaveData data) {
             for (var k = 0; k < data.wavePrefabs.Count; k++) {
                 var pos = spawnPoints[k];
-                Debug.Log("spawning " + k + " at " + pos);
                 var prefab = data.wavePrefabs[k];
 
-                var spawn = Instantiate(prefab);
-                spawn.transform.position = pos;
+                var spawn = Instantiate(prefab, pos, Quaternion.identity);
                 spawned.Add(spawn);
             }
         }
