@@ -26,11 +26,11 @@ namespace Player {
         }
 
         private float LowerBloodLossBasedOnRemaining(float _loss) {
-            if (this.CompareTag("Player") && currentBloodInt < lowHpDmgThresh) {
+            if (CompareTag("Player") && currentBloodInt < lowHpDmgThresh) {
                 if (currentBloodInt < lowHpDmgThresh * 0.5f)
-                    _loss = Mathf.RoundToInt(_loss * 0.25f);
+                    _loss = _loss * 0.25f;
                 else
-                    _loss = Mathf.RoundToInt(_loss * 0.5f);
+                    _loss = _loss * 0.5f;
             }
 
             return _loss;
