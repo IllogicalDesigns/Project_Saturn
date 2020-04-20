@@ -154,6 +154,9 @@
          transform="rotate(90)" />
     </g>
     <path
+       inkscape:export-ydpi="32"
+       inkscape:export-xdpi="32"
+       inkscape:export-filename="C:\Users\Chris\Documents\GitHub\Project_Saturn_git\Assets\Sprites\Tiles\path4248.png"
        inkscape:connector-curvature="0"
        id="path4248"
        d="M 48.56994,53.483628 26.64732,90.903268 7.3705349,135.31547 88.635408,134.37053 83.910711,93.738093 Z"
