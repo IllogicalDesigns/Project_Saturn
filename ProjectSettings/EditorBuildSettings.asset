@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MoonForestScenes/MoonForestBoss.unity
     guid: 2efaa4b010d96ab47933fee22f84af4f
+  - enabled: 1
+    path: Assets/Scenes/MoonForestScenes/MoonForestLevels.unity
+    guid: 1eb333730acdee54798440a725606737
   m_configObjects: {}
