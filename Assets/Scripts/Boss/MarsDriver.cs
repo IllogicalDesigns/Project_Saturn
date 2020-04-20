@@ -10,11 +10,13 @@ namespace Boss {
         [SerializeField] private float timeBetweenPhases;
         [SerializeField] private float timeAfterAdds;
         [SerializeField] private Vector3[] returnPositions;
-        
-        [SerializeField] private float[] chargeForce;
-        [SerializeField] private float[] chargeDamage;
-        [SerializeField] private float knockbackForce;
-        [SerializeField] private float[] chargeDuration;
+
+        [SerializeField] private GameObject pilumPrefab;
+        [SerializeField] private float[] pilaInterval;
+        [SerializeField] private float[] pilaDuration;
+        [SerializeField] private float[] pilumDamage;
+        [SerializeField] private float[] pilumSpeed;
+        [SerializeField] private Transform firePoint;
         
         [SerializeField] private GameObject deathBeam;
         [SerializeField] private float[] deathBeamDuration;
@@ -29,10 +31,10 @@ namespace Boss {
         private Health health;
         private NavMeshAgent agent;
         private float phaseTimer;
+        private float pilaTimer;
         private int curDifficulty;
         private bool inStumble;
         private Vector3 chargeDir;
-        private Rigidbody rb;
         private GameObject player;
         private Vector3 moveTarget;
 
@@ -41,7 +43,7 @@ namespace Boss {
             SpawningGroundDangerRandom,
             SpawningBulletHell,
             ShootingDeathBeam,
-            ChargingPlayer,
+            ThrowingPila,
             MovingToPosition,
             Waiting
         }
@@ -57,7 +59,6 @@ namespace Boss {
             health = gameObject.GetComponent<Health>();
             agent = gameObject.GetComponent<NavMeshAgent>();
             agent.speed = movespeed[0];
-            rb = gameObject.GetComponent<Rigidbody>();
             player = GameObject.FindWithTag("Player");
             EnterMoveToPosition();
         }
@@ -114,7 +115,7 @@ namespace Boss {
 
         private void EnterRandomState() {
             var states = new List<State>{
-                State.ShootingDeathBeam, State.SpawningBulletHell, State.ChargingPlayer,
+                State.ShootingDeathBeam, State.SpawningBulletHell, State.ThrowingPila,
                 State.SpawningGroundDangerRandom
             };
             states.Remove(lastStateNonAdds);
@@ -130,8 +131,8 @@ namespace Boss {
                 case State.ShootingDeathBeam:
                     EnterDeathBeam();
                     break;
-                case State.ChargingPlayer:
-                    EnterChargePlayer();
+                case State.ThrowingPila:
+                    EnterThrowPila();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -199,31 +200,32 @@ namespace Boss {
             EnterMoveToPosition();
         }
 
-        private void EnterChargePlayer() {
-            phaseTimer = chargeDuration[curDifficulty];
-            state = State.ChargingPlayer;
-            lastState = State.ChargingPlayer;
-            lastStateNonAdds = State.ChargingPlayer;
-            var position = player.transform.position;
-            chargeDir = (position - transform.position).normalized;
-            transform.LookAt(position);
+        private void EnterThrowPila() {
+            phaseTimer = pilaDuration[curDifficulty];
+            state = State.ThrowingPila;
+            lastState = State.ThrowingPila;
+            lastStateNonAdds = State.ThrowingPila;
+            pilaTimer = 0;
         }
 
-        private void OnCollisionEnter(Collision other) {
-            if (state != State.ChargingPlayer) return;
-            chargeDir = (player.transform.position - transform.position).normalized;
-              
-            if (!other.gameObject.CompareTag("Player")) return;
-          
-            other.gameObject.SendMessage("ApplyDamage", chargeDamage[curDifficulty]);
-            var pos = transform.position;
-            other.gameObject.SendMessage("ApplyKnockback", new Vector4(pos.x, pos.y, pos.z, knockbackForce),
-                SendMessageOptions.DontRequireReceiver);
-            transform.LookAt(player.transform.position);
-        }
-
-        private void ChargePlayer() {
+        private void ThrowPila() {
             agent.isStopped = true;
+            var position = player.transform.position;
+            transform.LookAt(new Vector3(position.x, 0f, position.y));
+
+            if (pilaTimer > 1e-4) {
+                pilaTimer -= Time.deltaTime;
+            }
+            else {
+                var pos = firePoint.position;
+                var newArrow = Instantiate(pilumPrefab, pos, firePoint.rotation);
+                newArrow.transform.LookAt(new Vector3(position.x, transform.position.y,
+                    position.z));
+                newArrow.SendMessage("SetOwner", -1);
+                newArrow.SendMessage("SetDmg", pilumDamage[curDifficulty]);
+                newArrow.SendMessage("SetSpeed", pilumSpeed[curDifficulty]);
+                pilaTimer = pilaInterval[curDifficulty];
+            }
 
             if (phaseTimer > 1e-4) {
                 phaseTimer -= Time.deltaTime;
@@ -232,7 +234,6 @@ namespace Boss {
                 EnterMoveToPosition();
             }
             
-            rb.AddForce(chargeDir * chargeForce[curDifficulty]);
         }
 
         private void Update() {
@@ -241,7 +242,8 @@ namespace Boss {
                     MoveToPosition();
                     break;
                 
-                case State.ChargingPlayer:
+                case State.ThrowingPila:
+                    ThrowPila();
                     break;
                 
                 case State.SpawningGroundDangerRandom:
@@ -266,17 +268,6 @@ namespace Boss {
                 
                 default:
                     throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void FixedUpdate() {
-            switch (state) {
-                case State.ChargingPlayer:
-                    ChargePlayer();
-                    break;
-                
-                default:
-                    return;
             }
         }
 

@@ -444,6 +444,7 @@ MonoBehaviour:
   addPrefabs:
   - {fileID: 2431345914857706132, guid: eb0fcc294a77c0b46a99b6226a2e0519, type: 3}
   - {fileID: 4221789305559303105, guid: 162e86c9c51b8e645bbf33b91f213570, type: 3}
+  - {fileID: 7005228802755759742, guid: 7680dbd036a9ab644827f3382e3d0905, type: 3}
   maxAdds: 8
 --- !u!114 &1595246063594877140
 MonoBehaviour:
@@ -484,6 +485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScream: {fileID: 0}
+  src: {fileID: 0}
 --- !u!1 &1595246063727794639
 GameObject:
   m_ObjectHideFlags: 0

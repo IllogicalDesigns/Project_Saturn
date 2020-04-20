@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,6 +24,8 @@ namespace AI {
         float attackTimer = 0f;
         private float meleeTimer;
         private float dodgeTimer;
+        private bool dodging;
+        private Vector3 dodgeVector;
 
         private void Start() {
             agent = gameObject.GetComponent<NavMeshAgent>();
@@ -146,6 +147,13 @@ namespace AI {
             }
         }
 
+        private void FixedUpdate() {
+            if (!dodging) return;
+            
+            rb.AddForce(dodgeVector, ForceMode.Impulse);
+            dodging = false;
+        }
+
         private void EnteredStumble() {
             currState = State.Stumbled;
         }
@@ -158,11 +166,14 @@ namespace AI {
             if (dodgeTimer > 1e-4 || currState == State.Stumbled ||
                 !other.TryGetComponent(typeof(Bullet), out var comp) || !(comp is Bullet bullet) ||
                 bullet.owner != 1) return;
+            
+            Debug.Log("Dodging");
 
             var trans = transform;
             var localBullet = trans.InverseTransformPoint(other.transform.position);
             dodgeTimer = dodgeCooldown;
-            rb.AddForce(trans.right * (-Mathf.Sign(localBullet.x) * dodgeForce), ForceMode.Impulse);
+            dodgeVector = trans.right * (-Mathf.Sign(localBullet.x) * dodgeForce);
+            dodging = true;
         }
     }
 }

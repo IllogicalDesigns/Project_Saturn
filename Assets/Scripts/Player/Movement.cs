@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Player {
@@ -23,10 +24,13 @@ namespace Player {
 
         [SerializeField] Animator animator;
 
+        private Health health;
+
         // Start is called before the first frame update
         void Start() {
             rbody = gameObject.GetComponent<Rigidbody>();
             cam = FindObjectOfType<Camera>();
+            health = GetComponent<Health>();
 
             gameCanvas.SetupDodgeSlider(timeBetweenDodges, dodgeTimer);
         }
@@ -107,7 +111,15 @@ namespace Player {
             dodging = true;
             animator.SetBool("Dodging", true);
             rbody.AddForce(movePos.normalized * (dodgeForce * MovementFactor), ForceMode.Impulse);
+            StartCoroutine(invFrames());
             dodgeTimer = 0;
+        }
+
+        private IEnumerator invFrames() {
+            health.canTakeDamage = false;
+            BroadcastMessage("DoInvFrames", 0.25f);
+            yield return new WaitForSeconds(0.25f);
+            health.canTakeDamage = true;
         }
 
         private void FixedUpdate() {

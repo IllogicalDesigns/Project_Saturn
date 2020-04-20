@@ -5,21 +5,24 @@ using UnityEngine;
 public class SpriteFlipper : MonoBehaviour
 {
     public float varience = 40f;
-    [SerializeField] Sprite[] up;
-    [SerializeField] Sprite[] dwn;
+    [SerializeField] private Sprite[] up;
+    [SerializeField] private Sprite[] dwn;
 
     public Transform objToSnapTo;
-    SpriteRenderer legR, legL, shirt, head;
-    Transform trans;
-    Quaternion rot;
+    private SpriteRenderer legR, legL, shirt, head;
+    private Transform trans;
+    private Quaternion rot;
 
     public bool stumbling = false;
     public float rateOfStumble = 0.1f, stumbleTimer;
+    private bool invincible = false;
+    private float invTimer;
     private Color stumbleColor = new Color(255f/255f, 204f/255f, 51f/255f);
+    private Color invFrameColor = new Color(69f/255f, 255f/255f, 255f/255f);
     private Color origClr;
 
     // Use this for initialization
-    void Start() {
+    private void Start() {
         trans = transform;
         objToSnapTo = trans.parent;
         shirt = trans.Find("Shirt").GetComponent<SpriteRenderer>();
@@ -31,16 +34,30 @@ public class SpriteFlipper : MonoBehaviour
         origClr = shirt.color;
     }
 
-    public virtual void SetStumble(bool _stumbling) {
-        stumbling = _stumbling;
+    public virtual void EnteredStumble() {
+        stumbling = true;
     }
 
-     void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
+    public virtual void ExitedStumble() {
+        stumbling = false;
+        head.color = origClr;
+        shirt.color = origClr;
+        legR.color = origClr;
+        legL.color = origClr;
+    }
+
+    public void DoInvFrames(float duration) {
+        invincible = true;
+        invTimer = duration;
+        SwapInvincible();
+    }
+
+    private void HorizFlipUnderStander(Vector3 tar, Vector3 d) {
         float angle = Vector3.Angle(tar, d);
         float angle2 = Vector3.Angle(objToSnapTo.forward, d);
 
         if (shirt == null)
-            this.enabled = false;
+            enabled = false;
 
         if (angle2 <= varience) {
             shirt.flipX = true;
@@ -52,7 +69,7 @@ public class SpriteFlipper : MonoBehaviour
         }
     }
 
-    void VertFlipUnderStander(Vector3 tar, Vector3 d) {
+    private void VertFlipUnderStander(Vector3 tar, Vector3 d) {
         float angle = Vector3.Angle(tar, d);
         float angle2 = Vector3.Angle(objToSnapTo.right, d);
 
@@ -72,7 +89,7 @@ public class SpriteFlipper : MonoBehaviour
         }
     }
 
-    void stumbler() {
+    private void Stumbler() {
         stumbleTimer -= Time.deltaTime;
 
         if (stumbleTimer <= 0) {
@@ -81,7 +98,7 @@ public class SpriteFlipper : MonoBehaviour
         }
     }
 
-    void SwapStumble() {
+    private void SwapStumble() {
         if(shirt.color == origClr) {
             head.color = stumbleColor;
             shirt.color = stumbleColor;
@@ -96,7 +113,35 @@ public class SpriteFlipper : MonoBehaviour
         }
     }
 
-    IEnumerator flashOnce() {
+    private void Invincibler() {
+        if (invTimer > 1e-4) {
+            invTimer -= Time.deltaTime;
+        }
+        else {
+            head.color = origClr;
+            shirt.color = origClr;
+            legR.color = origClr;
+            legL.color = origClr;
+            invincible = false;
+        }
+    }
+
+    private void SwapInvincible() {
+        if(shirt.color == origClr) {
+            head.color = invFrameColor;
+            shirt.color = invFrameColor;
+            legR.color = invFrameColor;
+            legL.color = invFrameColor;
+        }
+        else {
+            head.color = origClr;
+            shirt.color = origClr;
+            legR.color = origClr;
+            legL.color = origClr;
+        }
+    }
+
+    private IEnumerator flashOnce() {
         head.color = Color.red;
         shirt.color = Color.red;
         legR.color = Color.red;
@@ -113,17 +158,19 @@ public class SpriteFlipper : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    private void Update() {
         //trans.position = objToSnapTo.position;
         trans.rotation = rot;
 
-        Vector3 _dir = (new Vector3(transform.position.x + Vector3.right.x, transform.position.y + Vector3.right.y, transform.position.z + Vector3.right.z) - transform.position);
+        Vector3 dir = (new Vector3(transform.position.x + Vector3.right.x, transform.position.y + Vector3.right.y, transform.position.z + Vector3.right.z) - transform.position);
         Vector3 targetDir = objToSnapTo.transform.forward - transform.position;
-        HorizFlipUnderStander(targetDir, _dir);
-        VertFlipUnderStander(targetDir, _dir);
+        HorizFlipUnderStander(targetDir, dir);
+        VertFlipUnderStander(targetDir, dir);
 
         if (stumbling) {
-            stumbler();
+            Stumbler();
+        } else if (invincible) {
+            Invincibler();
         }
     }
 }

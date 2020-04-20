@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/Boxing_Gym.unity
     guid: 78017ac0bca92ab40a38b2a0535165c1
   - enabled: 1
-    path: Assets/Scenes/CalderaScenes/Caldera.unity
+    path: Assets/Scenes/CalderaScenes/CalderaBoss.unity
     guid: ce22dc44b6eedbf41a64ff75142e9b1f
   - enabled: 1
     path: Assets/Scenes/MoonForestScenes/MoonForestBoss.unity

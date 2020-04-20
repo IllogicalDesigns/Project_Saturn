@@ -13,10 +13,10 @@ namespace Player {
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Color stumbleColor = Color.red;
         private Color defaultColor;
+        public bool canTakeDamage = true;
         
         [SerializeField] private bool canStumble = true;
         [SerializeField] private bool canDieToBulletInStuble = true;
-        [SerializeField] SpriteFlipper spriteFlipper;
         private float stumbleTimeTracker;
         public bool Stumbled => stumbleTimeTracker >= 1e-4;
 
@@ -31,9 +31,11 @@ namespace Player {
         private void Start() {
             bloodTracker = FindObjectOfType<BloodTracker>();
             abilities = FindObjectOfType<Abilities>();
+            canTakeDamage = true;
         }
 
         public void ApplyDamage(int damage) {
+            if (!canTakeDamage) return;
             damage = LowerDamageBasedOnHp(damage);
 
             hp -= damage;
@@ -43,6 +45,7 @@ namespace Player {
         }
 
         public void ApplyMeleeDamage(int damage) {
+            if (!canTakeDamage) return;
             damage = LowerDamageBasedOnHp(damage);
 
             hp -= damage;
@@ -52,7 +55,7 @@ namespace Player {
         }
 
         private int LowerDamageBasedOnHp(int damage) {
-            if (this.CompareTag("Player") && hp < lowHpDmgThresh) {
+            if (CompareTag("Player") && hp < lowHpDmgThresh) {
                 if (hp < lowHpDmgThresh * 0.5f)
                     damage = Mathf.RoundToInt(damage * 0.25f);
                 else
@@ -63,6 +66,7 @@ namespace Player {
         }
 
         public void ApplyDamageForceKill(int damage) {
+            if (!canTakeDamage) return;
             hp -= damage;
             
             CheckDeath(true, abilities.BloodMultiplierForBloodRageKills);
@@ -80,7 +84,6 @@ namespace Player {
             if (canStumble && !Stumbled && hp <= 1) {
                 hp = 1;
                 stumbleTimeTracker = stumbleDuration;
-                spriteFlipper.SetStumble(true);
                 gameObject.BroadcastMessage("EnteredStumble", SendMessageOptions.DontRequireReceiver);
             }else if ((!canStumble || Stumbled) && (canDieToBulletInStuble || !isBullet)) {
                 CheckDeath(killGivesBlood);
@@ -105,7 +108,6 @@ namespace Player {
                 stumbleTimeTracker -= Time.deltaTime;
                 if (!Stumbled) { // Exiting stumble
                     ApplyHeal(healthOnExitStumble);
-                    spriteFlipper.SetStumble(false);
                     gameObject.BroadcastMessage("ExitedStumble", SendMessageOptions.DontRequireReceiver);
                 }
             }
