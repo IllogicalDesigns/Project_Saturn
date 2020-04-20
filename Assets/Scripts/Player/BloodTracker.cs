@@ -18,6 +18,16 @@ namespace Player {
 
         public float CurrentBlood => currentBloodInt;
 
+        private enum BloodState {
+            High,
+            Low,
+            VeryLow
+        };
+
+        private BloodState state = BloodState.High;
+        private const float LowTransition = 40f;
+        private const float VeryLowTransition = 10f;
+
         public bool TryUseBlood(float amount) {
             if (amount > currentBloodInt) return false;
 
@@ -31,6 +41,18 @@ namespace Player {
             if (currentBloodInt > MaxBlood) {
                 currentBloodInt = MaxBlood;
             }
+        }
+
+        public float GetMessageChanceAdjustment() {
+            if (CurrentBlood < VeryLowTransition) {
+                return 10f;
+            }
+            
+            if (CurrentBlood < LowTransition) {
+                return 3f;
+            }
+            
+            return 1f;
         }
 
         private float LowerBloodLossBasedOnRemaining(float _loss) {
@@ -71,6 +93,27 @@ namespace Player {
                 playerMelee.canAttack = false;
                 playerAbilities.canUseAbilites = false;
                 canvas.PlayerHasNoBlood();
+            }
+            
+            // Speech sending
+            if (state == BloodState.High && CurrentBlood < LowTransition) {
+                var message = new SwordMessage{
+                    Message = "I need blood",
+                    Duration = 2f
+                };
+                GameObject.FindWithTag("SwordSpeech").SendMessage("OnSwordMessage", message);
+                state = BloodState.Low;
+            }else if (state == BloodState.Low && CurrentBlood < VeryLowTransition) {
+                var message = new SwordMessage{
+                    Message = "I need blood now!",
+                    Duration = 2f
+                };
+                GameObject.FindWithTag("SwordSpeech").SendMessage("OnSwordMessage", message);
+                state = BloodState.VeryLow;
+            }else if (state == BloodState.Low && CurrentBlood > LowTransition) {
+                state = BloodState.High;
+            }else if (state == BloodState.VeryLow && CurrentBlood > VeryLowTransition) {
+                state = BloodState.Low;
             }
         }
 

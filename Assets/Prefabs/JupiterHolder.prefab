@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 1595246063594877147}
   - component: {fileID: 1595246063594877140}
   - component: {fileID: 1595246063594877142}
+  - component: {fileID: 7224822495651660823}
   m_Layer: 0
   m_Name: JupiterHolder
   m_TagString: Enemy
@@ -348,9 +349,9 @@ MonoBehaviour:
   healthOnExitStumble: 5000
   bloodOnKill: 100
   spriteRenderer: {fileID: 1595246064432462718}
+  canTakeDamage: 1
   canStumble: 1
   canDieToBulletInStuble: 0
-  spriteFlipper: {fileID: 0}
 --- !u!114 &1595246063594877145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +488,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathScream: {fileID: 0}
   src: {fileID: 0}
+  animator: {fileID: 0}
+  dead: {fileID: 0}
+--- !u!114 &7224822495651660823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595246063594877123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06965a7f884a6da160c2caf64ba72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Finally you fall to me, son.
+  - Finally, I have my revenge!
+  - It was a mistake to oppose me, son.
+  duration: 2
+  messageBaseChance: 1
 --- !u!1 &1595246063727794639
 GameObject:
   m_ObjectHideFlags: 0
