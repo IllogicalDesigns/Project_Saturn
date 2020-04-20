@@ -1044,6 +1044,7 @@ MonoBehaviour:
   - Your father will pay, Mars.
   - Such hubris in you, Mars.
   duration: 2
+  messageBaseChance: 1
 --- !u!1001 &5906143657649804246
 PrefabInstance:
   m_ObjectHideFlags: 0

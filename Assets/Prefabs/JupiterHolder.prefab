@@ -507,6 +507,7 @@ MonoBehaviour:
   - Finally, I have my revenge!
   - It was a mistake to oppose me, son.
   duration: 2
+  messageBaseChance: 1
 --- !u!1 &1595246063727794639
 GameObject:
   m_ObjectHideFlags: 0

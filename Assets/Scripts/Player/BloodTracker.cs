@@ -43,6 +43,18 @@ namespace Player {
             }
         }
 
+        public float GetMessageChanceAdjustment() {
+            if (CurrentBlood < VeryLowTransition) {
+                return 10f;
+            }
+            
+            if (CurrentBlood < LowTransition) {
+                return 3f;
+            }
+            
+            return 1f;
+        }
+
         private float LowerBloodLossBasedOnRemaining(float _loss) {
             if (currentBloodInt < lowBloodThresh) {
                 _loss = _loss * (1f - 0.7f * (lowBloodThresh - currentBloodInt) / lowBloodThresh);

@@ -226,6 +226,7 @@ MonoBehaviour:
   - Your father will pay, Diana.
   - It was a mistake to oppose me, Diana.
   duration: 2
+  messageBaseChance: 1
 --- !u!1 &8917321753800675950
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +330,7 @@ MonoBehaviour:
   stumbling: 0
   rateOfStumble: 0.1
   stumbleTimer: 0
+  anim: {fileID: 1732550212}
   anim: {fileID: 1732550212}
 --- !u!95 &1732550212
 Animator:
