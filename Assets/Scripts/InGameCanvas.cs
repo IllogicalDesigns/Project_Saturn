@@ -59,7 +59,7 @@ public class InGameCanvas : MonoBehaviour {
     }
 
     public void PlayerHasDied() {
-        BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
+        transform.parent.BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
         CursorLock(false);
         DeadPanel.SetActive(true);
         Time.timeScale = 0.001f;
@@ -67,13 +67,13 @@ public class InGameCanvas : MonoBehaviour {
 
     public void TogglePauseApp() {
         if (!PausePanel.activeInHierarchy) {
-            BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
+            transform.parent.BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
             CursorLock(false);
             PausePanel.SetActive(true);
             Time.timeScale = 0.001f;
         }
         else {
-            BroadcastMessage("onEnablePlayer", SendMessageOptions.DontRequireReceiver);
+            transform.parent.BroadcastMessage("onEnablePlayer", SendMessageOptions.DontRequireReceiver);
             CursorLock(true);
             PausePanel.SetActive(false);
             Time.timeScale = 1;

@@ -30,9 +30,9 @@ namespace Player {
         private float LowerBloodLossBasedOnRemaining(float _loss) {
             if (currentBloodInt < lowBloodThresh) {
                 if (currentBloodInt < lowBloodThresh * 0.5f)
-                    _loss = _loss * 0.25f;
+                    _loss = _loss * 0.4f;
                 else
-                    _loss = _loss * 0.5f;
+                    _loss = _loss * 0.8f;
             }
 
             return _loss;
