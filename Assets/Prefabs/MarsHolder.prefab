@@ -772,6 +772,7 @@ GameObject:
   - component: {fileID: 8713046584258196680}
   - component: {fileID: 2328060441256044011}
   - component: {fileID: 748624371}
+  - component: {fileID: 7634132054414326997}
   m_Layer: 0
   m_Name: MarsHolder
   m_TagString: Enemy
@@ -1026,6 +1027,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0.31, y: 0, z: -0.08}
+--- !u!114 &7634132054414326997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713046584258196675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06965a7f884a6da160c2caf64ba72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - You were always so sure of yourself, Mars.
+  - Your father will pay, Mars.
+  - Such hubris in you, Mars.
+  duration: 2
 --- !u!1001 &5906143657649804246
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1359,6 +1359,7 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 916731545}
+  flipper: {fileID: 0}
 --- !u!1 &959751579
 GameObject:
   m_ObjectHideFlags: 0
@@ -17900,6 +17901,8 @@ MonoBehaviour:
   bloodRageOverlay: {fileID: 5180311088927373757}
   PausePanel: {fileID: 1916781355316158798}
   DeadPanel: {fileID: 972723732715537702}
+  DeadText: {fileID: 0}
+  BloodText: {fileID: 0}
   mixer: {fileID: 24100000, guid: 5bb7f8d7f51917c40ac9eed79404c432, type: 2}
   playerHealth: {fileID: 5180311090369191892}
 --- !u!114 &5180311088486962857
@@ -18778,6 +18781,7 @@ MonoBehaviour:
   stumbling: 0
   rateOfStumble: 0.1
   stumbleTimer: 0
+  anim: {fileID: 0}
 --- !u!4 &5180311089991822958
 Transform:
   m_ObjectHideFlags: 0
