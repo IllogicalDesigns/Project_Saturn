@@ -562,7 +562,7 @@ MonoBehaviour:
   healAmount: 40
   healCooldown: 3
   bloodUsePerSecondTimeWarp: 10
-  minBloodForTimeWarp: 5
+  minBloodForTimeWarp: 10
   timeWarpFactor: 0.5
   bloodUsePerBloodRage: 20
   chargeDamageInBloodRage: 100
