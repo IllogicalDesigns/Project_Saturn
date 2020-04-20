@@ -57,13 +57,14 @@ namespace Player {
 
         void DisableBulletBloody()
         {
+            CamEffects.Instance.FreezeFrame();
             Blood.Instance.EmitBlood(this.transform);
             DisableBullet();
         }
 
         void DisableBulletDefaultImpact()
         {
-            //Blood.Instance.EmitBlood(this.transform);  TODO add particle system for impacts
+            Blood.Instance.EmitWallImpact(this.transform);
             DisableBullet();
         }
 

@@ -21,6 +21,7 @@ public class MeleeTrigger : MonoBehaviour {
                           SendMessageOptions.DontRequireReceiver);  //apply kickback for this weapon
         if (camEffects != null) {
             camEffects.Shake(shakeDir, shakeAmt);
+            camEffects.FreezeFrame();
         }
     }
 }

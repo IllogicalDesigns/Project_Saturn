@@ -12,6 +12,7 @@ public class OnDeathScript : MonoBehaviour
     [SerializeField] private AudioClip deathScream;
     [SerializeField] private AudioSource src;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject dead;
         
     // Start is called before the first frame update
     void Start() {
@@ -28,11 +29,18 @@ public class OnDeathScript : MonoBehaviour
     // Update is called once per frame
     void Update() { }
 
+    IEnumerator spawnDeadPrefab() {
+        yield return new WaitForSeconds(0.23f);
+        Instantiate(dead, transform.position, transform.rotation);
+    }
+
     public void OnDeath() {
         if(animator != null) animator.SetTrigger("Die");
 
         if (src != null)
             src.PlayOneShot(deathScream);
+
+        if (dead != null) StartCoroutine(spawnDeadPrefab());
 
         if (!gameObject.CompareTag("Player")) {
             var parent = transform.parent;

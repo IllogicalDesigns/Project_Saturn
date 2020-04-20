@@ -160,6 +160,7 @@ MonoBehaviour:
   deathScream: {fileID: 8300000, guid: 9d5d20a77ed63c24099b8be80843fb94, type: 3}
   src: {fileID: 7192805988218504934}
   animator: {fileID: 403544595294907586}
+  dead: {fileID: 371908821203568044, guid: 64b00c283e12b56408cb1071668003b6, type: 3}
 --- !u!136 &4786230010371700188
 CapsuleCollider:
   m_ObjectHideFlags: 0

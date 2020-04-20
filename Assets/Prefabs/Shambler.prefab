@@ -614,6 +614,7 @@ MonoBehaviour:
   deathScream: {fileID: 8300000, guid: e963004367d457a41be38c7f3b236a43, type: 3}
   src: {fileID: 6964438495306832579}
   animator: {fileID: 2483429662151616459}
+  dead: {fileID: 2183890303392704624, guid: 1c03473d17125a4448bbd04d7325cb63, type: 3}
 --- !u!54 &6498809612011830274
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -852,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
-  MeleePunch: {fileID: 0}
+  MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 6498809612011830333}
 --- !u!114 &6498809612011830275
 MonoBehaviour:

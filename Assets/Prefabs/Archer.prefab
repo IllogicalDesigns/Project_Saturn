@@ -133,6 +133,7 @@ MonoBehaviour:
   deathScream: {fileID: 8300000, guid: 9d5d20a77ed63c24099b8be80843fb94, type: 3}
   src: {fileID: 1400424681}
   animator: {fileID: 8128363331209054725}
+  dead: {fileID: 752469754023217287, guid: 1f6166515d441734bac45f0677c7885c, type: 3}
 --- !u!54 &2431345914719058891
 Rigidbody:
   m_ObjectHideFlags: 0
