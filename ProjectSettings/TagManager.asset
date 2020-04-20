@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - InGameCanvas
   - SwordSpeech
+  - Blood
+  - Shield
   layers:
   - Default
   - TransparentFX
