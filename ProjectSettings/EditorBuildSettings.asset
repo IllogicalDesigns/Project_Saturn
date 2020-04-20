@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MoonForestScenes/MoonForestLevels.unity
     guid: 1eb333730acdee54798440a725606737
+  - enabled: 1
+    path: Assets/Scenes/CalderaScenes/CalderaLevels.unity
+    guid: dc0791af06aea0946b2eab92d5c60e9d
   m_configObjects: {}

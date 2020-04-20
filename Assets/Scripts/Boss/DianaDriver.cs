@@ -226,7 +226,7 @@ namespace Boss {
         }
 
         private void EnteredStumble() {
-            inStumble = true;
+         inStumble = true;
             groundDangerFollow.StopSpawning();
             bulletHell.StopSpawning();
             EnterWaiting();

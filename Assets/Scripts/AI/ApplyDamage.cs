@@ -12,6 +12,7 @@ namespace AI {
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag(tagToDamgage)) {
                 other.SendMessage("ApplyDamage", dmg);
+                this.SendMessage("AppliedDmg");
                 if(applyKnockBack)
                     other.SendMessage("ApplyKnockbackVec3", transform.position);
             }
