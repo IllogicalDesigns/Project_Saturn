@@ -505,9 +505,9 @@ MonoBehaviour:
   healthOnExitStumble: 50
   bloodOnKill: 10
   spriteRenderer: {fileID: 0}
+  canTakeDamage: 1
   canStumble: 1
   canDieToBulletInStuble: 1
-  spriteFlipper: {fileID: 1833264722208415791}
 --- !u!114 &7005228802470067168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathScream: {fileID: 8300000, guid: e963004367d457a41be38c7f3b236a43, type: 3}
   src: {fileID: 6602661309342948644}
+  animator: {fileID: 1833264722208415788}
 --- !u!54 &7005228802470067173
 Rigidbody:
   m_ObjectHideFlags: 0

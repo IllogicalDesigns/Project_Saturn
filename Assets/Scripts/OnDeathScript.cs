@@ -11,6 +11,7 @@ public class OnDeathScript : MonoBehaviour
     private Abilities playerAbilities;
     [SerializeField] private AudioClip deathScream;
     [SerializeField] private AudioSource src;
+    [SerializeField] private Animator animator;
         
     // Start is called before the first frame update
     void Start() {
@@ -28,9 +29,7 @@ public class OnDeathScript : MonoBehaviour
     void Update() { }
 
     public void OnDeath() {
-        Animator anim = gameObject.GetComponent<Animator>();
-        if (anim != null)
-            anim.SetTrigger("Die");
+        if(animator != null) animator.SetTrigger("Die");
 
         if (src != null)
             src.PlayOneShot(deathScream);
@@ -38,7 +37,7 @@ public class OnDeathScript : MonoBehaviour
         if (!gameObject.CompareTag("Player")) {
             var parent = transform.parent;
             //TODO play anim death
-            Destroy(parent != null ? parent.gameObject : gameObject, 0.5f);
+            Destroy(parent != null ? parent.gameObject : gameObject, 0.25f);
         }
         else {
             playerMovement.canMove = false;

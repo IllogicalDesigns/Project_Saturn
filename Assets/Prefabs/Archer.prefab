@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathScream: {fileID: 8300000, guid: 9d5d20a77ed63c24099b8be80843fb94, type: 3}
   src: {fileID: 1400424681}
+  animator: {fileID: 8128363331209054725}
 --- !u!54 &2431345914719058891
 Rigidbody:
   m_ObjectHideFlags: 0

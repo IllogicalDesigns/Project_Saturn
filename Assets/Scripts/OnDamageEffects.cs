@@ -16,6 +16,7 @@ public class OnDamageEffects : MonoBehaviour
     public void OnMeleeDamage() {
         //FreezeFrame
         source.spatialBlend = 0;
+        source.PlayOneShot(universalHitMarker);
         source.PlayOneShot(MeleePunch);
     }
 }
