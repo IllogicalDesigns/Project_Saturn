@@ -9,8 +9,7 @@ namespace Player {
         [SerializeField] private float stumbleDuration = 2f;
         [SerializeField] private int healthOnExitStumble = 40;
         [SerializeField] private float bloodOnKill = 25;
-        
-        [SerializeField] private SpriteRenderer spriteRenderer;
+       
         private Color defaultColor;
         public bool canTakeDamage = true;
         
