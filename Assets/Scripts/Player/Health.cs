@@ -11,7 +11,6 @@ namespace Player {
         [SerializeField] private float bloodOnKill = 25;
         
         [SerializeField] private SpriteRenderer spriteRenderer;
-        private Color stumbleColor = Color.red;
         private Color defaultColor;
         public bool canTakeDamage = true;
         
@@ -23,7 +22,7 @@ namespace Player {
         public int Hp => hp;
         public float PercentHp => (float)hp / maxHp;
 
-        int lowHpDmgThresh = 50;
+        int lowHpDmgThresh = 80;
         
         private BloodTracker bloodTracker;
         private Abilities abilities;
@@ -56,10 +55,7 @@ namespace Player {
 
         private int LowerDamageBasedOnHp(int damage) {
             if (CompareTag("Player") && hp < lowHpDmgThresh) {
-                if (hp < lowHpDmgThresh * 0.5f)
-                    damage = Mathf.RoundToInt(damage * 0.25f);
-                else
-                    damage = Mathf.RoundToInt(damage * 0.5f);
+                damage = Mathf.RoundToInt(damage * (1f - 0.8f * (lowHpDmgThresh - hp) / lowHpDmgThresh));
             }
 
             return damage;

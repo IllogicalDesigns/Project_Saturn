@@ -11,6 +11,8 @@ public class InGameCanvas : MonoBehaviour {
     [SerializeField] private GameObject bloodRageOverlay;
     [SerializeField] private GameObject PausePanel;
     [SerializeField] private GameObject DeadPanel;
+    [SerializeField] private GameObject DeadText;
+    [SerializeField] private GameObject BloodText;
     [SerializeField] AudioMixer mixer;
     [SerializeField] Health playerHealth;
 
@@ -62,6 +64,17 @@ public class InGameCanvas : MonoBehaviour {
         transform.parent.BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
         CursorLock(false);
         DeadPanel.SetActive(true);
+        DeadText.SetActive(true);
+        BloodText.SetActive(false);
+        Time.timeScale = 0.001f;
+    }
+
+    public void PlayerHasNoBlood() {
+        transform.parent.BroadcastMessage("onDisablePlayer", SendMessageOptions.DontRequireReceiver);
+        CursorLock(false);
+        DeadPanel.SetActive(true);
+        DeadText.SetActive(false);
+        BloodText.SetActive(true);
         Time.timeScale = 0.001f;
     }
 

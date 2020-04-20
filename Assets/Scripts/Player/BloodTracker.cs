@@ -7,8 +7,14 @@ namespace Player {
         [SerializeField] public const float BloodLossPerSecond = 2f;
         [SerializeField] public InGameCanvas canvas;
         private float currentBloodInt;
-        private float lowBloodThresh = 50f;
+        private float lowBloodThresh = 60f;
         private float lowBloodThreshAdd = 70f;
+        private bool hasRunOutOfBloodThisLoad;
+        
+        private Movement playerMovement;
+        private Pistol playerPistol;
+        private Melee playerMelee;
+        private Abilities playerAbilities;
 
         public float CurrentBlood => currentBloodInt;
 
@@ -29,10 +35,7 @@ namespace Player {
 
         private float LowerBloodLossBasedOnRemaining(float _loss) {
             if (currentBloodInt < lowBloodThresh) {
-                if (currentBloodInt < lowBloodThresh * 0.5f)
-                    _loss = _loss * 0.4f;
-                else
-                    _loss = _loss * 0.8f;
+                _loss = _loss * (1f - 0.7f * (lowBloodThresh - currentBloodInt) / lowBloodThresh);
             }
 
             return _loss;
@@ -40,7 +43,7 @@ namespace Player {
 
         private float IncreaseAddedBloodBasedOnRemaining(float _add) {
             if (currentBloodInt < lowBloodThreshAdd) {
-                _add = _add * 3f * (lowBloodThreshAdd - currentBloodInt) / lowBloodThreshAdd;
+                _add = _add * (1f + 2f * (lowBloodThreshAdd - currentBloodInt) / lowBloodThreshAdd);
             }
 
             return _add;
@@ -49,11 +52,26 @@ namespace Player {
         void Start() {
             currentBloodInt = MaxBlood;
             canvas.SetupBloodSlider(MaxBlood, currentBloodInt);
+
+            var player = GameObject.FindWithTag("Player");
+            playerMovement = player.GetComponent<Movement>();
+            playerPistol = player.GetComponent<Pistol>();
+            playerMelee = player.GetComponent<Melee>();
+            playerAbilities = player.GetComponent<Abilities>();
         }
 
         void Update() {
             currentBloodInt -= LowerBloodLossBasedOnRemaining(BloodLossPerSecond) * Time.deltaTime;
             canvas.UpdateBloodSlider(currentBloodInt);
+
+            if (!hasRunOutOfBloodThisLoad && CurrentBlood < 1e-4) {
+                hasRunOutOfBloodThisLoad = true;
+                playerMovement.canMove = false;
+                playerPistol.canFire = false;
+                playerMelee.canAttack = false;
+                playerAbilities.canUseAbilites = false;
+                canvas.PlayerHasNoBlood();
+            }
         }
 
     }

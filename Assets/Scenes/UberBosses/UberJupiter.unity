@@ -10065,6 +10065,7 @@ MonoBehaviour:
   bloodRageOverlay: {fileID: 5180311089626899290}
   PausePanel: {fileID: 1916781355673598889}
   DeadPanel: {fileID: 972723732355751873}
+  BloodLossPanel: {fileID: 0}
   mixer: {fileID: 24100000, guid: 5bb7f8d7f51917c40ac9eed79404c432, type: 2}
   playerHealth: {fileID: 5180311088327738675}
 --- !u!223 &5180311090209901648
