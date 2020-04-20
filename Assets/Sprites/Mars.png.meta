@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: 4248874478141665750
     second: Mars_5
+  - first:
+      213: 5798004747715435083
+    second: Mars_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -230,7 +233,7 @@ TextureImporter:
         width: 69
         height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,6 +241,27 @@ TextureImporter:
       bones: []
       spriteID: 6d17bdc83d807fa30800000000000000
       internalID: 4248874478141665750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mars_6
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 180
+        width: 67
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a5b915996a67050800000000000000
+      internalID: 5798004747715435083
       vertices: []
       indices: 
       edges: []
