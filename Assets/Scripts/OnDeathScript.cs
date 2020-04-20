@@ -48,6 +48,11 @@ public class OnDeathScript : MonoBehaviour
             Destroy(parent != null ? parent.gameObject : gameObject, 0.25f);
         }
         else {
+            var message = new SwordMessage{
+                Message = "You have failed me.",
+                Duration = 1f
+            };
+            GameObject.FindWithTag("SwordSpeech").SendMessage("OnSwordMessage", message);
             playerMovement.canMove = false;
             playerPistol.canFire = false;
             playerMelee.canAttack = false;

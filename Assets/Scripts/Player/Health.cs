@@ -94,6 +94,7 @@ namespace Player {
         void Die(bool killGivesBlood, float bloodMult = 1f) {
             if (killGivesBlood) {
                 bloodTracker.AddBlood(bloodOnKill * bloodMult);
+                gameObject.BroadcastMessage("OnBloodKill", SendMessageOptions.DontRequireReceiver);
             }
 
             gameObject.BroadcastMessage("OnDeath", SendMessageOptions.DontRequireReceiver); //Send to every object and call this function

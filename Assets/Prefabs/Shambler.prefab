@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 6498809612011830333}
   - component: {fileID: 6498809612011830334}
   - component: {fileID: 6498809612011830275}
+  - component: {fileID: 6377426086819073355}
   m_Layer: 0
   m_Name: ShamblerAgent
   m_TagString: Enemy
@@ -954,3 +955,20 @@ MonoBehaviour:
   attackDist: 2
   maxWanderDist: 10
   timeInBetweenAttacks: 1
+--- !u!114 &6377426086819073355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498809612011830277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06965a7f884a6da160c2caf64ba72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - An poor sacrifice.
+  - Such stale blood.
+  - This blood will have to do.
+  duration: 1

@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0956447a09a5d6448af332f321c7fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
+  delay: 2
   DelayOnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -209,6 +209,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3754554296230778784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854420171942892246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06965a7f884a6da160c2caf64ba72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - My qualm is not with you, Diana.
+  - Your father will pay, Diana.
+  - It was a mistake to oppose me, Diana.
+  duration: 2
 --- !u!1 &8917321753800675950
 GameObject:
   m_ObjectHideFlags: 0

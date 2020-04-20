@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 7005228802470067161}
   - component: {fileID: 7005228802470067160}
   - component: {fileID: 7005228802470067172}
+  - component: {fileID: 8650727823533545684}
   m_Layer: 0
   m_Name: GladiatorAgent
   m_TagString: Enemy
@@ -798,6 +799,23 @@ MonoBehaviour:
   attackDist: 2
   maxWanderDist: 10
   timeInBetweenAttacks: 0.7
+--- !u!114 &8650727823533545684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005228802470067170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06965a7f884a6da160c2caf64ba72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - A worthy sacrifice.
+  - A delicious snack.
+  - Such vigor in the blood of a gladiator.
+  duration: 1
 --- !u!1 &7005228802755759742
 GameObject:
   m_ObjectHideFlags: 0

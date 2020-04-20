@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 4221789305810482779}
   - component: {fileID: 258625692}
   - component: {fileID: 258625691}
+  - component: {fileID: 8818098685068286806}
   m_Layer: 0
   m_Name: LegionaryAgent
   m_TagString: Enemy
@@ -537,6 +538,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8818098685068286806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221789305810482781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06965a7f884a6da160c2caf64ba72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - An acceptable sacrifice.
+  - A tasty snack.
+  - Thank you.
+  duration: 1
 --- !u!1001 &3363703479263607190
 PrefabInstance:
   m_ObjectHideFlags: 0
