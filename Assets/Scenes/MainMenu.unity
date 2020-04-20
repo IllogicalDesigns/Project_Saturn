@@ -2015,15 +2015,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You found a sword in the woods. It demands blood. Damage enemies until
-    they stumble and start flashing, then finish them off with the sword (right click)
-    to gain blood. If you run out of blood, you lose.
+  m_text: 'You found a sword that contains the soul of the God Saturn. He demands
+    blood, and revenge against his progeny.
 
 
-    The sword also gives
-    you abilities that use blood. Press Q to heal,  E to toggle time warp, which
-    slows down time, and R to activate blood rage, which makes you deal damage on
-    contact.'
+    Damage enemies until they stumble
+    and start flashing, then finish them off with the sword (right click) to gain
+    blood. If you run out of blood, you lose.
+
+
+    Saturn also gave you abilities
+    that use blood. Press Q to heal using blood,  E to toggle time warp, which slows
+    down time, and R to activate blood rage, which makes you deal damage on contact.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2051,8 +2054,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

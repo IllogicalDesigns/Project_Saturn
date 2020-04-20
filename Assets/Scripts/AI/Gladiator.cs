@@ -166,8 +166,6 @@ namespace AI {
                 !other.TryGetComponent(typeof(Bullet), out var comp) || !(comp is Bullet bullet) ||
                 bullet.owner != 1) return;
             
-            Debug.Log("Dodging");
-
             var trans = transform;
             var localBullet = trans.InverseTransformPoint(other.transform.position);
             dodgeTimer = dodgeCooldown;
