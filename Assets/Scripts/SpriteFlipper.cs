@@ -21,6 +21,8 @@ public class SpriteFlipper : MonoBehaviour
     private Color invFrameColor = new Color(69f/255f, 255f/255f, 255f/255f);
     private Color origClr;
 
+    [SerializeField] Animator anim;
+
     // Use this for initialization
     private void Start() {
         trans = transform;
@@ -157,6 +159,10 @@ public class SpriteFlipper : MonoBehaviour
         StartCoroutine(flashOnce());
     }
 
+    public void OnMeleeDamage() {
+        StartCoroutine(flashOnce());
+    }
+
     // Update is called once per frame
     private void Update() {
         //trans.position = objToSnapTo.position;
@@ -168,9 +174,12 @@ public class SpriteFlipper : MonoBehaviour
         VertFlipUnderStander(targetDir, dir);
 
         if (stumbling) {
+            if (anim != null && !anim.GetBool("Stumbling")) anim.SetBool("Stumbling", true);
             Stumbler();
         } else if (invincible) {
             Invincibler();
         }
+
+        if (!stumbling && anim != null && anim.GetBool("Stumbling")) anim.SetBool("Stumbling", false);
     }
 }
