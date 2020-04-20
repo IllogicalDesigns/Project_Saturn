@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SummitScenes/SummitLevels.unity
     guid: b6ef6caa45827754397a61d4c620c116
+  - enabled: 1
+    path: Assets/Scenes/ThanksForPlaying.unity
+    guid: 9cf1df9e4410e964f9e2b30462c93a0d
   m_configObjects: {}
