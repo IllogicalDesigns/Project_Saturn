@@ -11,11 +11,11 @@ public class EventOnDeath : MonoBehaviour
 
     IEnumerator waitBeforeTrigger() {
         yield return new WaitForSeconds(delay);
-        DelayOnDeath.Invoke();
+        DelayOnDeath?.Invoke();
     }
 
     public void OnDeath() {
-        onDeath.Invoke();
+        onDeath?.Invoke();
         StartCoroutine(waitBeforeTrigger());
     }
 }

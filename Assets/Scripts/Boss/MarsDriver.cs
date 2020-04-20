@@ -273,6 +273,7 @@ namespace Boss {
 
         private void EnteredStumble() {
             inStumble = true;
+            agent.isStopped = true;
             groundDangerRandom.StopSpawning();
             bulletHell.StopSpawning();
             deathBeam.SetActive(false);
@@ -281,6 +282,8 @@ namespace Boss {
 
         private void ExitedStumble() {
             inStumble = false;
+            agent.isStopped = false;
+            EnterMoveToPosition();
         }
     }
 }

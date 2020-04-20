@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CalderaScenes/CalderaLevels.unity
     guid: dc0791af06aea0946b2eab92d5c60e9d
+  - enabled: 1
+    path: Assets/Scenes/UberBosses/UberDiana.unity
+    guid: cd16ec5dd66e77f4188a362dc7e92ecb
+  - enabled: 1
+    path: Assets/Scenes/UberBosses/UberJupiter.unity
+    guid: 65a07cc501e39584a936ed46b36e6e01
+  - enabled: 1
+    path: Assets/Scenes/UberBosses/UberMars.unity
+    guid: 80a7b67f9a5d38d40a4b4260c782133d
   m_configObjects: {}
