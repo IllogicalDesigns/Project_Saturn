@@ -11,7 +11,7 @@ public class StatusCues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bloodSrc.isPlaying) {
+        /*if (bloodSrc.isPlaying) {
             bloodSrc.pitch = (100 - bloodSlider.value) * 0.01f;
             bloodSrc.volume = (100 - bloodSlider.value) * 0.01f;
         }
@@ -19,19 +19,19 @@ public class StatusCues : MonoBehaviour
         if (hpSrc.isPlaying) {
             hpSrc.pitch = (100 - hpSlider.value) * 0.015f;
             hpSrc.volume = (100 - hpSlider.value) * 0.015f;
-        }
+        }*/
 
         if (bloodSlider.value < 25f  && !bloodSrc.isPlaying) {
             bloodSrc.Play();
         }
-        else if(bloodSrc.isPlaying) {
+        else if(bloodSlider.value > 25f && bloodSrc.isPlaying) {
             bloodSrc.Stop();
         }
 
         if (hpSlider.value < 25f && !hpSrc.isPlaying) {
             hpSrc.Play();
         }
-        else if (hpSrc.isPlaying) {
+        else if (hpSlider.value > 25f && hpSrc.isPlaying) {
             hpSrc.Stop();
         }
     }

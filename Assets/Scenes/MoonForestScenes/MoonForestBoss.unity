@@ -187,6 +187,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &772110164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2078970428, guid: cd7fd819eac05f0449bebb6992383900,
+    type: 3}
+  m_PrefabInstance: {fileID: 1596898359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1596898359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,6 +224,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5017238521098114986, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: bloodSlider
+      value: 
+      objectReference: {fileID: 772110164}
+    - target: {fileID: 5017238521098114986, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: hpSlider
+      value: 
+      objectReference: {fileID: 1864008064}
     - target: {fileID: 5180311088371730802, guid: cd7fd819eac05f0449bebb6992383900,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -272,6 +294,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Folder
       objectReference: {fileID: 0}
+    - target: {fileID: 5180311088773096419, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: bloodOnKill
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7370868313468878948, guid: cd7fd819eac05f0449bebb6992383900,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -321,6 +348,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1864008064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3889710270184185403, guid: cd7fd819eac05f0449bebb6992383900,
+    type: 3}
+  m_PrefabInstance: {fileID: 1596898359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2500364217921089329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -736,7 +775,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a42778074d293df46ad77bad5ad9b389, type: 2}
+  - {fileID: 2100000, guid: cf32aff2924a0e44ca6b171543fd345f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -815,7 +854,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6083007668122644630}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -901,7 +940,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a42778074d293df46ad77bad5ad9b389, type: 2}
+  - {fileID: 2100000, guid: cf32aff2924a0e44ca6b171543fd345f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1010,7 +1049,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a42778074d293df46ad77bad5ad9b389, type: 2}
+  - {fileID: 2100000, guid: cf32aff2924a0e44ca6b171543fd345f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1141,7 +1180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a42778074d293df46ad77bad5ad9b389, type: 2}
+  - {fileID: 2100000, guid: cf32aff2924a0e44ca6b171543fd345f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1214,7 +1253,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b0b5de51287cfba418be2759361a1b79, type: 2}
+  - {fileID: 2100000, guid: b26021bc88f51574a8ac3cb53b07ed41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
