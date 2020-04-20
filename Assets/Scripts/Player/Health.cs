@@ -49,7 +49,7 @@ namespace Player {
             damage = LowerDamageBasedOnHp(damage);
 
             hp -= damage;
-
+            
             CheckOnHitEffects(true, false);
             gameObject.BroadcastMessage("OnMeleeDamage", SendMessageOptions.DontRequireReceiver);
         }

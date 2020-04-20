@@ -299,6 +299,11 @@ PrefabInstance:
       propertyPath: bloodOnKill
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5180311088773096447, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 7370868313468878948, guid: cd7fd819eac05f0449bebb6992383900,
         type: 3}
       propertyPath: m_AnchorMax.x

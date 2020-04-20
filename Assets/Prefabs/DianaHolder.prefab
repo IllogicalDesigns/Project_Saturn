@@ -773,6 +773,7 @@ GameObject:
   - component: {fileID: 127263081}
   - component: {fileID: 127263080}
   - component: {fileID: 127263082}
+  - component: {fileID: 802626868273228558}
   m_Layer: 0
   m_Name: DianaHolder
   m_TagString: Enemy
@@ -843,9 +844,9 @@ MonoBehaviour:
   healthOnExitStumble: 1650
   bloodOnKill: 100
   spriteRenderer: {fileID: 0}
+  canTakeDamage: 1
   canStumble: 1
   canDieToBulletInStuble: 0
-  spriteFlipper: {fileID: 0}
 --- !u!114 &6364197850440329744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,3 +1107,17 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 127263081}
+--- !u!114 &802626868273228558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364197850440329751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathScream: {fileID: 0}
+  src: {fileID: 0}
