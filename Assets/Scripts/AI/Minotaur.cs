@@ -144,6 +144,7 @@ namespace AI {
 
       private void EnteredStumble() {
           currState = State.Stumbled;
+          rb.velocity = Vector3.zero;
       }
 
       private void ExitedStumble() {

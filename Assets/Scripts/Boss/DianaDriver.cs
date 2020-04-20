@@ -226,7 +226,8 @@ namespace Boss {
         }
 
         private void EnteredStumble() {
-         inStumble = true;
+            inStumble = true;
+            agent.isStopped = true;
             groundDangerFollow.StopSpawning();
             bulletHell.StopSpawning();
             EnterWaiting();
@@ -234,6 +235,8 @@ namespace Boss {
 
         private void ExitedStumble() {
             inStumble = false;
+            agent.isStopped = false;
+            EnterMoveToPosition();
         }
     }
 }
