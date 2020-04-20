@@ -245,6 +245,7 @@ MonoBehaviour:
   stumbling: 0
   rateOfStumble: 0.1
   stumbleTimer: 0
+  anim: {fileID: 0}
 --- !u!1 &1833264722371602750
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +557,7 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 6602661309342948644}
+  flipper: {fileID: 0}
 --- !u!82 &6602661309342948644
 AudioSource:
   m_ObjectHideFlags: 0
@@ -765,6 +767,7 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 7005228802470067162}
+  flipper: {fileID: 0}
 --- !u!135 &7005228802470067160
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -793,8 +796,8 @@ MonoBehaviour:
   agent: {fileID: 7005228802470067175}
   meleeDamager: {fileID: 8849879829124349324}
   animator: {fileID: 0}
-  dodgeForce: 45
-  dodgeCooldown: 0.7
+  dodgeForce: 30
+  dodgeCooldown: 1
   chaseDist: 15
   attackDist: 2
   maxWanderDist: 10
@@ -816,6 +819,7 @@ MonoBehaviour:
   - A delicious snack.
   - Such vigor in the blood of a gladiator.
   duration: 1
+  messageBaseChance: 0.3
 --- !u!1 &7005228802755759742
 GameObject:
   m_ObjectHideFlags: 0

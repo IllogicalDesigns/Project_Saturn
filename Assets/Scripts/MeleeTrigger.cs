@@ -12,7 +12,7 @@ public class MeleeTrigger : MonoBehaviour {
     float shakeDir = 0.1f, shakeAmt = 0.5f;
 
     private void OnTriggerEnter(Collider other) {
-        if (!other.CompareTag(hitAbleTag)) return;
+        if (!other.CompareTag(hitAbleTag) || other.isTrigger) return;
         
         other.SendMessage("ApplyMeleeDamage", dam);  //Damage it
         
