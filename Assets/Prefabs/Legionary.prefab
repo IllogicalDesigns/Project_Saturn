@@ -122,10 +122,9 @@ GameObject:
   - component: {fileID: 4221789304262655516}
   - component: {fileID: 4221789304262655517}
   - component: {fileID: 4221789304262655506}
-  - component: {fileID: 5623708342014640111}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,27 +223,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5000001, z: 1}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
---- !u!114 &5623708342014640111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4221789304262655504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df1da969ef40734a98cc1c6a8535ab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 1000
-  hp: 1000
-  stumbleDuration: 0
-  healthOnExitStumble: 0
-  bloodOnKill: 0
-  spriteRenderer: {fileID: 4221789304262655516}
-  canTakeDamage: 1
-  canStumble: 0
-  canDieToBulletInStuble: 1
 --- !u!1 &4221789305559303105
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +419,7 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 8300000, guid: a22c74abb99a8144ea84004a26320bf5, type: 3}
   source: {fileID: 258625691}
+  flipper: {fileID: 0}
 --- !u!82 &258625691
 AudioSource:
   m_ObjectHideFlags: 0
@@ -555,6 +534,7 @@ MonoBehaviour:
   - A tasty snack.
   - Thank you.
   duration: 1
+  messageBaseChance: 0.3
 --- !u!1001 &3363703479263607190
 PrefabInstance:
   m_ObjectHideFlags: 0

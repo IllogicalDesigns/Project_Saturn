@@ -331,6 +331,7 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 0}
   source: {fileID: 217835951}
+  flipper: {fileID: 0}
 --- !u!82 &217835951
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682,7 +683,7 @@ PrefabInstance:
     - target: {fileID: 7005228802755759742, guid: 7680dbd036a9ab644827f3382e3d0905,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7005228802755759743, guid: 7680dbd036a9ab644827f3382e3d0905,
         type: 3}
@@ -917,6 +918,7 @@ MonoBehaviour:
   universalHitMarker: {fileID: 8300000, guid: b6f27880f3ddbfd42abfb50b52c4906b, type: 3}
   MeleePunch: {fileID: 0}
   source: {fileID: 876193535}
+  flipper: {fileID: 0}
 --- !u!82 &876193535
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1898,6 +1900,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathScream: {fileID: 0}
   src: {fileID: 0}
+  animator: {fileID: 0}
+  dead: {fileID: 0}
 --- !u!114 &2431345914161157599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2187,7 +2191,7 @@ PrefabInstance:
     - target: {fileID: 4221789305559303105, guid: 162e86c9c51b8e645bbf33b91f213570,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4221789305810482778, guid: 162e86c9c51b8e645bbf33b91f213570,
         type: 3}
