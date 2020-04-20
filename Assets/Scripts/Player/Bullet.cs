@@ -17,6 +17,7 @@ namespace Player {
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.CompareTag("Player") && owner == 1 ||
                 other.gameObject.CompareTag("Enemy") && owner == -1 || 
+                other.gameObject.CompareTag("Shield") && owner == -1 ||
                 other.isTrigger) return;
             
             if(other.gameObject.CompareTag("Player") && owner == -1)
