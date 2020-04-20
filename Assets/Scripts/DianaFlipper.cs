@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DianaFlipper : SpriteFlipper {
-    [SerializeField] private Animator anim;
     bool faceUp = false, faceRight = false;
     //[SerializeField] Transform sprite;
 
-    Transform trans;
-    Quaternion rot;
-
     void Start()
     {
-        trans = this.transform;
+        trans = transform;
         //objToSnapTo = this.transform;
         rot = trans.rotation;
     }

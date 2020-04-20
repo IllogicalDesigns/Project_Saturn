@@ -15,7 +15,7 @@ public class Blood : Singleton<Blood> {
 
     public void EmitWallImpact(Transform _transform) {
         transform.rotation = _transform.rotation;
-        transform.RotateAround(Vector3.up, 180f);
+        transform.Rotate(Vector3.up, 180f);
         transform.position = _transform.position;
         wallSystem.Emit(5);
     }

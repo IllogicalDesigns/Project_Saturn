@@ -10,8 +10,8 @@ public class SpriteFlipper : MonoBehaviour
 
     public Transform objToSnapTo;
     private SpriteRenderer legR, legL, shirt, head;
-    private Transform trans;
-    private Quaternion rot;
+    protected Transform trans;
+    protected Quaternion rot;
 
     public bool stumbling = false;
     public float rateOfStumble = 0.1f, stumbleTimer;
@@ -21,7 +21,7 @@ public class SpriteFlipper : MonoBehaviour
     private Color invFrameColor = new Color(69f/255f, 255f/255f, 255f/255f);
     private Color origClr;
 
-    [SerializeField] Animator anim;
+    [SerializeField] protected Animator anim;
 
     // Use this for initialization
     private void Start() {
