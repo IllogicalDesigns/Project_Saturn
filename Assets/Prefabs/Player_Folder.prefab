@@ -609,10 +609,10 @@ MonoBehaviour:
   minBloodForTimeWarp: 5
   timeWarpFactor: 0.5
   bloodUsePerBloodRage: 20
-  chargeDamageInBloodRage: 100
-  BloodMultiplierForBloodRageKills: 0.4
+  chargeDamageInBloodRage: 150
+  BloodMultiplierForBloodRageKills: 0.5
   bloodRageDuration: 6
-  bloodRageCooldown: 10
+  bloodRageCooldown: 6
   canUseAbilites: 1
 --- !u!114 &880462458
 MonoBehaviour:
