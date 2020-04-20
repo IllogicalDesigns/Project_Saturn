@@ -87,7 +87,7 @@ namespace AI {
         }
 
         private void EnterMeleeing() {
-            meleeTimer = 0.15f;
+            meleeTimer = 0.2f;
             currState = State.Meleeing;
         }
 

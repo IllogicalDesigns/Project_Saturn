@@ -796,7 +796,7 @@ MonoBehaviour:
   agent: {fileID: 7005228802470067175}
   meleeDamager: {fileID: 8849879829124349324}
   animator: {fileID: 0}
-  dodgeForce: 30
+  dodgeForce: 40
   dodgeCooldown: 1
   chaseDist: 15
   attackDist: 2
