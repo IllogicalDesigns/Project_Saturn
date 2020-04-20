@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 8713046584258196678}
   - component: {fileID: 8713046584258196673}
   - component: {fileID: 8713046584258196680}
+  - component: {fileID: 2328060441256044011}
   m_Layer: 0
   m_Name: MarsHolder
   m_TagString: Enemy
@@ -922,9 +923,9 @@ MonoBehaviour:
   healthOnExitStumble: 3300
   bloodOnKill: 100
   spriteRenderer: {fileID: 0}
+  canTakeDamage: 1
   canStumble: 1
   canDieToBulletInStuble: 0
-  spriteFlipper: {fileID: 0}
 --- !u!114 &8713046584258196676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,3 +1077,17 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2328060441256044011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713046584258196675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathScream: {fileID: 0}
+  src: {fileID: 0}
