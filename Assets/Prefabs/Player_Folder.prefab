@@ -6179,6 +6179,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 592072571791922045, guid: feae2484e68de1540862f383c17831a9,
+        type: 3}
+      propertyPath: m_Colors.m_FadeDuration
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 996387822116389156, guid: feae2484e68de1540862f383c17831a9,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6233,6 +6238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508872165125426491, guid: feae2484e68de1540862f383c17831a9,
+        type: 3}
+      propertyPath: m_Colors.m_FadeDuration
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3767263468283266034, guid: feae2484e68de1540862f383c17831a9,
         type: 3}
