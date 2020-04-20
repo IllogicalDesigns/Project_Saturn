@@ -40,7 +40,7 @@ namespace Player {
 
         private float IncreaseAddedBloodBasedOnRemaining(float _add) {
             if (currentBloodInt < lowBloodThreshAdd) {
-                _add = _add * 4f * (lowBloodThreshAdd - currentBloodInt) / lowBloodThreshAdd;
+                _add = _add * 3f * (lowBloodThreshAdd - currentBloodInt) / lowBloodThreshAdd;
             }
 
             return _add;

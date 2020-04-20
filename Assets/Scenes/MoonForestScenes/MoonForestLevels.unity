@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3242,6 +3242,7 @@ MonoBehaviour:
   entryBlocker: {fileID: 1750183884}
   exitBlocker: {fileID: 1301496839}
   spawnPointHolder: {fileID: 18408502}
+  audioSource: {fileID: 0}
 --- !u!65 &520216293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4391,6 +4392,7 @@ MonoBehaviour:
   entryBlocker: {fileID: 758631532}
   exitBlocker: {fileID: 176335787}
   spawnPointHolder: {fileID: 170035769}
+  audioSource: {fileID: 0}
 --- !u!65 &707394835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7142,6 +7144,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Folder
       objectReference: {fileID: 0}
+    - target: {fileID: 5180311088773096447, guid: cd7fd819eac05f0449bebb6992383900,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 5180311089579485852, guid: cd7fd819eac05f0449bebb6992383900,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -7987,6 +7994,7 @@ MonoBehaviour:
   entryBlocker: {fileID: 515966923}
   exitBlocker: {fileID: 1129985778}
   spawnPointHolder: {fileID: 555911612}
+  audioSource: {fileID: 0}
 --- !u!65 &1413284825
 BoxCollider:
   m_ObjectHideFlags: 0

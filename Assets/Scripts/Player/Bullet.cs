@@ -57,14 +57,13 @@ namespace Player {
 
         void DisableBulletBloody()
         {
-            CamEffects.Instance.FreezeFrame();
-            Blood.Instance.EmitBlood(this.transform);
+            if (CamEffects.Instance != null) CamEffects.Instance.FreezeFrame();
+            if (Blood.Instance != null) Blood.Instance.EmitBlood(transform);
             DisableBullet();
         }
 
-        void DisableBulletDefaultImpact()
-        {
-            Blood.Instance.EmitWallImpact(this.transform);
+        void DisableBulletDefaultImpact() {
+            if (Blood.Instance != null) Blood.Instance.EmitWallImpact(transform);
             DisableBullet();
         }
 
