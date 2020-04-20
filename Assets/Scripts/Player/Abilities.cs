@@ -23,6 +23,9 @@ namespace Player {
         [SerializeField] public float BloodMultiplierForBloodRageKills;
         [SerializeField] private float bloodRageDuration;
         [SerializeField] private float bloodRageCooldown;
+        [SerializeField] private AudioSource audiosrc;
+        [SerializeField] private AudioClip healSfx, slowTimeSfx;
+
         private float bloodRageTimeTracker;
         private float bloodRageCooldownTracker;
 
@@ -75,7 +78,8 @@ namespace Player {
 
         private void DoHeal() {
             if (!bloodTracker.TryUseBlood(bloodUsePerHeal)) return;
-            
+
+            audiosrc.PlayOneShot(healSfx);
             playerHealth.ApplyHeal(healAmount);
             healCooldownTracker = healCooldown;
         }
@@ -84,6 +88,7 @@ namespace Player {
             if (bloodTracker.CurrentBlood < minBloodForTimeWarp) return;
 
             inTimeWarp = true;
+            audiosrc.PlayOneShot(slowTimeSfx);
             canvas.EnableTimeWarpOverlay();
             Time.timeScale *= timeWarpFactor;
             Time.fixedDeltaTime *= timeWarpFactor;

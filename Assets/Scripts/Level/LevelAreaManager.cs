@@ -9,6 +9,7 @@ namespace Level {
         [SerializeField] private GameObject exitBlocker;
 
         [SerializeField] private GameObject spawnPointHolder;
+        [SerializeField] private AudioSource audioSource;
         
         private List<WaveData> waveData;
         private readonly List<GameObject> spawned = new List<GameObject>();
@@ -22,6 +23,8 @@ namespace Level {
             var children = spawnPointHolder.GetComponentsInChildren<Transform>().ToList();
             children.Remove(spawnPointHolder.transform);
             spawnPoints = children.Select(trans => trans.position).ToList();
+
+            audioSource = gameObject.GetComponent<AudioSource>();
         }
         
         private void Update() {
@@ -56,6 +59,7 @@ namespace Level {
             if (playerEntered || !other.gameObject.CompareTag("Player")) return;
 
             playerEntered = true;
+            if(audioSource != null) audioSource.Play();
             entryBlocker.SetActive(true);
             exitBlocker.SetActive(true);
         }

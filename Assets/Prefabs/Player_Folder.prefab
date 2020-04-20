@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180311088773096444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5180311089815237728}
@@ -615,6 +615,9 @@ MonoBehaviour:
   BloodMultiplierForBloodRageKills: 0.5
   bloodRageDuration: 6
   bloodRageCooldown: 6
+  audiosrc: {fileID: 5180311088773096417}
+  healSfx: {fileID: 8300000, guid: 05e72d7f35834b44b9bfab696c3e4b56, type: 3}
+  slowTimeSfx: {fileID: 8300000, guid: aae64b7223cf921428f46c48fd02859a, type: 3}
   canUseAbilites: 1
 --- !u!114 &880462458
 MonoBehaviour:
