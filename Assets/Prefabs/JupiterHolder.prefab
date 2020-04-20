@@ -348,7 +348,6 @@ MonoBehaviour:
   stumbleDuration: 10
   healthOnExitStumble: 5000
   bloodOnKill: 100
-  spriteRenderer: {fileID: 1595246064432462718}
   canTakeDamage: 1
   canStumble: 1
   canDieToBulletInStuble: 0
@@ -463,10 +462,10 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 1595246063727794632}
   spawnInterval:
+  - 0.05
+  - 0.04
   - 0.03
-  - 0.02
-  - 0.01
-  spawnSpreadAngle: 60
+  spawnSpreadAngle: 75
   fireDir: {x: -1, y: 0, z: 0}
   totalBulletsToSpawn: fa000000f4010000ee020000
   speed:

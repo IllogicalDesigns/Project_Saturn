@@ -28,9 +28,7 @@ namespace AI {
 
         [SerializeField] GameObject arrowPrefab;
         [SerializeField] Transform firePoint;
-
-        [SerializeField] Animator anim;
-
+        
         float spread = 0.15f;
 
         float attackTimer = 0f;
