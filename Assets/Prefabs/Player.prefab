@@ -329,6 +329,7 @@ MonoBehaviour:
   MovementFactor: 1
   Crosshair: {fileID: 1916456896807268151}
   CrosshairAltitude: 5
+  animator: {fileID: 0}
 --- !u!54 &1916456895666414316
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -357,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb80ef4fabf46589fb15493f0e24e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 1
   firePoint: {fileID: 1916456895907433984}
   dmg: 60
   ReloadTime: 0.17
@@ -364,7 +366,6 @@ MonoBehaviour:
   BulletPrefab: {fileID: 2866993711871358060, guid: 15b2dd865f41de4429bfbd19cad1eec0,
     type: 3}
   speed: 35
-  BulletTrailPrefab: {fileID: 0}
   gunShot: {fileID: 1916456895666414312}
   kickback: 1
 --- !u!135 &1916456895666414289
@@ -398,6 +399,9 @@ MonoBehaviour:
   healthOnExitStumble: 40
   bloodOnKill: 10
   spriteRenderer: {fileID: 1916456896057678167}
+  canTakeDamage: 1
+  canStumble: 1
+  canDieToBulletInStuble: 1
 --- !u!114 &1916456895666414318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db31eb9743aaf5b40bd0911e31be37f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScream: {fileID: 0}
+  src: {fileID: 0}
 --- !u!82 &1916456895666414312
 AudioSource:
   m_ObjectHideFlags: 0
@@ -519,7 +525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f2795f8a3e57741916c235d9b53f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 1
   meleeCollider: {fileID: 1855514242}
+  swing: {fileID: 0}
+  source: {fileID: 0}
 --- !u!114 &1759711749605173105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +561,7 @@ MonoBehaviour:
   bloodUsePerHeal: 10
   healAmount: 40
   healCooldown: 3
-  bloodUsePerSecondTimeWarp: 6
+  bloodUsePerSecondTimeWarp: 10
   minBloodForTimeWarp: 5
   timeWarpFactor: 0.5
   bloodUsePerBloodRage: 20
@@ -560,6 +569,7 @@ MonoBehaviour:
   BloodMultiplierForBloodRageKills: 0.4
   bloodRageDuration: 6
   bloodRageCooldown: 10
+  canUseAbilites: 1
 --- !u!1 &1916456895905663022
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,10 +915,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d88e08a30fc5ac4a9957909b4942c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToSnapTo: {fileID: 1916456896705743613}
   varience: 40
-  up: {fileID: 4107218256578006699, guid: 0c10ae79f27ffca498b920702dca911a, type: 3}
-  dwn: {fileID: -8463902168034768813, guid: 0c10ae79f27ffca498b920702dca911a, type: 3}
+  up:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dwn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objToSnapTo: {fileID: 1916456896705743613}
+  stumbling: 0
+  rateOfStumble: 0.1
+  stumbleTimer: 0
 --- !u!95 &5325189865187856781
 Animator:
   serializedVersion: 3
@@ -919,7 +938,7 @@ Animator:
   m_GameObject: {fileID: 1916456896057678165}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 28936651851b8214b9f963e7bc341b24, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1629,8 +1648,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dodgeSlider: {fileID: 1916456896734628102}
   bloodSlider: {fileID: 2491365897620679974}
+  HpSlider: {fileID: 0}
   timeWarpOverlay: {fileID: 787455734721805102}
   bloodRageOverlay: {fileID: 8899898347297305194}
+  PausePanel: {fileID: 0}
+  DeadPanel: {fileID: 0}
+  mixer: {fileID: 0}
+  playerHealth: {fileID: 0}
 --- !u!1 &1916456896807268151
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,10 +2112,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d88e08a30fc5ac4a9957909b4942c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToSnapTo: {fileID: 1916456896705743613}
   varience: 40
-  up: {fileID: 4107218256578006699, guid: 0c10ae79f27ffca498b920702dca911a, type: 3}
-  dwn: {fileID: -8463902168034768813, guid: 0c10ae79f27ffca498b920702dca911a, type: 3}
+  up:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dwn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objToSnapTo: {fileID: 1916456896705743613}
+  stumbling: 0
+  rateOfStumble: 0.1
+  stumbleTimer: 0
 --- !u!1 &7478974752957418919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,10 +2220,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d88e08a30fc5ac4a9957909b4942c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToSnapTo: {fileID: 1916456896705743613}
   varience: 40
-  up: {fileID: 4107218256578006699, guid: 0c10ae79f27ffca498b920702dca911a, type: 3}
-  dwn: {fileID: -8463902168034768813, guid: 0c10ae79f27ffca498b920702dca911a, type: 3}
+  up:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dwn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objToSnapTo: {fileID: 1916456896705743613}
+  stumbling: 0
+  rateOfStumble: 0.1
+  stumbleTimer: 0
 --- !u!1 &7671091945988858487
 GameObject:
   m_ObjectHideFlags: 0
